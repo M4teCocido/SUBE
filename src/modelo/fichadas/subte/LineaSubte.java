@@ -1,6 +1,7 @@
 package modelo.fichadas.subte;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LineaSubte {
@@ -8,6 +9,19 @@ public class LineaSubte {
 	private String nombre;
 	private List<EstacionSubte> recorridoSubte;
 	private BigDecimal precioViaje;
+	
+	
+	
+	
+	
+	public LineaSubte(String nombre, BigDecimal precioViaje) {
+		super();
+		this.nombre = nombre;
+		this.recorridoSubte = new ArrayList<EstacionSubte>();
+		this.precioViaje = precioViaje;
+	}
+
+	
 	
 	public String getNombre() {
 		return nombre;

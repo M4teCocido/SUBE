@@ -90,10 +90,12 @@ public class TarjetaSube {
 	
 	public void procesarFichada(FichadaTren fichadaTren) {
 		
+	
+	
 	}
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {
-	
+			
 	}
 	
 	public void procesarFichada (FichadaRecarga fichadaCarga) {

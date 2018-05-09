@@ -79,5 +79,13 @@ public class Persona {
 	public void setDescuentoTarifaSocial(DescuentoTarifaSocial descuentoTarifaSocial) {
 		this.descuentoTarifaSocial = descuentoTarifaSocial;
 	}
+	@Override
+	public String toString() {
+		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", documento=" + documento + ", genero="
+				+ genero + ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", celular=" + celular
+				+ ", telefono=" + telefono + ", tarjetasAsociadas=" + tarjetasAsociadas + ", descuentoTarifaSocial="
+				+ descuentoTarifaSocial + "]";
+	}
+	
 	
 }

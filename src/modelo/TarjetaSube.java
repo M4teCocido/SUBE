@@ -63,6 +63,18 @@ public class TarjetaSube {
 		return transacciones;
 	}
 
+	public List<TransaccionSUBE> obtenerViajesRealizadosTren (GregorianCalendar fechaInicio, GregorianCalendar fechaFinal){
+		List<TransaccionSUBE> transacciones  = new ArrayList <TransaccionSUBE>();
+		return transacciones;
+	}
+	
+	public List<TransaccionSUBE> obtenerViajesRealizadosSubte (GregorianCalendar fechaInicio, GregorianCalendar fechaFinal){
+		List<TransaccionSUBE>transacciones = new ArrayList<TransaccionSUBE>();
+		return transacciones;
+	}
+	
+	
+
 	
 
 }

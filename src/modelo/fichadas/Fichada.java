@@ -3,6 +3,7 @@ import java.util.GregorianCalendar;
 public class Fichada {
 	private GregorianCalendar fechaHora; 
 	private float monto;
+	
 	public Fichada(GregorianCalendar fechaHora, float monto) {
 		super();
 		this.fechaHora = fechaHora;

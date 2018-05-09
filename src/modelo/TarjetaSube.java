@@ -17,13 +17,67 @@ import modelo.fichadas.tren.FichadaTren;
 public class TarjetaSube {
 	private String codigo;
 	private Persona owner;
-	private ArrayList<Fichada> fichadas;
+	private ArrayList<TransaccionSUBE> transacciones;
 	private DescuentoTarifaSocial descuentoTarifaSocial;
 	private DescuentoRedSube descuentoRedSube;
-	private DescuentoBoletoEstudiantil descuentoVoletoEstudiantil;
+	private DescuentoBoletoEstudiantil descuentoBoletoEstudiantil;
 	private BigDecimal saldo;
 
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public Persona getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Persona owner) {
+		this.owner = owner;
+	}
+
+	public DescuentoTarifaSocial getDescuentoTarifaSocial() {
+		return descuentoTarifaSocial;
+	}
+
+	public void setDescuentoTarifaSocial(DescuentoTarifaSocial descuentoTarifaSocial) {
+		this.descuentoTarifaSocial = descuentoTarifaSocial;
+	}
+
+	public DescuentoRedSube getDescuentoRedSube() {
+		return descuentoRedSube;
+	}
+
+	public void setDescuentoRedSube(DescuentoRedSube descuentoRedSube) {
+		this.descuentoRedSube = descuentoRedSube;
+	}
+
+	public DescuentoBoletoEstudiantil getDescuentoBoletoEstudiantil() {
+		return descuentoBoletoEstudiantil;
+	}
+
+	public void setDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuentoBoletoEstudiantil) {
+		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
+	}
 	
+	public ArrayList<TransaccionSUBE> getTransacciones() {
+		return transacciones;
+	}
+
+	public void setTransacciones(ArrayList<TransaccionSUBE> transacciones) {
+		this.transacciones = transacciones;
+	}
+
+	public BigDecimal getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(BigDecimal saldo) {
+		this.saldo = saldo;
+	}
 
 	public void efectuarCarga (BigDecimal monto) {
 		

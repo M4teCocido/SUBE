@@ -1,5 +1,9 @@
 package modelo;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+
 import modelo.Descuentos.*;
 
 import modelo.Persona;
@@ -17,11 +21,11 @@ public class TarjetaSube {
 	private DescuentoTarifaSocial descuentoTarifaSocial;
 	private DescuentoRedSube descuentoRedSube;
 	private DescuentoBoletoEstudiantil descuentoVoletoEstudiantil;
-	private float saldo;
+	private BigDecimal saldo;
 
 	
 
-	public void efectuarCarga (float monto) {
+	public void efectuarCarga (BigDecimal monto) {
 		
 		
 	}
@@ -38,6 +42,27 @@ public class TarjetaSube {
 	
 	}
 	
+	public void procesarFichada (FichadaRecarga fichadaCarga) {
+		
+	}
+
+	
+	public void asignarDescuento(DescuentoRedSube descuento) {
+		
+	}
+
+	public List<Fichada> obtenerViajesRealizados(GregorianCalendar fechaInicio , GregorianCalendar fechaFin ) {
+		List<Fichada> fichadas = new ArrayList<Fichada>();
+	
+		return fichadas;
+	}
+	
+	public List<TransaccionSUBE> obtenerViajesRealizadosColectivo (GregorianCalendar fechaInicio, GregorianCalendar fechaFinal){
+		List<TransaccionSUBE>transacciones = new ArrayList<TransaccionSUBE>();
+	
+		return transacciones;
+	}
+
 	
 
 }

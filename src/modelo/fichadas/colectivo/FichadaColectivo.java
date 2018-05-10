@@ -9,10 +9,7 @@ public class FichadaColectivo extends Fichada {
 	
 	private TramoColectivo tramo;
 
-	public FichadaColectivo(TramoColectivo tramo, GregorianCalendar fechaHora) {
-		super(fechaHora);
-		this.tramo = tramo;
-	}
+	
 	
 	public TramoColectivo getTramo() {
 		return tramo;

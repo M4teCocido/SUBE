@@ -1,6 +1,6 @@
 package modelo.Descuentos;
 //SuperClase de descuentos
-public class DescuentoSube {
+public abstract class DescuentoSube {
 	
 	private String nombre;
 	

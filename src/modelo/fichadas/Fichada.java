@@ -1,7 +1,7 @@
 package modelo.fichadas;
 import java.math.BigDecimal;
 import java.util.GregorianCalendar;
-public class Fichada {
+public  abstract class Fichada {
 	private GregorianCalendar fechaHora; 
 	private BigDecimal monto;
 	

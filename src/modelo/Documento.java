@@ -1,8 +1,10 @@
 package modelo;
 
 public class Documento {
+	private enum eTipoDocumento {DNI, LIBRETA_ENROLAMIENTO}
+	
 	private String numero; 
-	private enum eEtipoDocumento {tipo1,tipo2}
+	private eTipoDocumento tipoDocumento; 
 	
 	public String getNumero() {
 		return numero;

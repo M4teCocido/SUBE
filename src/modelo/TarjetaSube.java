@@ -22,6 +22,8 @@ public class TarjetaSube {
 	private BigDecimal saldo;
 
 	
+	public TarjetaSube() {}
+
 	public TarjetaSube(String codigo, Persona propietario, ArrayList<TransaccionSUBE> transacciones,
 			DescuentoRedSube descuentoRedSube, BigDecimal saldo) {
 		super();

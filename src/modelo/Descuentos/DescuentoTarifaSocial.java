@@ -1,22 +1,39 @@
 package modelo.Descuentos;
+import java.math.BigDecimal;
+
 import modelo.Descuentos.DescuentoSube;
 
 public class DescuentoTarifaSocial extends DescuentoSube{
 	
-	private float porcentajeDescuento;
+	private BigDecimal porcentajeDescuento;
 	
-	public float getPorcentajeDescuento() {
+	public DescuentoTarifaSocial(String nombre, BigDecimal porcentajeDescuento) {
+		super(nombre);
+		this.porcentajeDescuento = porcentajeDescuento;
+	}
+	
+	public BigDecimal getPorcentajeDescuento() {
 		return this.porcentajeDescuento;
 	}
 	
-	public void setPorcentajeDescuento(float porcentajeDescuento) {
+	public void setPorcentajeDescuento(BigDecimal porcentajeDescuento) {
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
 	
-	public DescuentoTarifaSocial(int prioridad, String nombre, float porcentajeDescuento) {
-		super(prioridad, nombre);
-		this.porcentajeDescuento = porcentajeDescuento;
+	
+	
+	
+	public BigDecimal aplicarDescuento (BigDecimal importe) {
+		 importe.multiply(this.porcentajeDescuento);
+		 importe.divide(new BigDecimal (100));
+		 return importe;
 	}
+
+	@Override
+	public String toString() {
+		return "DescuentoTarifaSocial [porcentajeDescuento=" + porcentajeDescuento + "]";
+	}
+	
 	
 	
 }

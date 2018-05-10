@@ -15,7 +15,7 @@ public class DescuentoRedSube extends DescuentoSube {
 	}
 
 	public DescuentoRedSube(int prioridad, String nombre, LapsoDescuentoRedSube lapsoDescuentoRedSube) {
-		super(prioridad, nombre);
+		super(nombre);
 		this.lapsoDescuentoRedSube = lapsoDescuentoRedSube;
 	}
 

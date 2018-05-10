@@ -3,17 +3,18 @@ package modelo.Descuentos;
 import java.math.BigDecimal;
 
 public class DescuentoBoletoEstudiantil {
-	private float porcentajeDescuento;
+	private enum eTipoBoletoEstudiantil {TIPO_A,TIPO_B}
+	
+	private BigDecimal porcentajeDescuento;
 	private int viajesRestantes;
-	private enum eTipoBoletoEstudiantil {tipoA,TipoB}// que carajo ??
+	private eTipoBoletoEstudiantil tipoBoletoEstudiantil;
 	
-	//tipo voleto en uml es un atributo??
 	
-	public float getPorcentajeDescuento() {
+	public BigDecimal  getPorcentajeDescuento() {
 		return porcentajeDescuento;
 	}
 
-	public void setPorcentajeDescuento(float porcentajeDescuento) {
+	public void setPorcentajeDescuento(BigDecimal porcentajeDescuento) {
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
 

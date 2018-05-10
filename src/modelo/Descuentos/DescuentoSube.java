@@ -4,7 +4,7 @@ public abstract class DescuentoSube {
 	
 	private String nombre;
 	
-	public DescuentoSube(int prioridad, String nombre) {
+	public DescuentoSube( String nombre) {
 		super();
 		
 		this.nombre = nombre;

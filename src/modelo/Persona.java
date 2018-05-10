@@ -22,6 +22,10 @@ public class Persona {
 	
 	
 	
+	public Persona() {}
+
+
+
 	public Persona(String nombre, String apellido, Documento documento, eGenero genero,
 			GregorianCalendar fechaNacimiento, String email, String celular, String telefono,
 			ArrayList<TarjetaSube> tarjetasAsociadas, DescuentoTarifaSocial descuentoTarifaSocial,
@@ -40,6 +44,8 @@ public class Persona {
 		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
 	}
 
+	
+	
 	public String getNombre() {
 		return nombre;
 	}

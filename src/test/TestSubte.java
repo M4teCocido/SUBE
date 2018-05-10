@@ -3,13 +3,14 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 import modelo.*;
+import modelo.Descuentos.DescuentoTarifaSocial;
 import modelo.fichadas.Fichada;
 import modelo.fichadas.TransaccionSUBE;
 import modelo.fichadas.subte.EstacionSubte;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.subte.LineaSubte;
 
-public class Test {
+public class TestSubte {
 
 	public static void main(String[] args) {
 		Persona persona = new Persona();
@@ -34,6 +35,10 @@ public class Test {
 		System.out.println(transaccion.toString());
 		System.out.println(tarjeta.getSaldo().toString());
 
+		//Test cosas con descuento
+		DescuentoTarifaSocial descuentoTarifaSocial =  new DescuentoTarifaSocial ("TarifaSocial",new BigDecimal(55));
+		
+		System.out.println(descuentoTarifaSocial.toString());
 	}
 
 	

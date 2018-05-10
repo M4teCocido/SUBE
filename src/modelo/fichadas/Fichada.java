@@ -5,10 +5,10 @@ public class Fichada {
 	private GregorianCalendar fechaHora; 
 	private BigDecimal monto;
 	
-	public Fichada(GregorianCalendar fechaHora, BigDecimal monto) {
+	public Fichada(GregorianCalendar fechaHora) {
 		super();
 		this.fechaHora = fechaHora;
-		this.monto = monto;
+		
 	}
 
 	public Fichada() {}

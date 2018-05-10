@@ -9,10 +9,17 @@ public class FichadaSubte extends Fichada {
 	
 	private EstacionSubte estacionSubte;
 
-	public FichadaSubte(GregorianCalendar fechaHora, BigDecimal monto, EstacionSubte estacionSubte) {
-		super(fechaHora, monto);
-		this.estacionSubte = estacionSubte;
-		
+	
+
+	public FichadaSubte() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public FichadaSubte(GregorianCalendar fechaHora, EstacionSubte estacion ) {
+		super(fechaHora);
+		// TODO Auto-generated constructor stub
+		this.estacionSubte = estacion;
 	}
 
 	public EstacionSubte getEstacionSubte() {
@@ -33,4 +40,7 @@ public class FichadaSubte extends Fichada {
 				+ getMonto() + "]";
 	}
 	
+	public BigDecimal traerMontoLinea() {
+		return this.estacionSubte.getLineaSubte().getPrecioViaje(); //  trae el costo del viaje en subte
+	}
 }

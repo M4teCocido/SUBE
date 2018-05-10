@@ -17,12 +17,13 @@ public class Test {
 		tarjeta.setSaldo(new BigDecimal (21));
 		LineaSubte lineaC = new LineaSubte ("Linea C", new BigDecimal(11));
 		EstacionSubte constitucion= new EstacionSubte("Constitucion", lineaC); 
-		EstacionSubte moreno= new EstacionSubte("Moreno", lineaC); 
+		EstacionSubte moreno = new EstacionSubte("Moreno", lineaC); 
 		lineaC.getRecorridoSubte().add(constitucion);
 		lineaC.getRecorridoSubte().add(moreno);
-		FichadaSubte fichadaSubte = new FichadaSubte(FuncionesGregorian.traerFecha(1998, 07, 31),new BigDecimal(11),constitucion);
+		FichadaSubte fichadaSubte = new FichadaSubte(FuncionesGregorian.traerFecha(1998, 07, 31),constitucion);
 		TransaccionSUBE transaccion = new TransaccionSUBE (fichadaSubte, new BigDecimal (11));
 		tarjeta.procesarFichada(fichadaSubte);
+		
 		
 		
 		//Printeos
@@ -35,4 +36,8 @@ public class Test {
 
 	}
 
+	
+	//Por q si utilizo fichada en cada  tipo hay una clase generica TransaccionSube? por q  es  el resultado de el proceso tiene el monto
+	//el constructor de fichada subte no deberia tomar el monto desde el monto en la linea ??
+	
 }

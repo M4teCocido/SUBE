@@ -1,12 +1,21 @@
 package modelo.fichadas.colectivo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RamalColectivo {
 	
-	private List<TramoColectivo>tramos;
+	private List<TramoColectivo> tramos;
 	private LineaColectivo linea;
 	private String nombre;
+	
+	public RamalColectivo(LineaColectivo linea, String nombre) {
+		super();
+		this.tramos = new ArrayList<TramoColectivo>();
+		this.linea = linea;
+		this.nombre = nombre;
+	}
+	
 	public List<TramoColectivo> getTramos() {
 		return tramos;
 	}

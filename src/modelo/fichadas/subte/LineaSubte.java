@@ -10,18 +10,12 @@ public class LineaSubte {
 	private List<EstacionSubte> recorridoSubte;
 	private BigDecimal precioViaje;
 	
-	
-	
-	
-	
 	public LineaSubte(String nombre, BigDecimal precioViaje) {
 		super();
 		this.nombre = nombre;
 		this.recorridoSubte = new ArrayList<EstacionSubte>();
 		this.precioViaje = precioViaje;
 	}
-
-	
 	
 	public String getNombre() {
 		return nombre;

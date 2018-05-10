@@ -1,14 +1,15 @@
 package modelo.fichadas;
 import java.math.BigDecimal;
 import java.util.GregorianCalendar;
+
 public class Fichada {
+	
 	private GregorianCalendar fechaHora; 
 	private BigDecimal monto;
 	
-	public Fichada(GregorianCalendar fechaHora, BigDecimal monto) {
+	public Fichada(GregorianCalendar fechaHora) {
 		super();
 		this.fechaHora = fechaHora;
-		this.monto = monto;
 	}
 
 	public Fichada() {}
@@ -34,6 +35,4 @@ public class Fichada {
 		return "Fichada [fechaHora=" + fechaHora + ", monto=" + monto + "]";
 	}
 	
-	
-
 }

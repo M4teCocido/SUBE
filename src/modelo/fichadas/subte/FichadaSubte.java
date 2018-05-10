@@ -9,10 +9,9 @@ public class FichadaSubte extends Fichada {
 	
 	private EstacionSubte estacionSubte;
 
-	public FichadaSubte(GregorianCalendar fechaHora, BigDecimal monto, EstacionSubte estacionSubte) {
-		super(fechaHora, monto);
+	public FichadaSubte(GregorianCalendar fechaHora, EstacionSubte estacionSubte) {
+		super(fechaHora);
 		this.estacionSubte = estacionSubte;
-		
 	}
 
 	public EstacionSubte getEstacionSubte() {
@@ -31,6 +30,6 @@ public class FichadaSubte extends Fichada {
 	public String toString() {
 		return "FichadaSubte [estacionSubte=" + estacionSubte + ", getFechaHora()=" + getFechaHora().getTime() + ", getMonto()="
 				+ getMonto() + "]";
-	}
+	} 
 	
 }

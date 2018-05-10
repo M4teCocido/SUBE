@@ -6,8 +6,6 @@ public class TransaccionSUBE {
 	private Fichada fichada;
 	private BigDecimal importe;
 	
-	
-	
 	public TransaccionSUBE(Fichada fichada, BigDecimal importe) {
 		super();
 		this.fichada = fichada;

@@ -90,21 +90,17 @@ public class TarjetaSube {
 	
 	public void procesarFichada(FichadaTren fichadaTren) {
 		
-	
-	
 	}
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {
 		BigDecimal monto = fichadaSubte.getMonto();
 		this.saldo = this.saldo.subtract(monto);
-		
 	}
 	
 	public void procesarFichada (FichadaRecarga fichadaCarga) {
 		
 	}
 
-	
 	public void asignarDescuento(DescuentoRedSube descuento) {
 		
 	}
@@ -131,8 +127,4 @@ public class TarjetaSube {
 		return transacciones;
 	}
 	
-	
-
-	
-
 }

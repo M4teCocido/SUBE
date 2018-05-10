@@ -7,7 +7,6 @@ import java.util.List;
 import modelo.Descuentos.*;
 
 import modelo.Persona;
-import modelo.Descuentos.DescuentoTarifaSocial;
 import modelo.fichadas.*;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.subte.FichadaSubte;
@@ -15,13 +14,23 @@ import modelo.fichadas.tren.FichadaTren;
 
 
 public class TarjetaSube {
+	
 	private String codigo;
-	private Persona owner;
+	private Persona propietario;
 	private ArrayList<TransaccionSUBE> transacciones;
-	private DescuentoTarifaSocial descuentoTarifaSocial;
 	private DescuentoRedSube descuentoRedSube;
-	private DescuentoBoletoEstudiantil descuentoBoletoEstudiantil;
 	private BigDecimal saldo;
+
+	
+	public TarjetaSube(String codigo, Persona propietario, ArrayList<TransaccionSUBE> transacciones,
+			DescuentoRedSube descuentoRedSube, BigDecimal saldo) {
+		super();
+		this.codigo = codigo;
+		this.propietario = propietario;
+		this.transacciones = transacciones;
+		this.descuentoRedSube = descuentoRedSube;
+		this.saldo = saldo;
+	}
 
 	public String getCodigo() {
 		return codigo;
@@ -30,21 +39,13 @@ public class TarjetaSube {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-
-	public Persona getOwner() {
-		return owner;
+	
+	public Persona getPropietario() {
+		return this.propietario;
 	}
 
-	public void setOwner(Persona owner) {
-		this.owner = owner;
-	}
-
-	public DescuentoTarifaSocial getDescuentoTarifaSocial() {
-		return descuentoTarifaSocial;
-	}
-
-	public void setDescuentoTarifaSocial(DescuentoTarifaSocial descuentoTarifaSocial) {
-		this.descuentoTarifaSocial = descuentoTarifaSocial;
+	public void setPropietario(Persona propietario) {
+		this.propietario = propietario;
 	}
 
 	public DescuentoRedSube getDescuentoRedSube() {
@@ -53,14 +54,6 @@ public class TarjetaSube {
 
 	public void setDescuentoRedSube(DescuentoRedSube descuentoRedSube) {
 		this.descuentoRedSube = descuentoRedSube;
-	}
-
-	public DescuentoBoletoEstudiantil getDescuentoBoletoEstudiantil() {
-		return descuentoBoletoEstudiantil;
-	}
-
-	public void setDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuentoBoletoEstudiantil) {
-		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
 	}
 	
 	public ArrayList<TransaccionSUBE> getTransacciones() {
@@ -80,7 +73,6 @@ public class TarjetaSube {
 	}
 
 	public void efectuarCarga (BigDecimal monto) {
-		
 		
 	}
 	

@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
@@ -9,6 +10,13 @@ public class Usuario {
 	private String password;
 	private Persona persona;
 		
+	public Usuario(String nombreUsuario, String password, Persona persona) {
+		this.nombreUsuario = nombreUsuario;
+		this.password = password;
+		this.persona = persona;
+		this.permisos = new ArrayList<Permiso>();
+	}
+	
 	public boolean agregarPermiso(Permiso permiso) {
 		return true;
 	}	

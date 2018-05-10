@@ -9,8 +9,6 @@ public class FichadaSubte extends Fichada {
 	
 	private EstacionSubte estacionSubte;
 
-	
-
 	public FichadaSubte() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,17 +28,12 @@ public class FichadaSubte extends Fichada {
 		this.estacionSubte = estacionSubte;
 	}
 	
-	public BigDecimal getMonto() {
-		return super.getMonto();
-	}
-	
 	@Override
 	public String toString() {
-		return "FichadaSubte [estacionSubte=" + estacionSubte + ", getFechaHora()=" + getFechaHora().getTime() + ", getMonto()="
-				+ getMonto() + "]";
+		return "FichadaSubte [estacionSubte=" + estacionSubte + "]";
 	}
-	
-	public BigDecimal traerMontoLinea() {
+
+	public BigDecimal obtenerPrecio() {
 		return this.estacionSubte.getLineaSubte().getPrecioViaje(); //  trae el costo del viaje en subte
 	}
 }

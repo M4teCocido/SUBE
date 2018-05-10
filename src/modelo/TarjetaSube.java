@@ -95,7 +95,7 @@ public class TarjetaSube {
 	}
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {
-		BigDecimal monto = fichadaSubte.traerMontoLinea();
+		BigDecimal monto = fichadaSubte.obtenerPrecio();
 		this.saldo = this.saldo.subtract(monto);
 		
 	}

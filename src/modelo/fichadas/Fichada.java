@@ -1,10 +1,11 @@
 package modelo.fichadas;
+import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 public class Fichada {
 	private GregorianCalendar fechaHora; 
-	private float monto;
+	private BigDecimal monto;
 	
-	public Fichada(GregorianCalendar fechaHora, float monto) {
+	public Fichada(GregorianCalendar fechaHora, BigDecimal monto) {
 		super();
 		this.fechaHora = fechaHora;
 		this.monto = monto;
@@ -20,13 +21,19 @@ public class Fichada {
 		this.fechaHora = fechaHora;
 	}
 
-	protected float getMonto() {
+	protected BigDecimal getMonto() {
 		return monto;
 	}
 
-	protected void setMonto(float monto) {
+	protected void setMonto(BigDecimal monto) {
 		this.monto = monto;
 	}
 
+	@Override
+	public String toString() {
+		return "Fichada [fechaHora=" + fechaHora + ", monto=" + monto + "]";
+	}
+	
+	
 
 }

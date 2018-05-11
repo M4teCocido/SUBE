@@ -13,16 +13,13 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 	}
 	
 	public BigDecimal getPorcentajeDescuento() {
-		return this.porcentajeDescuento;
+		return porcentajeDescuento;
 	}
 	
 	public void setPorcentajeDescuento(BigDecimal porcentajeDescuento) {
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
-	
-	
-	
-	
+
 	public BigDecimal aplicarDescuento (BigDecimal importe) {
 		 importe.multiply(this.porcentajeDescuento);
 		 importe.divide(new BigDecimal (100));
@@ -33,7 +30,5 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 	public String toString() {
 		return "DescuentoTarifaSocial [porcentajeDescuento=" + porcentajeDescuento + "]";
 	}
-	
-	
 	
 }

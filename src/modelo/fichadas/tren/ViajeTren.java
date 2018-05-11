@@ -6,6 +6,13 @@ public class ViajeTren {
 	private EstacionTren estacionDestino;
 	private SeccionTren seccionTren;
 	
+	public ViajeTren(EstacionTren estacionOrigen, EstacionTren estacionDestino, SeccionTren seccionTren) {
+		super();
+		this.estacionOrigen = estacionOrigen;
+		this.estacionDestino = estacionDestino;
+		this.seccionTren = seccionTren;
+	}
+
 	public EstacionTren getEstacionOrigen() {
 		return estacionOrigen;
 	}

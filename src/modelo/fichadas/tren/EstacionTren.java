@@ -6,6 +6,12 @@ public class EstacionTren {
 	private String nombre;
 	private RecorridoTren recorridoTren;
 	
+	public EstacionTren(String nombre, RecorridoTren recorridoTren) {
+		super();
+		this.nombre = nombre;
+		this.recorridoTren = recorridoTren;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

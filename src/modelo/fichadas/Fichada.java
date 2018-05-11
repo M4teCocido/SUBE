@@ -3,10 +3,7 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 public  abstract class Fichada {
-
-
 	
-
 	private GregorianCalendar fechaHora; 
 	private BigDecimal monto;
 	

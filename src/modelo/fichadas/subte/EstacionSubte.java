@@ -1,19 +1,15 @@
 package modelo.fichadas.subte;
-
-import java.util.ArrayList;
-import java.util.List;
+import modelo.fichadas.subte.LineaSubte;
 
 public class EstacionSubte {
 	
 	private String nombre;
 	private LineaSubte lineaSubte;
-	private List<EstacionSubte>estaciones;
 	
 	public EstacionSubte(String nombre, LineaSubte lineaSubte) {
 		super();
 		this.nombre = nombre;
 		this.lineaSubte = lineaSubte;
-		this.estaciones = new ArrayList<EstacionSubte>();
 	}
 	
 	public String getNombre() {
@@ -34,7 +30,7 @@ public class EstacionSubte {
 	
 	@Override
 	public String toString() {
-		return "EstacionSubte [nombre=" + nombre + ", lineaSubte=" + lineaSubte + ", estaciones=" + estaciones + "]";
+		return "EstacionSubte [nombre=" + nombre + ", lineaSubte=" + lineaSubte + "]";
 	}
 	
 }

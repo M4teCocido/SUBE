@@ -1,11 +1,17 @@
 package modelo.Descuentos;
 import java.math.BigDecimal;
 
-import modelo.Descuentos.*;
+import modelo.fichadas.Fichada;
 
 public class DescuentoRedSube extends DescuentoSube {
+	
 	private LapsoDescuentoRedSube lapsoDescuentoRedSube;
 	
+	public DescuentoRedSube(String nombre, LapsoDescuentoRedSube lapsoDescuentoRedSube) {
+		super(nombre);
+		this.lapsoDescuentoRedSube = lapsoDescuentoRedSube;
+	}
+
 	public LapsoDescuentoRedSube getLapsoDescuentoRedSube() {
 		return lapsoDescuentoRedSube;
 	}
@@ -19,7 +25,7 @@ public class DescuentoRedSube extends DescuentoSube {
 		this.lapsoDescuentoRedSube = lapsoDescuentoRedSube;
 	}
 
-	public BigDecimal aplicarDescuento (BigDecimal importe) {
+	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {
 		return importe;
 	}
 		

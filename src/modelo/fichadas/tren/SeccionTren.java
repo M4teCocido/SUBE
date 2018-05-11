@@ -7,6 +7,12 @@ public class SeccionTren {
 	private String nombre;
 	private BigDecimal importe;
 	
+	public SeccionTren(String nombre, BigDecimal importe) {
+		super();
+		this.nombre = nombre;
+		this.importe = importe;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

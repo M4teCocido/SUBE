@@ -22,8 +22,7 @@ public class FichadaSubte extends Fichada {
 		this.estacionSubte = estacionSubte;
 	}
 	
-	
-	public BigDecimal  traerMontoLinea() {
+	public BigDecimal obtenerPrecio() {
 		return this.estacionSubte.getLineaSubte().getPrecioViaje();
 	}
 	

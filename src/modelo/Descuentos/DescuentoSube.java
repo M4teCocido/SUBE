@@ -1,12 +1,16 @@
 package modelo.Descuentos;
+
+import java.math.BigDecimal;
+
+import modelo.fichadas.Fichada;
+
 //SuperClase de descuentos
 public abstract class DescuentoSube {
 	
 	private String nombre;
 	
-	public DescuentoSube( String nombre) {
+	public DescuentoSube(String nombre) {
 		super();
-		
 		this.nombre = nombre;
 	}
 
@@ -18,8 +22,7 @@ public abstract class DescuentoSube {
 		this.nombre = nombre;
 	}
 
-	public float aplicarDescuento (float importe) {
-		
+	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {
 		return importe;
 	}
 

@@ -20,9 +20,10 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
 
-	public BigDecimal aplicarDescuento (BigDecimal importe) {
-		 importe.multiply(this.porcentajeDescuento);
-		 importe.divide(new BigDecimal (100));
+	public BigDecimal aplicarDescuento (BigDecimal importe) {//Toma el importe de la fichada y devuelve el importe aplicado el descuento
+		 
+		 importe=importe.multiply(this.porcentajeDescuento);
+		 importe=importe.divide(new BigDecimal (100));
 		 return importe;
 	}
 

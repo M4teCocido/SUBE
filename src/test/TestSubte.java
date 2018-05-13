@@ -14,8 +14,11 @@ public class TestSubte {
 
 	public static void main(String[] args) {
 		Persona persona = new Persona();
+		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", new BigDecimal (55)));
+		
 		TarjetaSube tarjeta = new TarjetaSube();
 		tarjeta.setSaldo(new BigDecimal (21));
+		tarjeta.setPropietario(persona);
 		LineaSubte lineaC = new LineaSubte ("Linea C", new BigDecimal(11));
 		EstacionSubte constitucion= new EstacionSubte("Constitucion", lineaC); 
 		EstacionSubte moreno = new EstacionSubte("Moreno", lineaC); 
@@ -34,11 +37,12 @@ public class TestSubte {
 		System.out.println(fichadaSubte.toString());
 		System.out.println(transaccion.toString());
 		System.out.println(tarjeta.getSaldo().toString());
-
-		//Test cosas con descuento
-		DescuentoTarifaSocial descuentoTarifaSocial =  new DescuentoTarifaSocial ("TarifaSocial",new BigDecimal(55));
+		System.out.println(persona.getDescuentoTarifaSocial());
 		
-		System.out.println(descuentoTarifaSocial.toString());
+		//Test cosas con descuento
+		
+		
+		
 	}
 
 	

@@ -1,4 +1,5 @@
 package modelo;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import modelo.Documento;
@@ -147,6 +148,7 @@ public class Persona {
 	}
 	
 	public boolean asignarDescuentoTarifaSocial(DescuentoTarifaSocial descuento) {
+		this.descuentoTarifaSocial = descuento;
 		return false;
 	}
 }

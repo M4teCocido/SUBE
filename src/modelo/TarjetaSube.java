@@ -23,15 +23,15 @@ public class TarjetaSube {
 
 	
 	public TarjetaSube() {}
+	
+	
 
-	public TarjetaSube(String codigo, Persona propietario, ArrayList<TransaccionSUBE> transacciones,
-			DescuentoRedSube descuentoRedSube, BigDecimal saldo) {
+	public TarjetaSube(String codigo, BigDecimal saldo) {
 		super();
 		this.codigo = codigo;
-		this.propietario = propietario;
-		this.transacciones = transacciones;
-		this.descuentoRedSube = descuentoRedSube;
+		this.transacciones = new ArrayList<TransaccionSUBE>();
 		this.saldo = saldo;
+		
 	}
 
 	public String getCodigo() {
@@ -91,8 +91,9 @@ public class TarjetaSube {
 		
 		monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto);
 		
-		this.saldo = this.saldo.subtract(monto);
 		
+		this.saldo = this.saldo.subtract(monto);
+		this.transacciones.add(new TransaccionSUBE (fichadaSubte,monto));
 	}
 	
 	public void procesarFichada (FichadaRecarga fichadaCarga) {
@@ -123,6 +124,14 @@ public class TarjetaSube {
 	public List<TransaccionSUBE> obtenerViajesRealizadosSubte (GregorianCalendar fechaInicio, GregorianCalendar fechaFinal){
 		List<TransaccionSUBE>transacciones = new ArrayList<TransaccionSUBE>();
 		return transacciones;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "TarjetaSube [codigo=" + codigo + ", propietario=" + propietario + ", transacciones=" + transacciones
+				+ ", descuentoRedSube=" + descuentoRedSube + ", saldo=" + saldo + "]";
 	}
 	
 }

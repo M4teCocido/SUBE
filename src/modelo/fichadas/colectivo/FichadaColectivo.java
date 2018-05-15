@@ -11,6 +11,16 @@ public class FichadaColectivo extends Fichada {
 
 	
 	
+	public FichadaColectivo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public FichadaColectivo(GregorianCalendar fechaHora) {
+		super(fechaHora);
+		// TODO Auto-generated constructor stub
+	}
+
 	public TramoColectivo getTramo() {
 		return tramo;
 	}

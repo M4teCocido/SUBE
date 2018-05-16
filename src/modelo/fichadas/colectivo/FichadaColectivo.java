@@ -16,8 +16,9 @@ public class FichadaColectivo extends Fichada {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FichadaColectivo(GregorianCalendar fechaHora) {
+	public FichadaColectivo(GregorianCalendar fechaHora, TramoColectivo tramo) {
 		super(fechaHora);
+		this.tramo = tramo;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -28,8 +29,17 @@ public class FichadaColectivo extends Fichada {
 	public void setTramo(TramoColectivo tramo) {
 		this.tramo = tramo;
 	}
-
+	public BigDecimal obtenerPrecioColectivo() {
+		return this.tramo.getPrecio();
+	}
 	public BigDecimal obtenerPrecio() {
 		return this.tramo.getPrecio();
 	}
+
+	@Override
+	public String toString() {
+		return "FichadaColectivo [tramo=" + tramo + "]";
+	}
+	
+	
 }

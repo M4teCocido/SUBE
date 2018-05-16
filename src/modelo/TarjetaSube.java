@@ -11,7 +11,7 @@ import modelo.fichadas.*;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.tren.FichadaTren;
-
+import modelo.fichadas.tren.FichadaTren;
 
 public class TarjetaSube {
 	
@@ -79,7 +79,12 @@ public class TarjetaSube {
 	}
 	
 	public void procesarFichada(FichadaColectivo fichadaColectivo) {
-		
+		BigDecimal monto = fichadaColectivo.obtenerPrecio();
+		if (this.propietario.getDescuentoTarifaSocial() != null) {
+			monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto);
+		}
+		this.saldo = this.saldo.subtract(monto);
+		this.transacciones.add(new TransaccionSUBE (fichadaColectivo, monto));
 	}
 	
 	public void procesarFichada(FichadaTren fichadaTren) {
@@ -87,14 +92,8 @@ public class TarjetaSube {
 	}
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {
-		BigDecimal monto = fichadaSubte.obtenerPrecio();
-		//if no null 
-		monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto);
-		
-		
-		this.saldo = this.saldo.subtract(monto);
-		this.transacciones.add(new TransaccionSUBE (fichadaSubte,monto));
-		// hacer metodo para q procese transaccion es decir genere transaccion y descuente  al mismo tiempo
+		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio());
+		this.transacciones.add(procesarTransaccion(fichadaSubte, monto));
 	}
 	
 	public void procesarFichada (FichadaRecarga fichadaCarga) {
@@ -128,11 +127,31 @@ public class TarjetaSube {
 	}
 
 
-
+	public BigDecimal procesarDescuento (BigDecimal monto) {
+		
+		//Aplica descuentos
+		if (this.propietario.getDescuentoTarifaSocial() != null) {
+			monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto);
+		}
+		
+		
+		return monto;
+	}
+	
+	public TransaccionSUBE procesarTransaccion (Fichada fichada, BigDecimal monto) {
+		//Descuenta saldo y crea  transaccion
+		this.saldo = this.saldo.subtract(monto);
+		return new TransaccionSUBE (fichada,monto);
+	
+	
+	}
 	@Override
 	public String toString() {
 		return "TarjetaSube [codigo=" + codigo + ", propietario=" + propietario + ", transacciones=" + transacciones
 				+ ", descuentoRedSube=" + descuentoRedSube + ", saldo=" + saldo + "]";
 	}
 	
+	
+	//hacer  clase  "numero importe" subclase de  bigdecimal
+	//hacer  metodo interno para  reutilizar  comprovacion de not null y  calculo descuento 
 }

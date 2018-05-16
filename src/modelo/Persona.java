@@ -1,5 +1,5 @@
 package modelo;
-import java.math.BigDecimal;
+//import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import modelo.Documento;

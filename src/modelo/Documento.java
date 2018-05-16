@@ -15,8 +15,9 @@ public class Documento {
 		return numero;
 	}
 	
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumero(String numero) throws Exception{
+		if (validar() == false) throw new Exception("El documento esta mal ingresado.");
+		else this.numero = numero;
 	}
 
 	public eTipoDocumento getTipoDocumento() {
@@ -27,4 +28,9 @@ public class Documento {
 		this.tipoDocumento = tipoDocumento;
 	}
 	
+	public boolean validar() {
+		boolean valido = false;
+		if (numero.matches("[0-9]+") && (numero.length() > 6 && numero.length() < 9)) valido = true;
+		return valido;
+	}
 }

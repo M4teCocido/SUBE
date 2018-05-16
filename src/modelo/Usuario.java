@@ -57,18 +57,18 @@ public class Usuario {
 
 	public boolean tienePermiso(Permiso permiso) {
 		boolean encontrado = false;
-int i = 0;
-
-while ((encontrado == false)&&(i < permisos.size())){
-	
-	if (permisos.get(i).getPermiso().equals(permiso)) {
+		int i = 0;
 		
-		encontrado = true;
-		
-	}
-	
-	i++;
-}
+		while ((encontrado == false)&&(i < permisos.size())){
+			
+			if (permisos.get(i).equals(permiso)) {
+				
+				encontrado = true;
+			
+			}
+			
+			i++;
+		}
 		
 		return encontrado;
 	}
@@ -82,7 +82,7 @@ public boolean agregarPermiso (Permiso permiso) throws Exception{
 		
 	}
 	
-agregado = permisos.add(new Permiso(nombre, descripcion, codigo));	
+	agregado = permisos.add(permiso);	
 	
 	return agregado;
 }
@@ -97,7 +97,9 @@ public boolean removerPermiso(Permiso permiso) throws Exception {
 		
 	}
 	
-	while ((i < permisos.size())&&(eliminado == false)) {
+	permisos.remove(permiso);
+	
+	/*while ((i < permisos.size())&&(eliminado == false)) {
 		
 		if (permisos.get(i).equals(permiso)) {
 			
@@ -107,7 +109,8 @@ public boolean removerPermiso(Permiso permiso) throws Exception {
 		}
 		
 		i++;
-	}
+	}*/
+	eliminado = true;
 	
 	return eliminado;
 }

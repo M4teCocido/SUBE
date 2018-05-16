@@ -88,12 +88,13 @@ public class TarjetaSube {
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {
 		BigDecimal monto = fichadaSubte.obtenerPrecio();
-		
+		//if no null 
 		monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto);
 		
 		
 		this.saldo = this.saldo.subtract(monto);
 		this.transacciones.add(new TransaccionSUBE (fichadaSubte,monto));
+		// hacer metodo para q procese transaccion es decir genere transaccion y descuente  al mismo tiempo
 	}
 	
 	public void procesarFichada (FichadaRecarga fichadaCarga) {

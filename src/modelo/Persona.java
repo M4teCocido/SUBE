@@ -28,9 +28,7 @@ public class Persona {
 
 
 	public Persona(String nombre, String apellido, Documento documento, eGenero genero,
-			GregorianCalendar fechaNacimiento, String email, String celular, String telefono,
-			ArrayList<TarjetaSube> tarjetasAsociadas, DescuentoTarifaSocial descuentoTarifaSocial,
-			DescuentoBoletoEstudiantil descuentoBoletoEstudiantil) {
+			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -40,11 +38,8 @@ public class Persona {
 		this.email = email;
 		this.celular = celular;
 		this.telefono = telefono;
-		this.tarjetasAsociadas = tarjetasAsociadas;
-		this.descuentoTarifaSocial = descuentoTarifaSocial;
-		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
 	}
-
+	
 	
 	
 	public String getNombre() {
@@ -144,6 +139,7 @@ public class Persona {
 	}
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
+		this.descuentoBoletoEstudiantil = descuento;
 		return false;
 	}
 	

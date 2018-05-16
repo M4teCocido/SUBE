@@ -17,21 +17,19 @@ public class Usuario {
 		this.permisos = new ArrayList<Permiso>();
 	}
 	
-	public boolean agregarPermiso(Permiso permiso) {
-		return true;
-	}	
+
 	
-	public boolean removerPermiso (Permiso permiso) {
-		return true;
+	public Usuario() {
+		super();
+		this.permisos = new ArrayList<Permiso>();
 	}
+
+ 
 
 	public List<Permiso> getPermisos() {
 		return permisos;
 	}
 
-	public void setPermisos(List<Permiso> permisos) {
-		this.permisos = permisos;
-	}
 
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -56,5 +54,62 @@ public class Usuario {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
+
+	public boolean tienePermiso(Permiso permiso) {
+		boolean encontrado = false;
+int i = 0;
+
+while ((encontrado == false)&&(i < permisos.size())){
+	
+	if (permisos.get(i).getPermiso().equals(permiso)) {
+		
+		encontrado = true;
+		
+	}
+	
+	i++;
+}
+		
+		return encontrado;
+	}
+	
+public boolean agregarPermiso (Permiso permiso) throws Exception{
+	boolean agregado = false;
+	
+	if (this.tienePermiso(permiso) == true) {
+		
+		throw new Exception (" no se puede agregar porque ya posee este permiso. ");
+		
+	}
+	
+agregado = permisos.add(new Permiso(nombre, descripcion, codigo));	
+	
+	return agregado;
+}
+	
+public boolean removerPermiso(Permiso permiso) throws Exception {
+	boolean eliminado = false;
+	int i = 0;
+	
+	if (this.tienePermiso(permiso) != true) {
+		
+		throw new Exception (" No se puede remover el permiso. ");
+		
+	}
+	
+	while ((i < permisos.size())&&(eliminado == false)) {
+		
+		if (permisos.get(i).equals(permiso)) {
+			
+			permisos.remove(i);
+			eliminado = true;
+			
+		}
+		
+		i++;
+	}
+	
+	return eliminado;
+}
 
 }

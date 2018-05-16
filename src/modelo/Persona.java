@@ -94,16 +94,18 @@ public class Persona {
 		return celular;
 	}
 	
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setCelular(String celular) throws Exception{
+		if (validarCelular() == false) throw new Exception("El celular esta mal ingresado.");
+		else this.celular = celular;
 	}
 	
 	public String getTelefono() {
 		return telefono;
 	}
 	
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setTelefono(String telefono) throws Exception{
+		if (validarTelefono() == false) throw new Exception("El telefono esta mal ingresado.");
+		else this.telefono = telefono;
 	}
 	
 	public ArrayList<TarjetaSube> getTarjetasAsociadas() {
@@ -147,4 +149,18 @@ public class Persona {
 		this.descuentoTarifaSocial = descuento;
 		return false;
 	}
+	
+	public boolean validarTelefono() {
+		boolean valido = false;
+		if (telefono.matches("[0-9]+") && (telefono.length() > 6 && telefono.length() < 9)) valido = true;
+		return valido;
+	}
+	
+	public boolean validarCelular() {
+		boolean valido = false;
+		//podria chequear si los 2 primeros numeros son 11 o 15
+		if (celular.matches("[0-9]+") && (celular.length() == 10)) valido = true;
+		return valido;
+	}
+	
 }

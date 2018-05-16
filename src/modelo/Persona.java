@@ -158,9 +158,24 @@ public class Persona {
 	
 	public boolean validarCelular() {
 		boolean valido = false;
-		//podria chequear si los 2 primeros numeros son 11 o 15
-		if (celular.matches("[0-9]+") && (celular.length() == 10)) valido = true;
+		if (celular.matches("[0-9]+") && (celular.length() == 10)) {
+			if (celular.substring(0).matches("[1]")) {
+				if (celular.substring(1).matches("[1]") || (celular.substring(1).matches("[5]"))) valido = true;
+			}
+		}
 		return valido;
 	}
+	
+	public boolean validarEmail() {
+		boolean valido = false;
+		if (email.contains("@") && !email.substring(0, email.indexOf("@") - 1).matches("[¡!?¿+^*¨Ç:;/]*")) valido = true;
+		return valido;
+	}
+	
+	public GregorianCalendar fechaCorta(GregorianCalendar nacimiento) {
+		GregorianCalendar asd = null;
+		return asd;
+	}
+}
 	
 }

@@ -2,6 +2,7 @@ package modelo;
 
 public class Permiso {
 	
+
 	private String nombre;
 	private String descripcion;
 	private String codigo;
@@ -35,5 +36,19 @@ public class Permiso {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
+	@Override
+	public boolean equals(Permiso p) {
+		boolean equivalente = false;
+		
+		if (p.getCodigo().compareTo(codigo)) {
+			
+			equivalente = true;
+			
+		}
+		
+		return equivalente;
+	}
+	
 	
 }

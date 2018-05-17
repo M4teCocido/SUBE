@@ -6,15 +6,26 @@ import java.util.List;
 
 public class LineaSubte {
 	
+	private int idLinea;
 	private String nombre;
 	private List<EstacionSubte> recorridoSubte;
 	private BigDecimal precioViaje;
+	
+	public LineaSubte() {}
 	
 	public LineaSubte(String nombre, BigDecimal precioViaje) {
 		super();
 		this.nombre = nombre;
 		this.recorridoSubte = new ArrayList<EstacionSubte>();
 		this.precioViaje = precioViaje;
+	}
+	
+	public int getIdLinea() {
+		return this.idLinea;
+	}
+	
+	protected void setIdLinea(int idLinea) {
+		this.idLinea = idLinea;
 	}
 	
 	public String getNombre() {

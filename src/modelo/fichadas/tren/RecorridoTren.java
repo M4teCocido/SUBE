@@ -1,5 +1,6 @@
 package modelo.fichadas.tren;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecorridoTren {
@@ -10,13 +11,12 @@ public class RecorridoTren {
 	private List<SeccionTren> secciones;
 	private String nombre;
 	
-	public RecorridoTren(List<EstacionTren> estaciones, LineaTren linea, List<ViajeTren> viajes,
-			List<SeccionTren> secciones, String nombre) {
+	public RecorridoTren( LineaTren linea, String nombre) {
 		super();
-		this.estaciones = estaciones;
+		this.estaciones = new ArrayList <EstacionTren> ();
 		this.linea = linea;
-		this.viajes = viajes;
-		this.secciones = secciones;
+		this.viajes = new ArrayList<ViajeTren>();
+		this.secciones = new ArrayList<SeccionTren>();
 		this.nombre = nombre;
 	}
 

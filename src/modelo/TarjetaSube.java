@@ -79,12 +79,9 @@ public class TarjetaSube {
 	}
 	
 	public void procesarFichada(FichadaColectivo fichadaColectivo) {
-		BigDecimal monto = fichadaColectivo.obtenerPrecio();
-		if (this.propietario.getDescuentoTarifaSocial() != null) {
-			monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto);
-		}
-		this.saldo = this.saldo.subtract(monto);
-		this.transacciones.add(new TransaccionSUBE (fichadaColectivo, monto));
+		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecioColectivo());
+		this.transacciones.add(procesarTransaccion(fichadaColectivo, monto));
+
 	}
 	
 	public void procesarFichada(FichadaTren fichadaTren) {

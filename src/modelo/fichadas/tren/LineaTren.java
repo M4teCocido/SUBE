@@ -1,5 +1,6 @@
 package modelo.fichadas.tren;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LineaTren {
@@ -7,10 +8,10 @@ public class LineaTren {
 	private String nombre;
 	private List<RecorridoTren> recorridosTren;
 	
-	public LineaTren(String nombre, List<RecorridoTren> recorridosTren) {
+	public LineaTren(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.recorridosTren = recorridosTren;
+		this.recorridosTren = new ArrayList<RecorridoTren>();
 	}
 
 	public String getNombre() {

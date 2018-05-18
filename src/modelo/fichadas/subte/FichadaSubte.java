@@ -8,12 +8,13 @@ import modelo.fichadas.Fichada;
 public class FichadaSubte extends Fichada {
 	
 	private EstacionSubte estacionSubte;
-
+	public FichadaSubte() {}
+	
 	public FichadaSubte(GregorianCalendar fechaHora, EstacionSubte estacionSubte) {
 		super(fechaHora);
 		this.estacionSubte = estacionSubte;
 	}
-
+	
 	public EstacionSubte getEstacionSubte() {
 		return estacionSubte;
 	}
@@ -28,8 +29,7 @@ public class FichadaSubte extends Fichada {
 	
 	@Override
 	public String toString() {
-		return "FichadaSubte [estacionSubte=" + estacionSubte + ", getFechaHora()=" + getFechaHora().getTime() + ", getMonto()="
-				+ getMonto() + "]";
+		return "FichadaSubte [estacionSubte=" + estacionSubte + ", getFechaHora()=" + getFechaHora().getTime();
 	} 
 	
 }

@@ -1,19 +1,26 @@
 package modelo.fichadas;
-import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
-public  abstract class Fichada {
+public abstract class Fichada {
 	
+	private int idFichada;
 	private GregorianCalendar fechaHora; 
-	private BigDecimal monto;
+	
+	public Fichada() {}
 	
 	public Fichada(GregorianCalendar fechaHora) {
 		super();
 		this.fechaHora = fechaHora;
 	}
 
-	public Fichada() {}
-
+	protected void setIdFichada(int idFichada) {
+		this.idFichada = idFichada;
+	}
+	
+	public int getIdFichada() {
+		return this.idFichada;
+	}
+	
 	protected GregorianCalendar getFechaHora() {
 		return fechaHora;
 	}
@@ -22,17 +29,9 @@ public  abstract class Fichada {
 		this.fechaHora = fechaHora;
 	}
 
-	protected BigDecimal getMonto() {
-		return monto;
-	}
-
-	protected void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
-
 	@Override
 	public String toString() {
-		return "Fichada [fechaHora=" + fechaHora + ", monto=" + monto + "]";
+		return "Fichada [fechaHora=" + fechaHora;
 	}
 	
 }

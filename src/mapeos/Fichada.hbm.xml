@@ -2,12 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping >
-	<class name = "modelo.fichadas.subte.LineaSubte" table = "lineasubte">
-		<id column = "idDocumento" name = "idDocumento">
+	<class name="modelo.fichadas.Fichada" table="fichada">
+		<id column="idFichada" name="idFichada">
 			<generator class = "identity" />
 		</id>
-		<property column = "numero" name = "numero" type = "string" />
-		<property column = "tipo" name = "tipoDocumento" type = "int" />
-		
+		<property column="fechaHora" name="fechaHora" type="calendar" />
 	</class>
 </hibernate-mapping>

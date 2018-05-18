@@ -9,8 +9,6 @@ public class FichadaColectivo extends Fichada {
 	
 	private TramoColectivo tramo;
 
-	
-	
 	public FichadaColectivo() {
 		super();
 		// TODO Auto-generated constructor stub

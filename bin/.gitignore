@@ -1,7 +1,5 @@
+/dao/
+/hibernate.cfg.xml
+/mapeos/
 /modelo/
 /test/
-/mapeos/
-/snippet/
-/hibernate.sfg.xml
-/hibernate.cfg.xml
-/dao/

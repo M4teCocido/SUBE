@@ -1,4 +1,5 @@
 package modelo;
+import java.text.SimpleDateFormat;
 //import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -86,8 +87,9 @@ public class Persona {
 		return email;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String email) throws Exception{
+		if (validarEmail() == false) throw new Exception("El email contiene alguno de los siguientes caracteres no permitidos: ¡!?¿+^*¨Ç:;/");
+		else this.email = email;
 	}
 	
 	public String getCelular() {
@@ -95,7 +97,7 @@ public class Persona {
 	}
 	
 	public void setCelular(String celular) throws Exception{
-		if (validarCelular() == false) throw new Exception("El celular esta mal ingresado.");
+		if (validarCelular() == false) throw new Exception("El celular esta mal ingresado (no comienza con 11 o 15, contiene letras, mayor/menor a 10 digitos).");
 		else this.celular = celular;
 	}
 	
@@ -104,7 +106,7 @@ public class Persona {
 	}
 	
 	public void setTelefono(String telefono) throws Exception{
-		if (validarTelefono() == false) throw new Exception("El telefono esta mal ingresado.");
+		if (validarTelefono() == false) throw new Exception("El telefono esta mal ingresado (mayor/menor a 8 digitos).");
 		else this.telefono = telefono;
 	}
 	
@@ -134,10 +136,8 @@ public class Persona {
 	
 	@Override
 	public String toString() {
-		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", documento=" + documento + ", genero="
-				+ genero + ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", celular=" + celular
-				+ ", telefono=" + telefono + ", tarjetasAsociadas=" + tarjetasAsociadas + ", descuentoTarifaSocial="
-				+ descuentoTarifaSocial + "]";
+		return "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + getDocumento() + "\nGenero: " + getGenero() + "\nFecha nacimiento: " + fechaCorta(getFechaNacimiento()) + 
+				"\nEmail: " + getEmail() + "\nCelular: " + getCelular() + "\nTelefono: " + getTelefono() + "\nTarjetas: " + getTarjetasAsociadas() + "\nDescuento tarifa social: " + getDescuentoTarifaSocial();
 	}
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
@@ -172,10 +172,8 @@ public class Persona {
 		return valido;
 	}
 	
-	public GregorianCalendar fechaCorta(GregorianCalendar nacimiento) {
-		GregorianCalendar asd = null;
-		return asd;
+	public static String fechaCorta (GregorianCalendar fecha) {
+		return new SimpleDateFormat("dd/MM/yyyy").format(fecha.getTime());
 	}
-}
 	
 }

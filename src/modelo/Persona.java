@@ -176,4 +176,4 @@ public class Persona {
 		return new SimpleDateFormat("dd/MM/yyyy").format(fecha.getTime());
 	}
 	
-}
+

@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 import modelo.fichadas.Fichada;
 import modelo.fichadas.tren.EstacionTren;
 
-public abstract class FichadaTren extends Fichada {
+public  class FichadaTren extends Fichada {
 	private enum eTipoFichadaTren {ENTRADA,SALIDA};
 	
 	private EstacionTren estacion;

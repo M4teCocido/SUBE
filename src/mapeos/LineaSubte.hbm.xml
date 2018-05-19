@@ -8,10 +8,9 @@
 		</id>
 		<property column="nombre" name="nombre" type="string" />
 		<property column="precioViaje" name="precioViaje" type="java.math.BigDecimal" />
-		<!--  <set name="recorridoSubte" table="estacionsubte" order-by="idEstacion asc" inverse="true" lazy="true" fetch="select">
+		<set name="recorridoSubte" table="estacionsubte" order-by="idEstacion asc" inverse="true" lazy="true" fetch="select">
 			<key column="idLinea" not-null="true" />
 			<one-to-many class="modelo.fichadas.subte.EstacionSubte" />
 		</set>
-		-->
 	</class>
 </hibernate-mapping>

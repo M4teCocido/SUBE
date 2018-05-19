@@ -7,6 +7,6 @@
 			<generator class = "identity" />
 		</id>
 		<property column="nombre" name="nombre" type="string" />
-		<!-- <one-to-one name="lineasubte" class="modelo.fichadas.subte.LineaSubte"></one-to-one> -->
+		<many-to-one name="lineaSubte" class="modelo.fichadas.subte.LineaSubte" fetch="select" column="idLinea" not-null="true" />
  	</class>
 </hibernate-mapping>

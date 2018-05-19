@@ -7,6 +7,6 @@
 			<generator class = "identity" />
 		</id>
 		<property column="nombre" name="nombre" type="string" />
-		<!-- Falta establecer la relacion 1a1 con linea de colectivo y 1aN con los distintos tramos  -->
+		<many-to-one name="linea" class="modelo.fichadas.colectivo.LineaColectivo" fetch="select" column="idLinea" not-null="true" />
 	</class>
 </hibernate-mapping>

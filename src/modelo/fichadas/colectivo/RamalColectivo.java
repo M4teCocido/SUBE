@@ -1,12 +1,11 @@
 package modelo.fichadas.colectivo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class RamalColectivo {
 	
 	private int idRamal;
-	private List<TramoColectivo> tramos;
+	private Set<TramoColectivo> tramos;
 	private LineaColectivo linea;
 	private String nombre;
 	
@@ -14,7 +13,6 @@ public class RamalColectivo {
 	
 	public RamalColectivo(LineaColectivo linea, String nombre) {
 		super();
-		this.tramos = new ArrayList<TramoColectivo>();
 		this.linea = linea;
 		this.nombre = nombre;
 	}
@@ -27,10 +25,10 @@ public class RamalColectivo {
 		this.idRamal = idRamal;
 	}
 	
-	public List<TramoColectivo> getTramos() {
+	public Set<TramoColectivo> getTramos() {
 		return tramos;
 	}
-	public void setTramos(List<TramoColectivo> tramos) {
+	public void setTramos(Set<TramoColectivo> tramos) {
 		this.tramos = tramos;
 	}
 	public LineaColectivo getLinea() {

@@ -5,15 +5,26 @@ import java.util.List;
 
 public class RamalColectivo {
 	
+	private int idRamal;
 	private List<TramoColectivo> tramos;
 	private LineaColectivo linea;
 	private String nombre;
+	
+	public RamalColectivo() {}
 	
 	public RamalColectivo(LineaColectivo linea, String nombre) {
 		super();
 		this.tramos = new ArrayList<TramoColectivo>();
 		this.linea = linea;
 		this.nombre = nombre;
+	}
+	
+	public int getIdRamal() {
+		return this.idRamal;
+	}
+	
+	protected void setIdRamal(int idRamal) {
+		this.idRamal = idRamal;
 	}
 	
 	public List<TramoColectivo> getTramos() {

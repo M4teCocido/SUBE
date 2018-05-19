@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping >
+	<class name="modelo.fichadas.colectivo.RamalColectivo" table="ramalcolectivo">
+		<id column="idRamal" name="idRamal">
+			<generator class = "identity" />
+		</id>
+		<property column="nombre" name="nombre" type="string" />
+		<!-- Falta establecer la relacion 1a1 con linea de colectivo y 1aN con los distintos tramos  -->
+	</class>
+</hibernate-mapping>

@@ -4,15 +4,26 @@ import java.math.BigDecimal;
 
 public class TramoColectivo {
 	
+	private int idTramo;
 	private String nombre;
 	private BigDecimal precio;
 	private RamalColectivo ramal;
+	
+	public TramoColectivo() {}
 	
 	public TramoColectivo(String nombre, BigDecimal precio, RamalColectivo ramal) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
 		this.ramal = ramal;
+	}
+	
+	public int getIdTramo() {
+		return this.idTramo;
+	}
+	
+	protected void setIdTramo(int idTramo) {
+		this.idTramo = idTramo;
 	}
 	
 	public String getNombre() {

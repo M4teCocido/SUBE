@@ -8,6 +8,7 @@ import modelo.fichadas.Fichada;
 public class FichadaSubte extends Fichada {
 	
 	private EstacionSubte estacionSubte;
+	
 	public FichadaSubte() {}
 	
 	public FichadaSubte(GregorianCalendar fechaHora, EstacionSubte estacionSubte) {

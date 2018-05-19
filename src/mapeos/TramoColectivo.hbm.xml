@@ -8,7 +8,6 @@
 		</id>
 		<property column="nombre" name="nombre" type="string" />
 		<property column="precio" name="precio" type="java.math.BigDecimal" />
-		<!-- Falta establecer la relacion 1a1 con ramal colectivo  -->
-		
+		<many-to-one name="ramal" class="modelo.fichadas.colectivo.RamalColectivo" fetch="select" column="idRamal" not-null="true" />
 	</class>
 </hibernate-mapping>

@@ -31,11 +31,11 @@ public class LineaColectivo {
 		this.nombre = nombre;
 	}
 
-	public Set<RamalColectivo> getRecorridosColectivo() {
+	public Set<RamalColectivo> getRamalesColectivo() {
 		return this.ramalesColectivo;
 	}
 
-	public void setRecorridosColectivo(Set<RamalColectivo> ramalesColectivo) {
+	public void setRamalesColectivo(Set<RamalColectivo> ramalesColectivo) {
 		this.ramalesColectivo = ramalesColectivo;
 	}
 

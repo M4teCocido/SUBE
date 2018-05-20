@@ -19,6 +19,12 @@
 		<one-to-one name="tramo" class="modelo.fichadas.colectivo.TramoColectivo"></one-to-one>
 	</joined-subclass>
 	
+	<joined-subclass name="modelo.fichadas.tren.FichadaTren" table="fichadatren" extends="modelo.fichadas.Fichada">
+		<key column="idFichada" />
+		<property name="tipoFichada" column="idTipoFichada" type="int" />
+		<one-to-one name="estacion" class="modelo.fichadas.tren.EstacionTren"></one-to-one>
+	</joined-subclass>
+	
 	<joined-subclass name="modelo.fichadas.FichadaRecarga" table="fichadarecarga" extends="modelo.fichadas.Fichada">
 		<key column="idFichada" />
 		<property column="monto" name="monto" type="java.math.BigDecimal" />

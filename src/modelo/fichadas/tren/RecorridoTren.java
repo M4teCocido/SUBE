@@ -43,11 +43,11 @@ public class RecorridoTren {
 		this.linea = linea;
 	}
 	
-	public Set<ViajeTren> getViajesTren() {
+	public Set<ViajeTren> getViajes() {
 		return viajes;
 	}
 	
-	public void setViajesTren(Set<ViajeTren> viajes) {
+	public void setViajes(Set<ViajeTren> viajes) {
 		this.viajes = viajes;
 	}
 	

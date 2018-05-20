@@ -38,7 +38,6 @@ public class EstacionTren {
 	public void setRecorridoTren(RecorridoTren recorridoTren) {
 		this.recorridoTren = recorridoTren;
 	}
-<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -46,6 +45,4 @@ public class EstacionTren {
 	}
 	
 }
-=======
-}
->>>>>>> 48293e0c43317a421a5462e46f9cd600331bf6d5
+

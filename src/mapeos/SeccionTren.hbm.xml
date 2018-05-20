@@ -8,13 +8,8 @@
 		</id>
 		<property column="nombre" name="nombre" type="string" />
 		<property column="import" name="importe" type="java.math.BigDecimal" />
-		<!--
+		
 		<many-to-one name="recorrido" class="modelo.fichadas.tren.RecorridoTren" fetch="select" column="idRecorrido" not-null="true" />
-		 
-		<set name="tramos" table="tramocolectivo" order-by="idTramo asc" inverse="true" lazy="true" fetch="select">
-			<key column="idRamal" not-null="true" />
-			<one-to-many class="modelo.fichadas.colectivo.TramoColectivo" />
-		</set>
-		-->
+		
 	</class>
 </hibernate-mapping>

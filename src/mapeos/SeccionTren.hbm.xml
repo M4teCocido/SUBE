@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping >
+	<class name="modelo.fichadas.tren.SeccionTren" table="secciontren">
+		<id column="idSeccion" name="idSeccion">
+			<generator class = "identity" />
+		</id>
+		<property column="nombre" name="nombre" type="string" />
+		<property column="import" name="importe" type="java.math.BigDecimal" />
+		
+		<many-to-one name="recorrido" class="modelo.fichadas.tren.RecorridoTren" fetch="select" column="idRecorrido" not-null="true" />
+		
+	</class>
+</hibernate-mapping>

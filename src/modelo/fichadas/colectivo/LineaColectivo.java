@@ -1,19 +1,28 @@
 package modelo.fichadas.colectivo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class LineaColectivo {
 	
+	private int idLinea;
 	private String nombre;
-	private List<RamalColectivo> ramalesColectivo;
+	private Set<RamalColectivo> ramalesColectivo;
 
+	public LineaColectivo() {}
+	
 	public LineaColectivo(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.ramalesColectivo = new ArrayList<RamalColectivo>();
 	}
 
+	public int getIdLinea() {
+		return this.idLinea;
+	}
+	
+	protected void setIdLinea(int idLinea) {
+		this.idLinea = idLinea;
+	}
+	
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -22,11 +31,11 @@ public class LineaColectivo {
 		this.nombre = nombre;
 	}
 
-	public List<RamalColectivo> getRecorridosColectivo() {
+	public Set<RamalColectivo> getRamalesColectivo() {
 		return this.ramalesColectivo;
 	}
 
-	public void setRecorridosColectivo(List<RamalColectivo> ramalesColectivo) {
+	public void setRamalesColectivo(Set<RamalColectivo> ramalesColectivo) {
 		this.ramalesColectivo = ramalesColectivo;
 	}
 

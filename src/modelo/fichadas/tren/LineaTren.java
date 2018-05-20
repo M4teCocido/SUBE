@@ -1,19 +1,28 @@
 package modelo.fichadas.tren;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class LineaTren {
 
+	private int idLinea;
 	private String nombre;
-	private List<RecorridoTren> recorridosTren;
+	private Set<RecorridoTren> recorridosTren;
+	
+	public LineaTren() {}
 	
 	public LineaTren(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.recorridosTren = new ArrayList<RecorridoTren>();
 	}
 
+	public int getIdLinea() {
+		return this.idLinea;
+	}
+	
+	protected void setIdLinea(int idLinea) {
+		this.idLinea = idLinea;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -22,11 +31,11 @@ public class LineaTren {
 		this.nombre = nombre;
 	}
 
-	public List<RecorridoTren> getRecorridosTren() {
+	public Set<RecorridoTren> getRecorridosTren() {
 		return recorridosTren;
 	}
 
-	public void setRecorridosTren(List<RecorridoTren> recorridosTren) {
+	public void setRecorridosTren(Set<RecorridoTren> recorridosTren) {
 		this.recorridosTren = recorridosTren;
 	}
 	

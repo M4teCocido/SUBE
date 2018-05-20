@@ -22,12 +22,8 @@ public class Persona {
 	private DescuentoTarifaSocial descuentoTarifaSocial;
 	private DescuentoBoletoEstudiantil descuentoBoletoEstudiantil;
 	
-	
-	
 	public Persona() {}
-
-
-
+	
 	public Persona(String nombre, String apellido, Documento documento, eGenero genero,
 			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) {
 		super();
@@ -40,8 +36,6 @@ public class Persona {
 		this.celular = celular;
 		this.telefono = telefono;
 	}
-	
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -134,6 +128,7 @@ public class Persona {
 		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + getDocumento() + "\nGenero: " + getGenero() + "\nFecha nacimiento: " + FuncionesGregorian.traerFechaCorta(getFechaNacimiento()) + 
@@ -142,6 +137,9 @@ public class Persona {
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) throws Exception {
 		
+=======
+	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
+>>>>>>> 1ebab5c55bf8f04e60e4715e9666e9eb77321507
 		this.descuentoBoletoEstudiantil = descuento;
 		return false;
 	}
@@ -204,5 +202,13 @@ public class Persona {
 		if (email.contains("@") && !email.substring(0, email.indexOf("@") - 1).matches("[¡!?¿+^*¨Ç:;/]*")) valido = true;
 		return valido;
 	}
+<<<<<<< HEAD
 }
 
+=======
+	
+	public static String fechaCorta (GregorianCalendar fecha) {
+		return new SimpleDateFormat("dd/MM/yyyy").format(fecha.getTime());
+	}
+}
+>>>>>>> 1ebab5c55bf8f04e60e4715e9666e9eb77321507

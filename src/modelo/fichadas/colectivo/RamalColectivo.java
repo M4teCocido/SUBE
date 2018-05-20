@@ -1,25 +1,34 @@
 package modelo.fichadas.colectivo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class RamalColectivo {
 	
-	private List<TramoColectivo> tramos;
+	private int idRamal;
+	private Set<TramoColectivo> tramos;
 	private LineaColectivo linea;
 	private String nombre;
 	
+	public RamalColectivo() {}
+	
 	public RamalColectivo(LineaColectivo linea, String nombre) {
 		super();
-		this.tramos = new ArrayList<TramoColectivo>();
 		this.linea = linea;
 		this.nombre = nombre;
 	}
 	
-	public List<TramoColectivo> getTramos() {
+	public int getIdRamal() {
+		return this.idRamal;
+	}
+	
+	protected void setIdRamal(int idRamal) {
+		this.idRamal = idRamal;
+	}
+	
+	public Set<TramoColectivo> getTramos() {
 		return tramos;
 	}
-	public void setTramos(List<TramoColectivo> tramos) {
+	public void setTramos(Set<TramoColectivo> tramos) {
 		this.tramos = tramos;
 	}
 	public LineaColectivo getLinea() {

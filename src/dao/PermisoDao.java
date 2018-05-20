@@ -6,8 +6,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.Cliente;
-
 public class PermisoDao {
 
 	private static Session session;
@@ -21,11 +19,11 @@ public class PermisoDao {
 	private void manejaExcepcion(HibernateException he) throws HibernateException {
 		tx .rollback();
 		throw new HibernateException( "ERROR en la capa de acceso a datos" , he);
-		}
+	}
 	
 	
 	
-	public int agregar (Cliente objeto){
+	/*public int agregar (Cliente objeto){
 		int id = 0;
 		
 		try{
@@ -144,5 +142,5 @@ public class PermisoDao {
 		}
 		
 		return lista;
-	}
-	}
+	}*/
+}

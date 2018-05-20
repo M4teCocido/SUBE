@@ -5,7 +5,7 @@ import modelo.fichadas.Fichada;
 import modelo.fichadas.tren.EstacionTren;
 
 public  class FichadaTren extends Fichada {
-	private enum eTipoFichadaTren {ENTRADA,SALIDA};
+	public enum eTipoFichadaTren {ENTRADA,SALIDA};
 	
 	private EstacionTren estacion;
 	private eTipoFichadaTren tipoFichada;

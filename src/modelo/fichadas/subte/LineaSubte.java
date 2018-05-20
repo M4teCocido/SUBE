@@ -1,14 +1,14 @@
 package modelo.fichadas.subte;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LineaSubte {
 	
 	private int idLinea;
 	private String nombre;
-	private List<EstacionSubte> recorridoSubte;
+	private Set<EstacionSubte> recorridoSubte;
 	private BigDecimal precioViaje;
 	
 	public LineaSubte() {}
@@ -16,8 +16,8 @@ public class LineaSubte {
 	public LineaSubte(String nombre, BigDecimal precioViaje) {
 		super();
 		this.nombre = nombre;
-		this.recorridoSubte = new ArrayList<EstacionSubte>();
 		this.precioViaje = precioViaje;
+		this.recorridoSubte = new HashSet<EstacionSubte>();
 	}
 	
 	public int getIdLinea() {
@@ -36,11 +36,11 @@ public class LineaSubte {
 		this.nombre = nombre;
 	}
 	
-	public List<EstacionSubte> getRecorridoSubte() {
+	public Set<EstacionSubte> getRecorridoSubte() {
 		return recorridoSubte;
 	}
 	
-	public void setRecorridoSubte(List<EstacionSubte> recorridoSubte) {
+	public void setRecorridoSubte(Set<EstacionSubte> recorridoSubte) {
 		this.recorridoSubte = recorridoSubte;
 	}
 	

@@ -1,54 +1,61 @@
 package modelo.fichadas.tren;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class RecorridoTren {
 	
-	private List<EstacionTren> estaciones;
-	private LineaTren linea;
-	private List<ViajeTren> viajes;
-	private List<SeccionTren> secciones;
+	private int idRecorrido;
 	private String nombre;
+	private LineaTren linea;
+	private Set<EstacionTren> estaciones;
+	private Set<ViajeTren> viajes;
+	private Set<SeccionTren> secciones;
 	
-	public RecorridoTren( LineaTren linea, String nombre) {
+	public RecorridoTren() {}
+	
+	public RecorridoTren(LineaTren linea, String nombre) {
 		super();
-		this.estaciones = new ArrayList <EstacionTren> ();
 		this.linea = linea;
-		this.viajes = new ArrayList<ViajeTren>();
-		this.secciones = new ArrayList<SeccionTren>();
 		this.nombre = nombre;
 	}
 
-	public List<EstacionTren> getEstaciones() {
+	public int getIdRecorrido() {
+		return this.idRecorrido;
+	}
+	
+	protected void setIdRecorrido(int idRecorrido) {
+		this.idRecorrido = idRecorrido;
+	}
+	
+	public Set<EstacionTren> getEstaciones() {
 		return estaciones;
 	}
 	
-	public void setEstaciones(List<EstacionTren> estaciones) {
+	public void setEstaciones(Set<EstacionTren> estaciones) {
 		this.estaciones = estaciones;
 	}
 	
-	public LineaTren getLineaTren() {
+	public LineaTren getLinea() {
 		return linea;
 	}
 	
-	public void setLineaTren(LineaTren linea) {
+	public void setLinea(LineaTren linea) {
 		this.linea = linea;
 	}
 	
-	public List<ViajeTren> getViajesTren() {
+	public Set<ViajeTren> getViajes() {
 		return viajes;
 	}
 	
-	public void setViajesTren(List<ViajeTren> viajes) {
+	public void setViajes(Set<ViajeTren> viajes) {
 		this.viajes = viajes;
 	}
 	
-	public List<SeccionTren> getSeccionTren() {
+	public Set<SeccionTren> getSecciones() {
 		return secciones;
 	}
 	
-	public void setSeccionTren(List<SeccionTren> secciones) {
+	public void setSecciones(Set<SeccionTren> secciones) {
 		this.secciones = secciones;
 	}
 	

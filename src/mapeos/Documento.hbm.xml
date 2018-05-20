@@ -8,6 +8,5 @@
 		</id>
 		<property column = "numero" name = "numero" type = "string" />
 		<property column = "tipo" name = "tipoDocumento" type = "int" />
-		
 	</class>
 </hibernate-mapping>

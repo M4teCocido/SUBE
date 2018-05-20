@@ -1,7 +1,7 @@
 package modelo.fichadas.colectivo;
+
 import java.math.BigDecimal;
 import java.util.GregorianCalendar;
-
 import modelo.fichadas.Fichada;
 import modelo.fichadas.colectivo.TramoColectivo;
 
@@ -9,17 +9,11 @@ public class FichadaColectivo extends Fichada {
 	
 	private TramoColectivo tramo;
 
-	
-	
-	public FichadaColectivo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public FichadaColectivo() {}
 
 	public FichadaColectivo(GregorianCalendar fechaHora, TramoColectivo tramo) {
 		super(fechaHora);
 		this.tramo = tramo;
-		// TODO Auto-generated constructor stub
 	}
 
 	public TramoColectivo getTramo() {
@@ -40,6 +34,4 @@ public class FichadaColectivo extends Fichada {
 	public String toString() {
 		return "FichadaColectivo [tramo=" + tramo + "]";
 	}
-	
-	
 }

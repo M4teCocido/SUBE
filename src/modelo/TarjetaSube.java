@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
 
 import modelo.Descuentos.*;
 
@@ -11,27 +12,23 @@ import modelo.fichadas.*;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.tren.FichadaTren;
-import modelo.fichadas.tren.FichadaTren;
+import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
+import modelo.fichadas.tren.ViajeTren;
 
 public class TarjetaSube {
 	
 	private String codigo;
 	private Persona propietario;
-	private ArrayList<TransaccionSUBE> transacciones;
+	private Set<TransaccionSUBE> transacciones;
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 
-	
 	public TarjetaSube() {}
 	
-	
-
 	public TarjetaSube(String codigo, BigDecimal saldo) {
 		super();
 		this.codigo = codigo;
-		this.transacciones = new ArrayList<TransaccionSUBE>();
 		this.saldo = saldo;
-		
 	}
 
 	public String getCodigo() {
@@ -58,11 +55,11 @@ public class TarjetaSube {
 		this.descuentoRedSube = descuentoRedSube;
 	}
 	
-	public ArrayList<TransaccionSUBE> getTransacciones() {
+	public Set<TransaccionSUBE> getTransacciones() {
 		return transacciones;
 	}
 
-	public void setTransacciones(ArrayList<TransaccionSUBE> transacciones) {
+	public void setTransacciones(Set<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}
 
@@ -86,6 +83,20 @@ public class TarjetaSube {
 	
 	public void procesarFichada(FichadaTren fichadaTren) {
 		
+		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
+			System.out.println("Es de entrada");
+			
+			//System.out.println(this.transacciones.get(this.transacciones.size()-1).toString());
+			fichadaTren.getEstacion().getRecorridoTren().getViajesTren().add(new ViajeTren (fichadaTren.getEstacion()));
+		}
+		
+		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
+			
+			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).toString());
+			fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).setEstacionDestino(fichadaTren.getEstacion());;
+			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).toString());
+			
+		}
 	}
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {

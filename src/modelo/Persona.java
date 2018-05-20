@@ -87,8 +87,8 @@ public class Persona {
 		return email;
 	}
 	
-	public void setEmail(String email) throws Exception{
-		if (validarEmail() == false) throw new Exception("El email contiene alguno de los siguientes caracteres no permitidos: ¡!?¿+^*¨Ç:;/");
+	public void setEmail(String email) throws Exception {
+		if (validarEmail(email) == false) throw new Exception("El email contiene alguno de los siguientes caracteres no permitidos: ¡!?¿+^*¨Ç:;/");
 		else this.email = email;
 	}
 	
@@ -96,8 +96,8 @@ public class Persona {
 		return celular;
 	}
 	
-	public void setCelular(String celular) throws Exception{
-		if (validarCelular() == false) throw new Exception("El celular esta mal ingresado (no comienza con 11 o 15, contiene letras, mayor/menor a 10 digitos).");
+	public void setCelular(String celular) throws Exception {
+		if (validarCelular(celular) == false) throw new Exception("El celular esta mal ingresado (no comienza con 11 o 15, contiene letras, mayor/menor a 10 digitos).");
 		else this.celular = celular;
 	}
 	
@@ -105,8 +105,8 @@ public class Persona {
 		return telefono;
 	}
 	
-	public void setTelefono(String telefono) throws Exception{
-		if (validarTelefono() == false) throw new Exception("El telefono esta mal ingresado (mayor/menor a 8 digitos).");
+	public void setTelefono(String telefono) throws Exception {
+		if (validarTelefono(telefono) == false) throw new Exception("El telefono esta mal ingresado (mayor/menor a 8 digitos).");
 		else this.telefono = telefono;
 	}
 	
@@ -136,12 +136,18 @@ public class Persona {
 	
 	@Override
 	public String toString() {
-		return "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + getDocumento() + "\nGenero: " + getGenero() + "\nFecha nacimiento: " + fechaCorta(getFechaNacimiento()) + 
+		return "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + getDocumento() + "\nGenero: " + getGenero() + "\nFecha nacimiento: " + FuncionesGregorian.traerFechaCorta(getFechaNacimiento()) + 
 				"\nEmail: " + getEmail() + "\nCelular: " + getCelular() + "\nTelefono: " + getTelefono() + "\nTarjetas: " + getTarjetasAsociadas() + "\nDescuento tarifa social: " + getDescuentoTarifaSocial();
 	}
 	
-	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
+	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) throws Exception {
+		
 		this.descuentoBoletoEstudiantil = descuento;
+		return false;
+	}
+	
+	public boolean quitarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
+		descuento = null;
 		return false;
 	}
 	
@@ -150,13 +156,40 @@ public class Persona {
 		return false;
 	}
 	
-	public boolean validarTelefono() {
+	public boolean quitarDescuentoTarifaSocial(DescuentoTarifaSocial descuento) {
+		descuento = null;
+		return false;
+	}
+	
+	public boolean asociarTarjeta(TarjetaSube tarjeta) throws Exception {
+		boolean asociado = false;
+		if (tarjetasAsociadas.contains(tarjeta)) throw new Exception("La tarjeta ya esta asociada a esta persona.");
+		else {
+			Persona propietario = new Persona(this.getNombre(), this.getApellido(), this.getDocumento(), this.getGenero(), this.getFechaNacimiento(), this.getEmail(), this.getCelular(), this.getTelefono());
+			tarjeta.setPropietario(propietario);
+			tarjetasAsociadas.add(tarjeta);
+			asociado = true;
+		}
+		return asociado;
+	}
+	
+	public boolean desasociarTarjeta(TarjetaSube tarjeta) throws Exception {
+		boolean removed = false;
+		if (tarjetasAsociadas.contains(tarjeta)) {
+			tarjetasAsociadas.remove(tarjeta);
+			tarjeta.setPropietario(null);
+			removed = true;
+		} else throw new Exception("La tarjeta no existe.");
+		return removed;
+	}
+	
+	public boolean validarTelefono(String telefono) {
 		boolean valido = false;
 		if (telefono.matches("[0-9]+") && (telefono.length() > 6 && telefono.length() < 9)) valido = true;
 		return valido;
 	}
 	
-	public boolean validarCelular() {
+	public boolean validarCelular(String celular) {
 		boolean valido = false;
 		if (celular.matches("[0-9]+") && (celular.length() == 10)) {
 			if (celular.substring(0).matches("[1]")) {
@@ -166,14 +199,10 @@ public class Persona {
 		return valido;
 	}
 	
-	public boolean validarEmail() {
+	public boolean validarEmail(String email) {
 		boolean valido = false;
 		if (email.contains("@") && !email.substring(0, email.indexOf("@") - 1).matches("[¡!?¿+^*¨Ç:;/]*")) valido = true;
 		return valido;
 	}
-	
-	public static String fechaCorta (GregorianCalendar fecha) {
-		return new SimpleDateFormat("dd/MM/yyyy").format(fecha.getTime());
-	}
-	
+}
 

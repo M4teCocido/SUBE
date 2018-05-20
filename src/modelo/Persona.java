@@ -1,5 +1,4 @@
 package modelo;
-import java.text.SimpleDateFormat;
 //import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -8,7 +7,7 @@ import modelo.TarjetaSube;
 import modelo.Descuentos.*;
 
 public class Persona {
-	private enum eGenero {M, F};
+	public enum eGenero {M, F};
 	
 	private String nombre;
 	private String apellido;
@@ -25,18 +24,18 @@ public class Persona {
 	public Persona() {}
 	
 	public Persona(String nombre, String apellido, Documento documento, eGenero genero,
-			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) {
+			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) throws Exception {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.documento = documento;
 		this.genero = genero;
 		this.fechaNacimiento = fechaNacimiento;
-		this.email = email;
-		this.celular = celular;
-		this.telefono = telefono;
+		this.setEmail(email);
+		this.setCelular(celular);
+		this.setTelefono(telefono);
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -83,7 +82,9 @@ public class Persona {
 	
 	public void setEmail(String email) throws Exception {
 		if (validarEmail(email) == false) throw new Exception("El email contiene alguno de los siguientes caracteres no permitidos: ¡!?¿+^*¨Ç:;/");
-		else this.email = email;
+		else {
+			this.email = email;
+		}
 	}
 	
 	public String getCelular() {
@@ -92,7 +93,9 @@ public class Persona {
 	
 	public void setCelular(String celular) throws Exception {
 		if (validarCelular(celular) == false) throw new Exception("El celular esta mal ingresado (no comienza con 11 o 15, contiene letras, mayor/menor a 10 digitos).");
-		else this.celular = celular;
+		else {
+			this.celular = celular;
+		}
 	}
 	
 	public String getTelefono() {
@@ -101,7 +104,9 @@ public class Persona {
 	
 	public void setTelefono(String telefono) throws Exception {
 		if (validarTelefono(telefono) == false) throw new Exception("El telefono esta mal ingresado (mayor/menor a 8 digitos).");
-		else this.telefono = telefono;
+		else {
+			this.telefono = telefono;
+		}
 	}
 	
 	public ArrayList<TarjetaSube> getTarjetasAsociadas() {
@@ -128,18 +133,13 @@ public class Persona {
 		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
 	}
 	
-<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + getDocumento() + "\nGenero: " + getGenero() + "\nFecha nacimiento: " + FuncionesGregorian.traerFechaCorta(getFechaNacimiento()) + 
 				"\nEmail: " + getEmail() + "\nCelular: " + getCelular() + "\nTelefono: " + getTelefono() + "\nTarjetas: " + getTarjetasAsociadas() + "\nDescuento tarifa social: " + getDescuentoTarifaSocial();
 	}
 	
-	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) throws Exception {
-		
-=======
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
->>>>>>> 1ebab5c55bf8f04e60e4715e9666e9eb77321507
 		this.descuentoBoletoEstudiantil = descuento;
 		return false;
 	}
@@ -183,15 +183,15 @@ public class Persona {
 	
 	public boolean validarTelefono(String telefono) {
 		boolean valido = false;
-		if (telefono.matches("[0-9]+") && (telefono.length() > 6 && telefono.length() < 9)) valido = true;
+		if (telefono.matches("^[0-9]*$") && (telefono.length() > 6 && telefono.length() < 9)) valido = true;
 		return valido;
 	}
 	
 	public boolean validarCelular(String celular) {
 		boolean valido = false;
-		if (celular.matches("[0-9]+") && (celular.length() == 10)) {
-			if (celular.substring(0).matches("[1]")) {
-				if (celular.substring(1).matches("[1]") || (celular.substring(1).matches("[5]"))) valido = true;
+		if (celular.matches("^[0-9]*$") && (celular.length() == 10)) {
+			if (celular.substring(0, 1).matches("^[1]*$")) {
+				if (celular.substring(1, 2).matches("^[1]*$") || (celular.substring(1, 2).matches("^[5]*$"))) valido = true;
 			}
 		}
 		return valido;
@@ -199,16 +199,8 @@ public class Persona {
 	
 	public boolean validarEmail(String email) {
 		boolean valido = false;
-		if (email.contains("@") && !email.substring(0, email.indexOf("@") - 1).matches("[¡!?¿+^*¨Ç:;/]*")) valido = true;
+		if (email.contains("@") && email.substring(0, email.indexOf("@")).matches("[a-zA-Z0-9]+") == true) valido = true;
 		return valido;
 	}
-<<<<<<< HEAD
 }
 
-=======
-	
-	public static String fechaCorta (GregorianCalendar fecha) {
-		return new SimpleDateFormat("dd/MM/yyyy").format(fecha.getTime());
-	}
-}
->>>>>>> 1ebab5c55bf8f04e60e4715e9666e9eb77321507

@@ -1,7 +1,7 @@
 package modelo;
 
 public class Documento {
-	private enum eTipoDocumento {DNI, LIBRETA_ENROLAMIENTO}
+	public enum eTipoDocumento {DNI, LIBRETA_ENROLAMIENTO}
 	
 	private int idDocumento;
 	private String numero; 
@@ -9,8 +9,8 @@ public class Documento {
 	
 	public Documento() {}
 	
-	public Documento(String numero, eTipoDocumento tipoDocumento) {
-		this.numero = numero;
+	public Documento(String numero, eTipoDocumento tipoDocumento) throws Exception {
+		this.setNumero(numero);
 		this.setTipoDocumento(tipoDocumento);
 	}
 	
@@ -27,7 +27,7 @@ public class Documento {
 	}
 	
 	public void setNumero(String numero) throws Exception{
-		if (validar() == false) throw new Exception("El documento esta mal ingresado.");
+		if (validar(numero) == false) throw new Exception("El documento esta mal ingresado.");
 		else this.numero = numero;
 	}
 
@@ -38,10 +38,15 @@ public class Documento {
 	public void setTipoDocumento(eTipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
-	
-	public boolean validar() {
+
+	@Override
+	public String toString() {
+		return getNumero() + "\nTipo de documento: " + getTipoDocumento();
+	}
+
+	public boolean validar(String numero) {
 		boolean valido = false;
-		if (numero.matches("[0-9]+") && (numero.length() > 6 && numero.length() < 9)) valido = true;
+		if (numero.matches("^[0-9]*$") && (numero.length() > 6 && numero.length() < 9)) valido = true;
 		return valido;
 	}
 }

@@ -3,8 +3,11 @@ import modelo.fichadas.tren.RecorridoTren;
 
 public class EstacionTren {
 	
+	private int idEstacion;
 	private String nombre;
 	private RecorridoTren recorridoTren;
+
+	public EstacionTren() {}
 	
 	public EstacionTren(String nombre, RecorridoTren recorridoTren) {
 		super();
@@ -12,6 +15,14 @@ public class EstacionTren {
 		this.recorridoTren = recorridoTren;
 	}
 
+	public int getIdEstacion() {
+		return this.idEstacion;
+	}
+	
+	protected void setIdEstacion(int idEstacion) {
+		this.idEstacion = idEstacion;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -27,6 +38,7 @@ public class EstacionTren {
 	public void setRecorridoTren(RecorridoTren recorridoTren) {
 		this.recorridoTren = recorridoTren;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -34,3 +46,6 @@ public class EstacionTren {
 	}
 	
 }
+=======
+}
+>>>>>>> 48293e0c43317a421a5462e46f9cd600331bf6d5

@@ -11,7 +11,6 @@ import modelo.fichadas.*;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.tren.FichadaTren;
-import modelo.fichadas.tren.FichadaTren;
 import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
 import modelo.fichadas.tren.ViajeTren;
 
@@ -23,17 +22,12 @@ public class TarjetaSube {
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 
-	
 	public TarjetaSube() {}
 	
-	
-
 	public TarjetaSube(String codigo, BigDecimal saldo) {
 		super();
 		this.codigo = codigo;
-		this.transacciones = new ArrayList<TransaccionSUBE>();
 		this.saldo = saldo;
-		
 	}
 
 	public String getCodigo() {

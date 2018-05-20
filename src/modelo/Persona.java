@@ -7,7 +7,7 @@ import modelo.TarjetaSube;
 import modelo.Descuentos.*;
 
 public class Persona {
-	private enum eGenero {M, F};
+	public enum eGenero {M, F};
 	
 	private String nombre;
 	private String apellido;
@@ -30,18 +30,6 @@ public class Persona {
 		this.apellido = apellido;
 		this.documento = documento;
 		this.genero = genero;
-		this.fechaNacimiento = fechaNacimiento;
-		this.setEmail(email);
-		this.setCelular(celular);
-		this.setTelefono(telefono);
-	}
-	//este lo hice para chequear validaciones por que no se como testear con eGenero ni eTipoDocumento en Documento
-	//POTA SI VES ESTO ES POR QUE MORI DURANTE EL TESTING DE eGenero
-	public Persona(String nombre, String apellido, GregorianCalendar fechaNacimiento, String email, String celular,
-			String telefono) throws Exception {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
 		this.fechaNacimiento = fechaNacimiento;
 		this.setEmail(email);
 		this.setCelular(celular);

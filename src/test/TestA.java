@@ -3,6 +3,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import java.util.Set;
+
 import modelo.*;
 import modelo.Descuentos.DescuentoTarifaSocial;
 import modelo.fichadas.Fichada;
@@ -54,7 +56,7 @@ public class TestA {
 		recorridoEzeiza.getEstaciones().add(lanusTren);
 		recorridoEzeiza.getEstaciones().add(constitucionTren);
 		
-		SeccionTren primeraSeccion = new SeccionTren("Primera seccion", new BigDecimal (3) );
+		SeccionTren primeraSeccion = new SeccionTren("Primera seccion", new BigDecimal (3), recorridoEzeiza);
 		FichadaTren fichadaTrenA =  new FichadaTren (FuncionesGregorian.traerFecha(1998, 10, 10), constitucionTren, eTipoFichadaTren.ENTRADA);
 		FichadaTren fichadaTrenB = new FichadaTren (FuncionesGregorian.traerFecha(1998, 9, 10), lanusTren, eTipoFichadaTren.SALIDA );
 		
@@ -72,7 +74,7 @@ public class TestA {
 		tarjeta.procesarFichada(fichadaColectivo);
 		System.out.println("Saldo despues fichada colectivo"+tarjeta.toString());
 		
-		ArrayList<TransaccionSUBE>auxTransaccion = tarjeta.getTransacciones();
+		Set<TransaccionSUBE>auxTransaccion = tarjeta.getTransacciones();
 		System.out.println("Lista de  transacciones");
 		for (int i = 0; i< auxTransaccion.size(); i++) {
 			System.out.println(i+"-"+auxTransaccion.get(i).toString());

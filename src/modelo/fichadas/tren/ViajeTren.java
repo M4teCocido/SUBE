@@ -8,19 +8,18 @@ public class ViajeTren {
 	private SeccionTren seccionTren;
 	private RecorridoTren recorrido;
 	
-<<<<<<< HEAD
+
 	public ViajeTren(EstacionTren estacionOrigen) {
 		super();
 		this.estacionOrigen = estacionOrigen;
+	}
 		
-=======
 	public ViajeTren(EstacionTren estacionOrigen, EstacionTren estacionDestino, SeccionTren seccionTren, RecorridoTren recorrido) {
 		super();
 		this.estacionOrigen = estacionOrigen;
 		this.estacionDestino = estacionDestino;
 		this.seccionTren = seccionTren;
 		this.recorrido = recorrido;
->>>>>>> 48293e0c43317a421a5462e46f9cd600331bf6d5
 	}
 
 	public int getIdViaje() {
@@ -55,14 +54,12 @@ public class ViajeTren {
 		this.seccionTren = seccionTren;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "ViajeTren [estacionOrigen=" + estacionOrigen + ", estacionDestino=" + estacionDestino + ", seccionTren="
 				+ seccionTren + "]";
 	}
-	
-=======
+
 	public RecorridoTren getRecorrido() {
 		return recorrido;
 	}
@@ -71,5 +68,4 @@ public class ViajeTren {
 		this.recorrido = recorrido;
 	}
 
->>>>>>> 48293e0c43317a421a5462e46f9cd600331bf6d5
 }

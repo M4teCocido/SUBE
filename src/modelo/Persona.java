@@ -24,21 +24,21 @@ public class Persona {
 	public Persona() {}
 	
 	public Persona(String nombre, String apellido, Documento documento, eGenero genero,
-			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) {
+			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) throws Exception {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.documento = documento;
 		this.genero = genero;
 		this.fechaNacimiento = fechaNacimiento;
-		this.email = email;
-		this.celular = celular;
-		this.telefono = telefono;
+		this.setEmail(email);
+		this.setCelular(celular);
+		this.setTelefono(telefono);
 	}
 	//este lo hice para chequear validaciones por que no se como testear con eGenero ni eTipoDocumento en Documento
 	//POTA SI VES ESTO ES POR QUE MORI DURANTE EL TESTING DE eGenero
 	public Persona(String nombre, String apellido, GregorianCalendar fechaNacimiento, String email, String celular,
-			String telefono) throws Exception{
+			String telefono) throws Exception {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;

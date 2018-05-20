@@ -9,8 +9,8 @@ public class Documento {
 	
 	public Documento() {}
 	
-	public Documento(String numero, eTipoDocumento tipoDocumento) {
-		this.numero = numero;
+	public Documento(String numero, eTipoDocumento tipoDocumento) throws Exception {
+		this.setNumero(numero);
 		this.setTipoDocumento(tipoDocumento);
 	}
 	

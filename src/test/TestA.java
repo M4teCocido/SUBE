@@ -20,6 +20,7 @@ import modelo.fichadas.tren.LineaTren;
 import modelo.fichadas.tren.RecorridoTren;
 import modelo.fichadas.tren.SeccionTren;
 import modelo.fichadas.tren.ViajeTren;
+import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
 
 public class TestA {
 
@@ -54,8 +55,8 @@ public class TestA {
 		recorridoEzeiza.getEstaciones().add(constitucionTren);
 		
 		SeccionTren primeraSeccion = new SeccionTren("Primera seccion", new BigDecimal (3) );
-		FichadaTren fichadaTren =  new FichadaTren (FuncionesGregorian.traerFecha(1998, 10, 10), constitucionTren,);
-
+		FichadaTren fichadaTrenA =  new FichadaTren (FuncionesGregorian.traerFecha(1998, 10, 10), constitucionTren, eTipoFichadaTren.ENTRADA);
+		FichadaTren fichadaTrenB = new FichadaTren (FuncionesGregorian.traerFecha(1998, 9, 10), lanusTren, eTipoFichadaTren.SALIDA );
 		
 		
 		
@@ -67,7 +68,7 @@ public class TestA {
 		FichadaColectivo fichadaColectivo = new FichadaColectivo (FuncionesGregorian.traerFecha(2018, 07,31), cruceAMonteGrande);
 		//TransaccionSUBE transaccion = new TransaccionSUBE (fichadaSubte, new BigDecimal (11));
 		tarjeta.procesarFichada(fichadaSubte);
-		System.out.println("Saldo depsues fichada subte"+tarjeta.toString());
+		//System.out.println("Saldo depsues fichada subte"+tarjeta.toString());
 		tarjeta.procesarFichada(fichadaColectivo);
 		System.out.println("Saldo despues fichada colectivo"+tarjeta.toString());
 		
@@ -90,8 +91,8 @@ public class TestA {
 		System.out.println(persona.getDescuentoTarifaSocial());
 		System.out.println(tarjeta.getTransacciones().get(0));
 		*/
-		
-		
+		tarjeta.procesarFichada(fichadaTrenA);
+		tarjeta.procesarFichada(fichadaTrenB);
 		
 		
 	}

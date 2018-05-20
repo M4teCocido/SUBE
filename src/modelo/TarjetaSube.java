@@ -12,6 +12,8 @@ import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.tren.FichadaTren;
 import modelo.fichadas.tren.FichadaTren;
+import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
+import modelo.fichadas.tren.ViajeTren;
 
 public class TarjetaSube {
 	
@@ -86,6 +88,20 @@ public class TarjetaSube {
 	
 	public void procesarFichada(FichadaTren fichadaTren) {
 		
+		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
+			System.out.println("Es de entrada");
+			
+			//System.out.println(this.transacciones.get(this.transacciones.size()-1).toString());
+			fichadaTren.getEstacion().getRecorridoTren().getViajesTren().add(new ViajeTren (fichadaTren.getEstacion()));
+		}
+		
+		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
+			
+			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).toString());
+			fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).setEstacionDestino(fichadaTren.getEstacion());;
+			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).toString());
+			
+		}
 	}
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {

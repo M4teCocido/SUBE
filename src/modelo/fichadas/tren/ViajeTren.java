@@ -6,8 +6,9 @@ public class ViajeTren {
 	private EstacionTren estacionDestino;
 	private SeccionTren seccionTren;
 	
-	public ViajeTren() {
+	public ViajeTren(EstacionTren estacionOrigen) {
 		super();
+		this.estacionOrigen = estacionOrigen;
 		
 	}
 
@@ -35,4 +36,10 @@ public class ViajeTren {
 		this.seccionTren = seccionTren;
 	}
 
+	@Override
+	public String toString() {
+		return "ViajeTren [estacionOrigen=" + estacionOrigen + ", estacionDestino=" + estacionDestino + ", seccionTren="
+				+ seccionTren + "]";
+	}
+	
 }

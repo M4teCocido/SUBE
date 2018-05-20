@@ -28,4 +28,9 @@ public class EstacionTren {
 		this.recorridoTren = recorridoTren;
 	}
 
+	@Override
+	public String toString() {
+		return  nombre;
+	}
+	
 }

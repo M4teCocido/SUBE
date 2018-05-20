@@ -134,11 +134,6 @@ public class Persona {
 		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
 	}
 	
-	@Override
-	public String toString() {
-		return "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + getDocumento() + "\nGenero: " + getGenero() + "\nFecha nacimiento: " + fechaCorta(getFechaNacimiento()) + 
-				"\nEmail: " + getEmail() + "\nCelular: " + getCelular() + "\nTelefono: " + getTelefono() + "\nTarjetas: " + getTarjetasAsociadas() + "\nDescuento tarifa social: " + getDescuentoTarifaSocial();
-	}
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
 		this.descuentoBoletoEstudiantil = descuento;
@@ -176,4 +171,6 @@ public class Persona {
 		return new SimpleDateFormat("dd/MM/yyyy").format(fecha.getTime());
 	}
 	
+	
+}
 

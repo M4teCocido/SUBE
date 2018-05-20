@@ -1,6 +1,7 @@
 package modelo.fichadas.subte;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 public class LineaSubte {
@@ -16,6 +17,7 @@ public class LineaSubte {
 		super();
 		this.nombre = nombre;
 		this.precioViaje = precioViaje;
+		this.recorridoSubte = new HashSet<EstacionSubte>();
 	}
 	
 	public int getIdLinea() {

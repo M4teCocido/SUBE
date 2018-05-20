@@ -163,8 +163,7 @@ public class Persona {
 		boolean asociado = false;
 		if (tarjetasAsociadas.contains(tarjeta)) throw new Exception("La tarjeta ya esta asociada a esta persona.");
 		else {
-			Persona propietario = new Persona(this.getNombre(), this.getApellido(), this.getDocumento(), this.getGenero(), this.getFechaNacimiento(), this.getEmail(), this.getCelular(), this.getTelefono());
-			tarjeta.setPropietario(propietario);
+			tarjeta.setPropietario(this);
 			tarjetasAsociadas.add(tarjeta);
 			asociado = true;
 		}

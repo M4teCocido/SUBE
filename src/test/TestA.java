@@ -47,7 +47,7 @@ public class TestA {
 		//Instancia Objetos Fichada Tren
 		LineaTren roca = new LineaTren ("Roca");
 		RecorridoTren recorridoEzeiza = new RecorridoTren (roca, "Ezeiza");
-		EstacionTren constitucionTren= new EstacionTren("Constitucion", recorridoEzeiza );  
+		EstacionTren constitucionTren= new EstacionTren("Constitucion", recorridoEzeiza);  
 		EstacionTren lanusTren= new EstacionTren("Lanus", recorridoEzeiza ); 
 		
 		recorridoEzeiza.getEstaciones().add(lanusTren);

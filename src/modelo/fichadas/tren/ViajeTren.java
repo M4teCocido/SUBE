@@ -2,15 +2,28 @@ package modelo.fichadas.tren;
 
 public class ViajeTren {
 	
+	private int idViaje;
 	private EstacionTren estacionOrigen;
 	private EstacionTren estacionDestino;
 	private SeccionTren seccionTren;
+	private RecorridoTren recorrido;
 	
-	public ViajeTren() {
+	public ViajeTren(EstacionTren estacionOrigen, EstacionTren estacionDestino, SeccionTren seccionTren, RecorridoTren recorrido) {
 		super();
-		
+		this.estacionOrigen = estacionOrigen;
+		this.estacionDestino = estacionDestino;
+		this.seccionTren = seccionTren;
+		this.recorrido = recorrido;
 	}
 
+	public int getIdViaje() {
+		return this.idViaje;
+	}
+	
+	protected void setIdViaje(int idViaje) {
+		this.idViaje = idViaje;
+	}
+	
 	public EstacionTren getEstacionOrigen() {
 		return estacionOrigen;
 	}
@@ -33,6 +46,14 @@ public class ViajeTren {
 	
 	public void setSeccionTren(SeccionTren seccionTren) {
 		this.seccionTren = seccionTren;
+	}
+
+	public RecorridoTren getRecorrido() {
+		return recorrido;
+	}
+
+	public void setRecorrido(RecorridoTren recorrido) {
+		this.recorrido = recorrido;
 	}
 
 }

@@ -20,6 +20,10 @@
 	<mapping resource="mapeos/LineaColectivo.hbm.xml" />
 	<mapping resource="mapeos/RamalColectivo.hbm.xml" />
 	<mapping resource="mapeos/TramoColectivo.hbm.xml" />
-	
+	<mapping resource="mapeos/LineaTren.hbm.xml" />
+	<mapping resource="mapeos/RecorridoTren.hbm.xml" />
+	<mapping resource="mapeos/SeccionTren.hbm.xml" />
+	<mapping resource="mapeos/ViajeTren.hbm.xml" />
+	<mapping resource="mapeos/EstacionTren.hbm.xml" />
 </session-factory >
 </hibernate-configuration >

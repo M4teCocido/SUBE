@@ -9,8 +9,7 @@ public class Permiso {
 	
 	public Permiso() {}
 	
-	public Permiso(int idPermiso, String nombre, String descripcion, String codigo) {
-		this.idPermiso = idPermiso;
+	public Permiso(String nombre, String descripcion, String codigo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.codigo = codigo;

@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
 
 import modelo.Descuentos.*;
 
@@ -18,7 +19,7 @@ public class TarjetaSube {
 	
 	private String codigo;
 	private Persona propietario;
-	private ArrayList<TransaccionSUBE> transacciones;
+	private Set<TransaccionSUBE> transacciones;
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 
@@ -54,11 +55,11 @@ public class TarjetaSube {
 		this.descuentoRedSube = descuentoRedSube;
 	}
 	
-	public ArrayList<TransaccionSUBE> getTransacciones() {
+	public Set<TransaccionSUBE> getTransacciones() {
 		return transacciones;
 	}
 
-	public void setTransacciones(ArrayList<TransaccionSUBE> transacciones) {
+	public void setTransacciones(Set<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}
 

@@ -22,12 +22,8 @@ public class Persona {
 	private DescuentoTarifaSocial descuentoTarifaSocial;
 	private DescuentoBoletoEstudiantil descuentoBoletoEstudiantil;
 	
-	
-	
 	public Persona() {}
-
-
-
+	
 	public Persona(String nombre, String apellido, Documento documento, eGenero genero,
 			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) {
 		super();
@@ -40,8 +36,6 @@ public class Persona {
 		this.celular = celular;
 		this.telefono = telefono;
 	}
-	
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -134,7 +128,6 @@ public class Persona {
 		this.descuentoBoletoEstudiantil = descuentoBoletoEstudiantil;
 	}
 	
-	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
 		this.descuentoBoletoEstudiantil = descuento;
 		return false;
@@ -170,7 +163,4 @@ public class Persona {
 	public static String fechaCorta (GregorianCalendar fecha) {
 		return new SimpleDateFormat("dd/MM/yyyy").format(fecha.getTime());
 	}
-	
-	
 }
-

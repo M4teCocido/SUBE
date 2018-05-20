@@ -141,22 +141,22 @@ public class Persona {
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
 		this.descuentoBoletoEstudiantil = descuento;
-		return false;
+		return true;
 	}
 	
-	public boolean quitarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
-		descuento = null;
-		return false;
+	public boolean quitarDescuentoBoletoEstudiantil() {
+		this.descuentoBoletoEstudiantil = null;
+		return true;
 	}
 	
 	public boolean asignarDescuentoTarifaSocial(DescuentoTarifaSocial descuento) {
 		this.descuentoTarifaSocial = descuento;
-		return false;
+		return true;
 	}
 	
-	public boolean quitarDescuentoTarifaSocial(DescuentoTarifaSocial descuento) {
-		descuento = null;
-		return false;
+	public boolean quitarDescuentoTarifaSocial() {
+		this.descuentoTarifaSocial = null;
+		return true;
 	}
 	
 	public boolean asociarTarjeta(TarjetaSube tarjeta) throws Exception {

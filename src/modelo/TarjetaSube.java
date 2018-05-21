@@ -81,7 +81,7 @@ public class TarjetaSube {
 	}
 	
 	public void procesarFichada(FichadaColectivo fichadaColectivo) {
-		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecioColectivo());
+		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecioColectivo(), fichadaColectivo);
 		this.transacciones.add(procesarTransaccion(fichadaColectivo, monto));
 
 	}
@@ -92,22 +92,22 @@ public class TarjetaSube {
 			System.out.println("Es de entrada");
 			
 			//System.out.println(this.transacciones.get(this.transacciones.size()-1).toString());
-			//fichadaTren.getEstacion().getRecorridoTren().getViajes().add(new ViajeTren (fichadaTren.getEstacion()));
+			//fichadaTren.getEstacion().getLinea().getViajes().add(new ViajeTren (fichadaTren.getEstacion()));
 			//BigDecimal monto = procesarDescuento(fichadaTren.get)
 		
 		}
 		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
 			
-			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajes().get(fichadaTren.getEstacion().getRecorridoTren().getViajes().size()-1).toString());
-			fichadaTren.getEstacion().getRecorridoTren().getViajes().get(fichadaTren.getEstacion().getRecorridoTren().getViajes().size()-1).setEstacionDestino(fichadaTren.getEstacion());;
-			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajes().get(fichadaTren.getEstacion().getRecorridoTren().getViajes().size()-1).toString());
+			System.out.println(fichadaTren.getEstacion().getLinea().getViajes().get(fichadaTren.getEstacion().getLinea().getViajes().size()-1).toString());
+			fichadaTren.getEstacion().getLinea().getViajes().get(fichadaTren.getEstacion().getLinea().getViajes().size()-1).setEstacionDestino(fichadaTren.getEstacion());;
+			System.out.println(fichadaTren.getEstacion().getLinea().getViajes().get(fichadaTren.getEstacion().getLinea().getViajes().size()-1).toString());
 			
 		}
 	}
 	
 	public void procesarFichada (FichadaSubte fichadaSubte) {
-		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio());
+		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio(), fichadaSubte);
 		this.transacciones.add(procesarTransaccion(fichadaSubte, monto));
 	}
 	
@@ -142,11 +142,11 @@ public class TarjetaSube {
 	}
 
 
-	public BigDecimal procesarDescuento (BigDecimal monto) {
+	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {
 		
 		//Aplica descuentos
 		if (this.propietario.getDescuentoTarifaSocial() != null) {
-			monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto);
+			monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto, fichada);
 		}
 		
 		

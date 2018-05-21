@@ -9,25 +9,18 @@ public class SeccionTren {
 	private int idSeccion;
 	private String nombre;
 	private BigDecimal importe;
-<<<<<<< HEAD
-	private RecorridoTren recorrido;
-	private IndexableSet<ViajeTren> viajesTren;
-=======
 	private LineaTren linea;
-	
->>>>>>> a0ad04b77d95dd37b9f0962239a2814e13dd3ad9
+	private IndexableSet<ViajeTren> viajesTren;
+
 	public SeccionTren() {}
 	
 	public SeccionTren(String nombre, BigDecimal importe, LineaTren linea) {
 		super();
 		this.nombre = nombre;
 		this.importe = importe;
-<<<<<<< HEAD
-		this.recorrido = recorrido;
-		this.viajesTren = new IndexableSet<ViajeTren>();
-=======
 		this.linea = linea;
->>>>>>> a0ad04b77d95dd37b9f0962239a2814e13dd3ad9
+		this.viajesTren = new IndexableSet<ViajeTren>();
+
 	}
 
 	public int getIdSeccion() {
@@ -70,5 +63,4 @@ public class SeccionTren {
 		this.viajesTren = viajesTren;
 	}
 
-	
 }

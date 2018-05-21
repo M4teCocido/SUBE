@@ -23,7 +23,6 @@ import modelo.fichadas.tren.RecorridoTren;
 import modelo.fichadas.tren.SeccionTren;
 import modelo.fichadas.tren.ViajeTren;
 import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
-import util.IndexableSet;
 
 public class TestA {
 
@@ -78,7 +77,7 @@ public class TestA {
 		Set<TransaccionSUBE>auxTransaccion = tarjeta.getTransacciones();
 		System.out.println("Lista de  transacciones");
 		for (int i = 0; i< auxTransaccion.size(); i++) {
-			System.out.println(i+"-"+auxTransaccion);
+			System.out.println(i+"-"+auxTransaccion.get(i).toString());
 		}
 		
 		//--------------------------------------------------------------------------------------------------------------------------

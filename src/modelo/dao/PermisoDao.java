@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
+import modelo.Permiso;
 
 public class PermisoDao {
 
@@ -15,134 +16,95 @@ public class PermisoDao {
 	
 	private void iniciaOperacion() throws HibernateException {
 		session = HibernateUtil.getSessionFactory().openSession();
-		tx = session .beginTransaction();	
+		tx = session.beginTransaction();	
 	}
 	
 	private void manejaExcepcion(HibernateException he) throws HibernateException {
-		tx .rollback();
-		throw new HibernateException( "ERROR en la capa de acceso a datos" , he);
+		tx.rollback();
+		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	
-	
-	/*public int agregar (Cliente objeto){
+	public int agregarPermiso(Permiso permiso) {
 		int id = 0;
-		
-		try{
-			
+		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(objeto).toString());
+			id = Integer.parseInt(session.save(permiso).toString());
 			tx.commit();
-			
-		} catch (HibernateException he){
+		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
-			
-		} finally{
-			
-			session.close();			
+		} finally {
+			session.close();
 		}
-		
 		return id;
 	}
 	
-	public void actualizar (Cliente objeto) throws HibernateException{
-	
+	public void modificarPermiso(Permiso permiso) {
 		try {
-			
-	iniciaOperacion();		
-			
-	session.update(objeto);
-	
-	tx.commit();
-	
-		}catch (HibernateException he) {
-			
-	manejaExcepcion(he);
-			
-	throw he;
-	
-		}finally {
-			
-			session.close();
-			
-		}
-	
-	}
-	
-	public void eliminar (Cliente objeto) throws HibernateException{
-		
-		try {
-			
-		session.delete(objeto);
-		
-		tx.commit ();
-		
+			iniciaOperacion();
+			session.update(permiso);
+			tx.commit();
 		} catch (HibernateException he) {
-			
-		manejaExcepcion (he);
-			
-		throw he;
-		
+			manejaExcepcion(he);
+			throw he;
 		} finally {
-			
 			session.close();
-			
 		}
-		
 	}
 	
-	public Cliente traerCliente(long idCliente) throws HibernateException{
-		Cliente objeto = null;
-		
+	public void eliminarPermiso(Permiso permiso) {
 		try {
-			
-		
-		iniciaOperacion();
-		
-		objeto = (Cliente) session.get( Cliente.class, idCliente);
+			iniciaOperacion();
+			session.delete(permiso);
+			tx.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
 		} finally {
-			
 			session.close();
-			
 		}
-		
-		return objeto;
 	}
 	
-	public Cliente traerCliente (int dni) throws HibernateException {
-		Cliente objeto = null;
-		
+	public Permiso traerPermiso(int idPermiso) throws HibernateException {
+		Permiso permiso = null;
 		try {
-			
 			iniciaOperacion();
-			
-			objeto = (Cliente) session.createQuery("from Cliente c where c.dni="+ dni).uniqueResult();
-			
-		}finally {
-			
+			permiso = (Permiso) session.get(Permiso.class, idPermiso);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
 			session.close();
-			
 		}
-		
-		return objeto;
+		return permiso;
 	}
 	
-	public List<Cliente> traerCliente() throws HibernateException {
-		List<Cliente> lista = null;
-		
+	public Permiso traerPermiso(String nombre) throws HibernateException {
+		Permiso permiso = null;
 		try {
-		
 			iniciaOperacion();
-			
-	lista = session.createQuery("from Cliente c order by c.apellido asc c.nombre asc").list();		
-	
-		}finally {
-			
+			permiso = (Permiso) session.get(Permiso.class, nombre);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
 			session.close();
-			
 		}
-		
+		return permiso;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Permiso> traerPermiso() throws HibernateException {
+		List<Permiso> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Permiso p order by p.idPermiso asc").list();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
 		return lista;
-	}*/
+	}
 }

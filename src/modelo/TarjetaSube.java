@@ -90,19 +90,32 @@ public class TarjetaSube {
 		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
 			System.out.println("Es de entrada");
+			BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
+			//procesarDescuento (monto, fichadaTren);
 			
-			//System.out.println(this.transacciones.get(this.transacciones.size()-1).toString());
-			//fichadaTren.getEstacion().getLinea().getViajes().add(new ViajeTren (fichadaTren.getEstacion()));
-			//BigDecimal monto = procesarDescuento(fichadaTren.get)
-		
+			this.transacciones.add(procesarTransaccion (fichadaTren,monto));
 		}
+		
 		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
 			
-			System.out.println(fichadaTren.getEstacion().getLinea().getViajes().get(fichadaTren.getEstacion().getLinea().getViajes().size()-1).toString());
-			fichadaTren.getEstacion().getLinea().getViajes().get(fichadaTren.getEstacion().getLinea().getViajes().size()-1).setEstacionDestino(fichadaTren.getEstacion());;
-			System.out.println(fichadaTren.getEstacion().getLinea().getViajes().get(fichadaTren.getEstacion().getLinea().getViajes().size()-1).toString());
 			
+			if (this.transacciones.get(this.transacciones.size()-1).getFichada() instanceof FichadaTren) {
+				FichadaTren fichaAux =  (FichadaTren) this.transacciones.get(this.transacciones.size()-1).getFichada();
+				
+				if (fichaAux.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)){
+					//Significa q entro y salio  sin anomalias (FLUJO NORMAL)
+					
+					
+					ViajeTren viajeAux = fichadaTren.getEstacion().getLinea().obtenerViaje(fichaAux.getEstacion(), fichadaTren.getEstacion());
+					BigDecimal bonificacion = new BigDecimal(0);
+					bonificacion = this.transacciones.get(this.transacciones.size()-1).getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
+				
+					this.saldo=this.saldo.add(bonificacion);
+				 
+				}
+			}
+	
 		}
 	}
 	

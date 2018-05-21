@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import modelo.Documento;
 import modelo.TarjetaSube;
 import modelo.Descuentos.*;
+import util.FuncionesGregorian;
 
 public class Persona {
 	public enum eGenero {M, F};

@@ -10,6 +10,8 @@ public class DescuentoBoletoEstudiantil {
 	private int viajesRestantes;
 	private eTipoBoletoEstudiantil tipoBoletoEstudiantil;
 	
+	//Los viajes no los recargamos : Le asignamos un nuevo descuento y listo.
+	
 	public DescuentoBoletoEstudiantil(BigDecimal porcentajeDescuento, int viajesRestantes,
 			eTipoBoletoEstudiantil tipoBoletoEstudiantil) {
 		super();
@@ -18,6 +20,20 @@ public class DescuentoBoletoEstudiantil {
 		this.tipoBoletoEstudiantil = tipoBoletoEstudiantil;
 	}
 
+	private void consumirViaje() {
+		this.viajesRestantes--;
+	}
+	
+	public BigDecimal aplicarDescuento (BigDecimal importe) {
+		if (this.viajesRestantes > 0) {
+			this.consumirViaje();
+			return importe.multiply(this.porcentajeDescuento);
+		} else {
+			return importe;	
+		}
+		
+	}
+	
 	public BigDecimal getPorcentajeDescuento() {
 		return porcentajeDescuento;
 	}
@@ -40,9 +56,5 @@ public class DescuentoBoletoEstudiantil {
 
 	public void setTipoBoletoEstudiantil(eTipoBoletoEstudiantil tipoBoletoEstudiantil) {
 		this.tipoBoletoEstudiantil = tipoBoletoEstudiantil;
-	}
-
-	public BigDecimal aplicarDescuento (BigDecimal importe) {
-		return importe;
 	}
 }

@@ -87,14 +87,14 @@ public class TarjetaSube {
 			System.out.println("Es de entrada");
 			
 			//System.out.println(this.transacciones.get(this.transacciones.size()-1).toString());
-			fichadaTren.getEstacion().getRecorridoTren().getViajesTren().add(new ViajeTren (fichadaTren.getEstacion()));
+			fichadaTren.getEstacion().getRecorridoTren().getViajes().add(new ViajeTren (fichadaTren.getEstacion()));
 		}
 		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
 			
-			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).toString());
-			fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).setEstacionDestino(fichadaTren.getEstacion());;
-			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().get(fichadaTren.getEstacion().getRecorridoTren().getViajesTren().size()-1).toString());
+			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajes().get(fichadaTren.getEstacion().getRecorridoTren().getViajes().size()-1).toString());
+			fichadaTren.getEstacion().getRecorridoTren().getViajes().get(fichadaTren.getEstacion().getRecorridoTren().getViajes().size()-1).setEstacionDestino(fichadaTren.getEstacion());;
+			System.out.println(fichadaTren.getEstacion().getRecorridoTren().getViajes().get(fichadaTren.getEstacion().getRecorridoTren().getViajes().size()-1).toString());
 			
 		}
 	}

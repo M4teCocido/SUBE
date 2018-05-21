@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 
 public class TransaccionSUBE {
 	
+	private int idTransaccion;
 	private Fichada fichada;
 	private BigDecimal importe;
+	
+	public TransaccionSUBE() {}
 	
 	public TransaccionSUBE(Fichada fichada, BigDecimal importe) {
 		super();
@@ -13,6 +16,14 @@ public class TransaccionSUBE {
 		this.importe = importe;
 	}
 
+	public int getIdTransaccion() {
+		return idTransaccion;
+	}
+	
+	protected void setIdTransaccion(int idTransaccion) {
+		this.idTransaccion = idTransaccion;
+	}
+	
 	public Fichada getFichada() {
 		return fichada;
 	}

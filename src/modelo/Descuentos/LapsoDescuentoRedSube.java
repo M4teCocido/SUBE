@@ -8,18 +8,28 @@ import util.IndexableSet;
 
 public class LapsoDescuentoRedSube {
 	
+	private int idLapso;
 	private static BigDecimal descuento50 = new BigDecimal(0.5);
 	private static BigDecimal descuento75 = new BigDecimal(0.75);
-	
 	private GregorianCalendar fechaHoraVencimiento;
 	private IndexableSet<Fichada> viajesRealizados;
 
+	public LapsoDescuentoRedSube() {}
+	
 	public LapsoDescuentoRedSube(GregorianCalendar fechaHoraVencimiento) {
 		super();
 		this.fechaHoraVencimiento = fechaHoraVencimiento;
 		this.viajesRealizados = new IndexableSet<Fichada>();
 	}
 
+	public int getIdLapso() {
+		return idLapso;
+	}
+	
+	protected void setIdLapso(int idLapso) {
+		this.idLapso = idLapso;
+	}
+	
 	public GregorianCalendar getFechaHoraVencimiento() {
 		return fechaHoraVencimiento;
 	}

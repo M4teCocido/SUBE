@@ -1,4 +1,4 @@
-<?ml version = "1.0" encoding = "UTF-8" ?>
+<?xml version = "1.0" encoding = "UTF-8" ?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD
 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" >
 <hibernate-configuration >
@@ -19,14 +19,10 @@
 	<mapping resource="mapeos/RamalColectivo.hbm.xml" />
 	<mapping resource="mapeos/TramoColectivo.hbm.xml" />
 	<mapping resource="mapeos/LineaTren.hbm.xml" />
-	<mapping resource="mapeos/RecorridoTren.hbm.xml" />
 	<mapping resource="mapeos/SeccionTren.hbm.xml" />
 	<mapping resource="mapeos/ViajeTren.hbm.xml" />
 	<mapping resource="mapeos/EstacionTren.hbm.xml" />
-	
-	<!--
-	<mapping resource="mapeos/FichadaSubte.hbm.xml"/>
-	<mapping resource="mapeos/FichadaColectivo.hbm.xml" /> -->
-
+	<mapping resource="mapeos/TransaccionSube.hbm.xml" />
+	<mapping resource="mapeos/LapsoDescuentoRedSube.hbm.xml" />
 </session-factory >
 </hibernate-configuration >

@@ -6,7 +6,7 @@ import modelo.Descuentos.DescuentoSube;
 public class DescuentoTarifaSocial extends DescuentoSube{
 	
 	private BigDecimal porcentajeDescuento;
-	
+
 	public DescuentoTarifaSocial(String nombre, BigDecimal porcentajeDescuento) {
 		super(nombre);
 		this.porcentajeDescuento = porcentajeDescuento;
@@ -21,13 +21,16 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 	}
 
 	public BigDecimal aplicarDescuento (BigDecimal importe) {//Toma el importe de la fichada y devuelve el importe aplicado el descuento
-		 BigDecimal auxImporte = new BigDecimal (0);
+		/* 
+		BigDecimal auxImporte = new BigDecimal (0);
 		 auxImporte = importe;
 		 
-		 importe=importe.multiply(this.porcentajeDescuento);
-		 importe=importe.divide(new BigDecimal (100));
-		 auxImporte = auxImporte.subtract(importe);
+		 //importe=importe.multiply(this.porcentajeDescuento);
+		 //importe=importe.divide(new BigDecimal (100));
+		 //auxImporte = auxImporte.subtract(importe);
 		 return auxImporte;
+		 */
+		return importe.multiply(this.porcentajeDescuento);
 	}
 
 	@Override

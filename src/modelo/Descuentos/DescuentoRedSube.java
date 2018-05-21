@@ -7,9 +7,9 @@ public class DescuentoRedSube extends DescuentoSube {
 	
 	private LapsoDescuentoRedSube lapsoDescuentoRedSube;
 	
-	public DescuentoRedSube(String nombre, LapsoDescuentoRedSube lapsoDescuentoRedSube) {
+	public DescuentoRedSube(String nombre) {
 		super(nombre);
-		this.lapsoDescuentoRedSube = lapsoDescuentoRedSube;
+		this.lapsoDescuentoRedSube = new LapsoDescuentoRedSube();
 	}
 
 	public LapsoDescuentoRedSube getLapsoDescuentoRedSube() {

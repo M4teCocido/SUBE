@@ -7,6 +7,12 @@
 			<generator class = "identity" />
 		</id>
 		<many-to-one name="recorrido" class="modelo.fichadas.tren.RecorridoTren" fetch="select" column="idRecorrido" not-null="true" />
+		
+		<many-to-one name="estacionOrigen" class="modelo.fichadas.tren.EstacionTren" fetch="select" column="idEstacion" not-null="true" />
+		<!-- Si meto esta linea explota todo 
+			<many-to-one name="estacionDestino" class="modelo.fichadas.tren.EstacionTren" fetch="select" column="idEstacion" not-null="true" />
+		-->
+
 		<many-to-one name="estacionOrigen" class="modelo.fichadas.tren.EstacionTren" fetch="select" column="idEstacionOrigen" not-null="true" />
 		<many-to-one name="estacionDestino" class="modelo.fichadas.tren.EstacionTren" fetch="select" column="idEstacionDestino" not-null="true" />
 		<many-to-one name="seccionTren" class="modelo.fichadas.tren.SeccionTren" fetch="select" column="idSeccion" not-null="true" />

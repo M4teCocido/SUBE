@@ -1,18 +1,18 @@
 package modelo.fichadas.tren;
-import modelo.fichadas.tren.RecorridoTren;
+import modelo.fichadas.tren.LineaTren;
 
 public class EstacionTren {
 	
 	private int idEstacion;
 	private String nombre;
-	private RecorridoTren recorridoTren;
+	private LineaTren linea;
 
 	public EstacionTren() {}
 	
-	public EstacionTren(String nombre, RecorridoTren recorridoTren) {
+	public EstacionTren(String nombre, LineaTren linea) {
 		super();
 		this.nombre = nombre;
-		this.recorridoTren = recorridoTren;
+		this.linea = linea;
 	}
 
 	public int getIdEstacion() {
@@ -31,12 +31,12 @@ public class EstacionTren {
 		this.nombre = nombre;
 	}
 	
-	public RecorridoTren getRecorridoTren() {
-		return recorridoTren;
+	public LineaTren getLinea() {
+		return linea;
 	}
 	
-	public void setRecorridoTren(RecorridoTren recorridoTren) {
-		this.recorridoTren = recorridoTren;
+	public void setLinea(LineaTren linea) {
+		this.linea = linea;
 	}
 
 	@Override

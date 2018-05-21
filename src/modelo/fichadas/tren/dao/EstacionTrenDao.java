@@ -12,11 +12,11 @@ public class EstacionTrenDao {
 	
 	private void iniciaOperacion() throws HibernateException {
 		session = HibernateUtil.getSessionFactory().openSession();
-		tx = session .beginTransaction();	
+		tx = session.beginTransaction();	
 	}
 	
 	private void manejaExcepcion(HibernateException he) throws HibernateException {
-		tx .rollback();
-		throw new HibernateException( "ERROR en la capa de acceso a datos" , he);
+		tx.rollback();
+		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 }

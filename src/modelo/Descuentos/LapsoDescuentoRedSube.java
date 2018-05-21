@@ -4,16 +4,20 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import modelo.fichadas.Fichada;
+import util.IndexableSet;
 
 public class LapsoDescuentoRedSube {
 	
-	private GregorianCalendar fechaHoraVencimiento;
-	private List<Fichada> viajesRealizados;
+	private static BigDecimal descuento50 = new BigDecimal(0.5);
+	private static BigDecimal descuento75 = new BigDecimal(0.75);
 	
-	public LapsoDescuentoRedSube(GregorianCalendar fechaHoraVencimiento, List<Fichada> viajesRealizados) {
+	private GregorianCalendar fechaHoraVencimiento;
+	private IndexableSet<Fichada> viajesRealizados;
+
+	public LapsoDescuentoRedSube(GregorianCalendar fechaHoraVencimiento) {
 		super();
 		this.fechaHoraVencimiento = fechaHoraVencimiento;
-		this.viajesRealizados = viajesRealizados;
+		this.viajesRealizados = new IndexableSet<Fichada>();
 	}
 
 	public GregorianCalendar getFechaHoraVencimiento() {
@@ -23,16 +27,33 @@ public class LapsoDescuentoRedSube {
 	public void setFechaHoraVencimiento(GregorianCalendar fechaHoraVencimiento) {
 		this.fechaHoraVencimiento = fechaHoraVencimiento;
 	}
-	
-	public List<Fichada> getViajesRealizados() {
+
+	public IndexableSet<Fichada> getViajesRealizados() {
 		return viajesRealizados;
 	}
 
-	public void setViajesRealizados(List<Fichada> viajesRealizados) {
+	public void setViajesRealizados(IndexableSet<Fichada> viajesRealizados) {
 		this.viajesRealizados = viajesRealizados;
 	}
-
-	public BigDecimal aplicarDescuento(BigDecimal importe ) {
-		return importe;
+	
+	public boolean yaTermino() {
+		return 
+	}
+	
+	public int getCantidadViajes() {
+		return this.viajesRealizados.size();
+	}
+	
+	public BigDecimal aplicarDescuento(BigDecimal importe, Fichada fichada) {
+		BigDecimal importeFinal = new BigDecimal(importe.doubleValue());
+		this.viajesRealizados.add(fichada);
+		int cantidadViajes = this.getCantidadViajes();
+		
+		if (cantidadViajes == 2) //Segundo Viaje
+			importeFinal = importe.multiply(descuento50);
+		else if (cantidadViajes > 2)
+			importeFinal = importe.multiply(descuento75);
+		
+		return importeFinal;
 	}
 }

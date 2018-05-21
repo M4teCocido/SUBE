@@ -35,7 +35,7 @@ public class TestA {
 		tarjeta.setPropietario(persona);
 		
 		
-		//Instacia de objetos para fichada subte--------------------------------------------------
+		//Instancia de objetos para fichada subte--------------------------------------------------
 		LineaSubte lineaC = new LineaSubte ("Linea C", new BigDecimal(11));						 
 		EstacionSubte constitucion= new EstacionSubte("Constitucion", lineaC); 
 		EstacionSubte moreno = new EstacionSubte("Moreno", lineaC); 

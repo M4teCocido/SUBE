@@ -22,8 +22,6 @@ public abstract class DescuentoSube {
 		this.nombre = nombre;
 	}
 
-	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {
-		return importe;
-	}
+	public abstract BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada);
 
 }

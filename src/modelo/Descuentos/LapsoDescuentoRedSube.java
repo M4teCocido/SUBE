@@ -1,5 +1,6 @@
 package modelo.Descuentos;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class LapsoDescuentoRedSube {
 	}
 	
 	public boolean yaTermino() {
-		return 
+		return (this.getCantidadViajes() >= 5 || this.fechaHoraVencimiento.before (new GregorianCalendar()));
 	}
 	
 	public int getCantidadViajes() {

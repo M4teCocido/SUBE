@@ -11,7 +11,7 @@ public class LapsoDescuentoRedSube {
 	
 	private int idLapso;
 	private static BigDecimal descuento50 = new BigDecimal(0.5);
-	private static BigDecimal descuento75 = new BigDecimal(0.75);
+	private static BigDecimal descuento75 = new BigDecimal(0.25);
 	private GregorianCalendar fechaHoraVencimiento;
 	private IndexableSet<Fichada> viajesRealizados;
 
@@ -47,8 +47,8 @@ public class LapsoDescuentoRedSube {
 		this.viajesRealizados = viajesRealizados;
 	}
 	
-	public boolean yaTermino() {
-		return (this.getCantidadViajes() >= 5 || this.fechaHoraVencimiento.before (new GregorianCalendar()));
+	public boolean yaTermino(GregorianCalendar horaFichada) {
+		return (this.getCantidadViajes() >= 5 || this.fechaHoraVencimiento.before (horaFichada));
 	}
 	
 	public int getCantidadViajes() {

@@ -31,6 +31,7 @@ public class TarjetaSube {
 		this.codigo = codigo;
 		this.saldo = saldo;
 		this.transacciones = new IndexableSet <TransaccionSUBE> ();
+		this.descuentoRedSube = new DescuentoRedSube();
 	}
 
 	public String getCodigo() {
@@ -61,9 +62,6 @@ public class TarjetaSube {
 		return transacciones;
 	}
 
-	
-	
-
 	public void setTransacciones(IndexableSet<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}
@@ -80,20 +78,23 @@ public class TarjetaSube {
 		
 	}
 	
-	public void procesarFichada(FichadaColectivo fichadaColectivo) {
+	public TransaccionSUBE procesarFichada(FichadaColectivo fichadaColectivo) {
 		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecioColectivo(), fichadaColectivo);
-		this.transacciones.add(procesarTransaccion(fichadaColectivo, monto));
+		TransaccionSUBE transaccion = this.procesarTransaccion(fichadaColectivo, monto); 
+		this.transacciones.add(transaccion);
+		return transaccion;
+		
 
 	}
 	
-	public void procesarFichada(FichadaTren fichadaTren) {
-		
+	public TransaccionSUBE procesarFichada(FichadaTren fichadaTren) {
+		TransaccionSUBE transaccion = null;
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
 			System.out.println("Es de entrada");
 			BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
 			//procesarDescuento (monto, fichadaTren);
-			
-			this.transacciones.add(procesarTransaccion (fichadaTren,monto));
+			transaccion = procesarTransaccion (fichadaTren,monto);
+			this.transacciones.add(transaccion);
 		}
 		
 		
@@ -109,23 +110,28 @@ public class TarjetaSube {
 					
 					ViajeTren viajeAux = fichadaTren.getEstacion().getLinea().obtenerViaje(fichaAux.getEstacion(), fichadaTren.getEstacion());
 					BigDecimal bonificacion = new BigDecimal(0);
-					bonificacion = this.transacciones.get(this.transacciones.size()-1).getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
-				
-					this.saldo=this.saldo.add(bonificacion);
+					bonificacion = this.transacciones.get(this.transacciones.size()-1)
+							.getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
+					transaccion = procesarTransaccion (fichadaTren, bonificacion);
+					//this.saldo=this.saldo.add(bonificacion);
 				 
-				}
+				} //Si no, no se le bonifica nada.
 			}
-	
 		}
+		return transaccion;
 	}
 	
-	public void procesarFichada (FichadaSubte fichadaSubte) {
+	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) {
 		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio(), fichadaSubte);
-		this.transacciones.add(procesarTransaccion(fichadaSubte, monto));
+		TransaccionSUBE transaccion = procesarTransaccion(fichadaSubte, monto);
+		this.transacciones.add(transaccion);
+		return transaccion;
 	}
 	
-	public void procesarFichada (FichadaRecarga fichadaCarga) {
-		
+	public TransaccionSUBE procesarFichada (FichadaRecarga fichadaCarga) {
+		TransaccionSUBE transaccion = procesarTransaccion(fichadaCarga, fichadaCarga.getMonto().multiply(new BigDecimal(-1f)));
+		this.transacciones.add(transaccion);
+		return transaccion;
 	}
 
 	public void asignarDescuento(DescuentoRedSube descuento) {
@@ -156,20 +162,29 @@ public class TarjetaSube {
 
 
 	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {
-		
+		BigDecimal montoFinal = monto.add(BigDecimal.ZERO);
 		//Aplica descuentos
-		if (this.propietario.getDescuentoTarifaSocial() != null) {
-			monto=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(monto, fichada);
+		if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().LeQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
+			montoFinal=this.propietario.getDescuentoBoletoEstudiantil().aplicarDescuento(montoFinal, fichada);
+		} else {
+			if (this.propietario.getDescuentoTarifaSocial() != null) {
+				montoFinal=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(montoFinal, fichada);
+			}
+			
+			if (this.descuentoRedSube != null) {
+				montoFinal = this.descuentoRedSube.aplicarDescuento(montoFinal, fichada);
+			}
 		}
 		
-		
-		return monto;
+		return montoFinal;
 	}
 	
 	public TransaccionSUBE procesarTransaccion (Fichada fichada, BigDecimal monto) {
 		//Descuenta saldo y crea  transaccion
-		this.saldo = this.saldo.subtract(monto);
-		return new TransaccionSUBE (fichada,monto);
+		BigDecimal montoFinal = monto.add(BigDecimal.ZERO); //Creamos uno nuevo
+		montoFinal = montoFinal.setScale(2, BigDecimal.ROUND_HALF_UP);
+		this.saldo = this.saldo.subtract(montoFinal);
+		return new TransaccionSUBE (fichada, montoFinal);
 	
 	
 	}

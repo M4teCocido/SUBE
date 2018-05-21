@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class DescuentoBoletoEstudiantil {
+import modelo.fichadas.Fichada;
+
+public class DescuentoBoletoEstudiantil extends DescuentoSube {
 	
 	// 5.00h y las 23.00h.
 	
@@ -20,7 +22,7 @@ public class DescuentoBoletoEstudiantil {
 	//Los viajes no los recargamos : Le asignamos un nuevo descuento y listo.
 	
 	public DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil tipoBoletoEstudiantil) {
-		super();
+		super("Boleto Estudiantil");
 		if (tipoBoletoEstudiantil == eTipoBoletoEstudiantil.ESCOLAR) {
 			this.porcentajeDescuento = new BigDecimal(0);
 			this.viajesRestantes = 50;	
@@ -32,15 +34,19 @@ public class DescuentoBoletoEstudiantil {
 		this.tipoBoletoEstudiantil = tipoBoletoEstudiantil;
 	}
 
+	public boolean LeQuedanCargas() {
+		return (this.viajesRestantes > 0);
+	}
+	
 	private void consumirViaje() {
 		this.viajesRestantes--;
 	}
 	
-	public BigDecimal aplicarDescuento (BigDecimal importe) {
+	@Override
+	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {
 		BigDecimal importeFinal = new BigDecimal(importe.doubleValue());
 		if (this.viajesRestantes > 0) {
-			GregorianCalendar fechaActual = new GregorianCalendar();
-			if (fechaActual.get(Calendar.HOUR_OF_DAY) >= horaInicio && fechaActual.get(Calendar.HOUR_OF_DAY) <= horaFin) {
+			if (fichada.getFechaHora().get(Calendar.HOUR_OF_DAY) >= horaInicio && fichada.getFechaHora().get(Calendar.HOUR_OF_DAY) <= horaFin) {
 				this.consumirViaje();
 				importeFinal = importeFinal.multiply(this.porcentajeDescuento);
 			}

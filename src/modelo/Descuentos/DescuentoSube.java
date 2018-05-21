@@ -21,7 +21,7 @@ public abstract class DescuentoSube {
 	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	
 	public abstract BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada);
 
 }

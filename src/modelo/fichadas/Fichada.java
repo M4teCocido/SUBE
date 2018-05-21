@@ -21,11 +21,11 @@ public abstract class Fichada {
 		return this.idFichada;
 	}
 	
-	protected GregorianCalendar getFechaHora() {
+	public GregorianCalendar getFechaHora() {
 		return fechaHora;
 	}
 
-	protected void setFechaHora(GregorianCalendar fechaHora) {
+	public void setFechaHora(GregorianCalendar fechaHora) {
 		this.fechaHora = fechaHora;
 	}
 

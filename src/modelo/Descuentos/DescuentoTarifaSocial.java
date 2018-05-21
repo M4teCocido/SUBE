@@ -8,9 +8,12 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 	
 	private BigDecimal porcentajeDescuento;
 
-	public DescuentoTarifaSocial(String nombre, BigDecimal porcentajeDescuento) {
+	public DescuentoTarifaSocial(String nombre, float porcentajeDescuento) {
 		super(nombre);
-		this.porcentajeDescuento = porcentajeDescuento;
+		if (porcentajeDescuento > 1)
+			porcentajeDescuento = 1 - (porcentajeDescuento / 100);
+		this.porcentajeDescuento = new BigDecimal(porcentajeDescuento);
+		//this.porcentajeDescuento = porcentajeDescuento;
 	}
 	
 	public BigDecimal getPorcentajeDescuento() {
@@ -20,7 +23,8 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 	public void setPorcentajeDescuento(BigDecimal porcentajeDescuento) {
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
-
+	
+	@Override
 	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {//Toma el importe de la fichada y devuelve el importe aplicado el descuento
 		/* 
 		BigDecimal auxImporte = new BigDecimal (0);
@@ -36,7 +40,7 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 
 	@Override
 	public String toString() {
-		return "DescuentoTarifaSocial [porcentajeDescuento=" + porcentajeDescuento + "]";
+		return "DescuentoTarifaSocial [porcentajeDescuento=" + porcentajeDescuento.toString() + "]";
 	}
 	
 }

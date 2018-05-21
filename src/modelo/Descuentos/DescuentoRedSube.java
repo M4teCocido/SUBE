@@ -9,8 +9,8 @@ public class DescuentoRedSube extends DescuentoSube {
 	
 	private LapsoDescuentoRedSube lapsoDescuentoRedSube;
 		
-	public DescuentoRedSube(String nombre) {
-		super(nombre);
+	public DescuentoRedSube() {
+		super("Desc. RED SUBE");
 		this.lapsoDescuentoRedSube = this.crearNuevoLapso();
 	}
 
@@ -35,7 +35,7 @@ public class DescuentoRedSube extends DescuentoSube {
 
 	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {
 		//Falta chequear el caso de fichada tren.
-		if (this.lapsoDescuentoRedSube == null || this.lapsoDescuentoRedSube.yaTermino()) {
+		if (this.lapsoDescuentoRedSube == null || this.lapsoDescuentoRedSube.yaTermino(fichada.getFechaHora())) {
 			this.lapsoDescuentoRedSube = this.crearNuevoLapso();
 		}
 		return this.lapsoDescuentoRedSube.aplicarDescuento(importe, fichada);

@@ -18,7 +18,6 @@ public class TestDescuentos1 {
 		Persona persona = new Persona();
 		
 		
-		
 		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (21));
 		//tarjeta.setSaldo(new BigDecimal (21));
 		tarjeta.setPropietario(persona);

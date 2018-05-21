@@ -1,6 +1,10 @@
 package modelo.fichadas.tren;
 
 import java.util.Set;
+import util.IndexableSet;
+import modelo.fichadas.tren.ViajeTren;
+import modelo.fichadas.tren.SeccionTren;
+import modelo.fichadas.tren.EstacionTren;
 
 public class LineaTren {
 
@@ -15,9 +19,9 @@ public class LineaTren {
 	public LineaTren(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.estaciones = new IndexeableSet<EstacionTren>();
-		this.viajes = new IndexeableSet<ViajeTrens>();
-		this.secciones = new IndexeablesSet<SessionTren>();
+		this.estaciones = new IndexableSet<EstacionTren>();
+		this.viajes = new IndexableSet<ViajeTren>();
+		this.secciones = new IndexableSet<SeccionTren>();
 	}
 
 	public int getIdLinea() {

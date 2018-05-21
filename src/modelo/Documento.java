@@ -4,8 +4,8 @@ public class Documento {
 	public enum eTipoDocumento {DNI, LIBRETA_ENROLAMIENTO}
 	
 	private int idDocumento;
-	private String numero; 
-	private eTipoDocumento tipoDocumento; 
+	private String numero;
+	private eTipoDocumento tipoDocumento;
 	
 	public Documento() {}
 	

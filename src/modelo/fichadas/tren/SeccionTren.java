@@ -7,15 +7,15 @@ public class SeccionTren {
 	private int idSeccion;
 	private String nombre;
 	private BigDecimal importe;
-	private RecorridoTren recorrido;
+	private LineaTren linea;
 	
 	public SeccionTren() {}
 	
-	public SeccionTren(String nombre, BigDecimal importe, RecorridoTren recorrido) {
+	public SeccionTren(String nombre, BigDecimal importe, LineaTren linea) {
 		super();
 		this.nombre = nombre;
 		this.importe = importe;
-		this.recorrido = recorrido;
+		this.linea = linea;
 	}
 
 	public int getIdSeccion() {
@@ -42,11 +42,11 @@ public class SeccionTren {
 		this.importe = importe;
 	}
 	
-	public RecorridoTren getRecorrido() {
-		return this.recorrido;
+	public LineaTren getLinea() {
+		return this.linea;
 	}
 
-	public void setRecorrido(RecorridoTren recorrido) {
-		this.recorrido = recorrido;
+	public void setLinea(LineaTren linea) {
+		this.linea = linea;
 	}
 }

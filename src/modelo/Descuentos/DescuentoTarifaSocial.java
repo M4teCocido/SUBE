@@ -2,6 +2,7 @@ package modelo.Descuentos;
 import java.math.BigDecimal;
 
 import modelo.Descuentos.DescuentoSube;
+import modelo.fichadas.Fichada;
 
 public class DescuentoTarifaSocial extends DescuentoSube{
 	
@@ -20,7 +21,7 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 		this.porcentajeDescuento = porcentajeDescuento;
 	}
 
-	public BigDecimal aplicarDescuento (BigDecimal importe) {//Toma el importe de la fichada y devuelve el importe aplicado el descuento
+	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {//Toma el importe de la fichada y devuelve el importe aplicado el descuento
 		/* 
 		BigDecimal auxImporte = new BigDecimal (0);
 		 auxImporte = importe;

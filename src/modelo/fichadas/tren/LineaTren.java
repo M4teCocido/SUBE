@@ -1,27 +1,37 @@
 package modelo.fichadas.tren;
 
+import java.math.BigDecimal;
 import java.util.Set;
 import util.IndexableSet;
+
 import modelo.fichadas.tren.ViajeTren;
 import modelo.fichadas.tren.SeccionTren;
 import modelo.fichadas.tren.EstacionTren;
+
 
 public class LineaTren {
 
 	private int idLinea;
 	private String nombre;
-	private Set<EstacionTren> estaciones;
-	private Set<ViajeTren> viajes;
-	private Set<SeccionTren> secciones;
-	
+
+	private IndexableSet<SeccionTren> secciones;
+	private IndexableSet<EstacionTren> estaciones;
+	private IndexableSet<ViajeTren> viajes;
+
 	public LineaTren() {}
 	
 	public LineaTren(String nombre) {
 		super();
 		this.nombre = nombre;
+
+		this.secciones = new IndexableSet<SeccionTren>();
+		this.estaciones = new IndexableSet<EstacionTren>();
+		this.viajes = new IndexableSet<ViajeTren>();
+
 		this.estaciones = new IndexableSet<EstacionTren>();
 		this.viajes = new IndexableSet<ViajeTren>();
 		this.secciones = new IndexableSet<SeccionTren>();
+
 	}
 
 	public int getIdLinea() {
@@ -36,32 +46,50 @@ public class LineaTren {
 		return nombre;
 	}
 
+	public IndexableSet<SeccionTren> getSecciones() {
+		return secciones;
+	}
+
+	public void setSecciones(IndexableSet<SeccionTren> secciones) {
+		this.secciones = secciones;
+	}
+
+	public IndexableSet<EstacionTren> getEstaciones() {
+		return estaciones;
+	}
+
+	public void setEstaciones(IndexableSet<EstacionTren> estaciones) {
+		this.estaciones = estaciones;
+	}
+
+	public IndexableSet<ViajeTren> getViajes() {
+		return viajes;
+	}
+
+	public void setViajes(IndexableSet<ViajeTren> viajes) {
+		this.viajes = viajes;
+	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public Set<EstacionTren> getEstaciones() {
-		return estaciones;
-	}
-	
-	public void setEstaciones(Set<EstacionTren> estaciones) {
-		this.estaciones = estaciones;
-	}
-	
-	public Set<ViajeTren> getViajes() {
-		return viajes;
-	}
-	
-	public void setViajes(Set<ViajeTren> viajes) {
-		this.viajes = viajes;
-	}
-	
-	public Set<SeccionTren> getSecciones() {
+	public IndexableSet<SeccionTren> getSeccionesTren() {
 		return secciones;
 	}
-	
-	public void setSecciones(Set<SeccionTren> secciones) {
-		this.secciones = secciones;
+
+	public void setSeccionesTren(IndexableSet<SeccionTren> seccionesTren) {
+		this.secciones = seccionesTren;
 	}
-	
+
+	public BigDecimal obtenerMayorSeccion() {
+		BigDecimal montoMayor = new BigDecimal (0);
+		
+		for (int i=0; i<this.secciones.size()-1; i++) {
+			if (montoMayor.compareTo(this.secciones.get(i).getImporte())==-1){
+				montoMayor = this.secciones.get(i).getImporte();
+			}
+		}
+		return montoMayor;
+	}
 }

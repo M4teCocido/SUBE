@@ -1,15 +1,16 @@
 package modelo.fichadas.tren;
 
 import java.util.Set;
+import util.IndexableSet;
 
 public class RecorridoTren {
 	
 	private int idRecorrido;
 	private String nombre;
 	private LineaTren linea;
-	private Set<EstacionTren> estaciones;
-	private Set<ViajeTren> viajes;
-	private Set<SeccionTren> secciones;
+	private IndexableSet<EstacionTren> estaciones;
+	private IndexableSet<ViajeTren> viajes;
+	private IndexableSet<SeccionTren> secciones;
 	
 	public RecorridoTren() {}
 	
@@ -17,6 +18,9 @@ public class RecorridoTren {
 		super();
 		this.linea = linea;
 		this.nombre = nombre;
+		this.estaciones = new IndexableSet<EstacionTren>();
+		this.viajes = new IndexableSet<ViajeTren>();
+		this.secciones = new IndexableSet<SeccionTren>();
 	}
 
 	public int getIdRecorrido() {
@@ -27,13 +31,11 @@ public class RecorridoTren {
 		this.idRecorrido = idRecorrido;
 	}
 	
-	public Set<EstacionTren> getEstaciones() {
+	public IndexableSet<EstacionTren> getEstaciones() {
 		return estaciones;
 	}
 	
-	public void setEstaciones(Set<EstacionTren> estaciones) {
-		this.estaciones = estaciones;
-	}
+
 	
 	public LineaTren getLinea() {
 		return linea;
@@ -43,21 +45,27 @@ public class RecorridoTren {
 		this.linea = linea;
 	}
 	
-	public Set<ViajeTren> getViajes() {
+	public IndexableSet<ViajeTren> getViajes() {
 		return viajes;
 	}
 	
-	public void setViajes(Set<ViajeTren> viajes) {
+
+	public void setEstaciones(IndexableSet<EstacionTren> estaciones) {
+		this.estaciones = estaciones;
+	}
+
+	public void setViajes(IndexableSet<ViajeTren> viajes) {
 		this.viajes = viajes;
 	}
-	
-	public Set<SeccionTren> getSecciones() {
-		return secciones;
-	}
-	
-	public void setSecciones(Set<SeccionTren> secciones) {
+
+	public void setSecciones(IndexableSet<SeccionTren> secciones) {
 		this.secciones = secciones;
 	}
+
+	public IndexableSet<SeccionTren> getSecciones() {
+		return secciones;
+	}
+
 	
 	public String getNombre() {
 		return nombre;
@@ -66,5 +74,7 @@ public class RecorridoTren {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 
 }

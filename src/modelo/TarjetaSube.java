@@ -14,12 +14,13 @@ import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.tren.FichadaTren;
 import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
 import modelo.fichadas.tren.ViajeTren;
+import util.IndexableSet;
 
 public class TarjetaSube {
 	
 	private String codigo;
 	private Persona propietario;
-	private Set<TransaccionSUBE> transacciones;
+	private IndexableSet<TransaccionSUBE> transacciones;
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 
@@ -29,6 +30,7 @@ public class TarjetaSube {
 		super();
 		this.codigo = codigo;
 		this.saldo = saldo;
+		this.transacciones = new IndexableSet <TransaccionSUBE> ();
 	}
 
 	public String getCodigo() {
@@ -55,11 +57,14 @@ public class TarjetaSube {
 		this.descuentoRedSube = descuentoRedSube;
 	}
 	
-	public Set<TransaccionSUBE> getTransacciones() {
+	public IndexableSet<TransaccionSUBE> getTransacciones() {
 		return transacciones;
 	}
 
-	public void setTransacciones(Set<TransaccionSUBE> transacciones) {
+	
+	
+
+	public void setTransacciones(IndexableSet<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}
 
@@ -153,10 +158,10 @@ public class TarjetaSube {
 	
 	
 	}
+
 	@Override
 	public String toString() {
-		return "TarjetaSube [codigo=" + codigo + ", propietario=" + propietario + ", transacciones=" + transacciones
-				+ ", descuentoRedSube=" + descuentoRedSube + ", saldo=" + saldo + "]";
+		return this.saldo.toString();
 	}
 	
 	

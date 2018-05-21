@@ -8,7 +8,7 @@ import modelo.fichadas.Fichada;
 public class DescuentoRedSube extends DescuentoSube {
 	
 	private LapsoDescuentoRedSube lapsoDescuentoRedSube;
-	
+		
 	public DescuentoRedSube(String nombre) {
 		super(nombre);
 		this.lapsoDescuentoRedSube = this.crearNuevoLapso();

@@ -19,10 +19,11 @@ import modelo.fichadas.subte.LineaSubte;
 import modelo.fichadas.tren.EstacionTren;
 import modelo.fichadas.tren.FichadaTren;
 import modelo.fichadas.tren.LineaTren;
-import modelo.fichadas.tren.RecorridoTren;
+
 import modelo.fichadas.tren.SeccionTren;
 import modelo.fichadas.tren.ViajeTren;
 import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
+import util.FuncionesGregorian;
 
 public class TestA {
 
@@ -49,25 +50,46 @@ public class TestA {
 		
 		//Instancia Objetos Fichada Tren
 		LineaTren roca = new LineaTren ("Roca");
-		RecorridoTren recorridoEzeiza = new RecorridoTren (roca, "Ezeiza");
-		EstacionTren constitucionTren= new EstacionTren("Constitucion", recorridoEzeiza);  
-		EstacionTren lanusTren= new EstacionTren("Lanus", recorridoEzeiza ); 
 		
-		recorridoEzeiza.getEstaciones().add(lanusTren);
-		recorridoEzeiza.getEstaciones().add(constitucionTren);
-		
-		SeccionTren primeraSeccion = new SeccionTren("Primera seccion", new BigDecimal (3), recorridoEzeiza);
-		FichadaTren fichadaTrenA =  new FichadaTren (FuncionesGregorian.traerFecha(1998, 10, 10), constitucionTren, eTipoFichadaTren.ENTRADA);
-		FichadaTren fichadaTrenB = new FichadaTren (FuncionesGregorian.traerFecha(1998, 9, 10), lanusTren, eTipoFichadaTren.SALIDA );
+		EstacionTren constitucionTren = new EstacionTren("Constitucion", roca); 
+		EstacionTren lanusTren = new EstacionTren("Lanus", roca);
+		EstacionTren aKornTren = new EstacionTren ("A. Korn", roca);
 		
 		
 		
+		SeccionTren primeraSeccion = new SeccionTren ("Primera Seccion", new BigDecimal(2),roca);
+		roca.getSecciones().add(primeraSeccion);
+		SeccionTren segundaSeccion = new SeccionTren ("Segunda Seccion", new BigDecimal(3),roca);
+		roca.getSecciones().add(segundaSeccion);
+		SeccionTren terceraSeccion = new SeccionTren ("Tercera Seccion", new BigDecimal(4),roca);
+		roca.getSecciones().add(terceraSeccion);
+		
+		ViajeTren viajeA = new ViajeTren (constitucionTren,lanusTren, primeraSeccion,roca);
+		roca.getViajes().add(viajeA);
+		ViajeTren viajeB = new ViajeTren (constitucionTren, aKornTren, terceraSeccion,roca);
+		roca.getViajes().add(viajeA);
+		
+		tarjeta.getSaldo().toString();
 		
 		
+		
+		//Instancio Fichada tren-----------------------------------------------------------------------------------------
+		
+		FichadaTren fichadaPruebaA = new FichadaTren (FuncionesGregorian.traerFecha(2018, 03, 6),constitucionTren,eTipoFichadaTren.ENTRADA);
+		
+		tarjeta.procesarFichada(fichadaPruebaA);
+		System.out.println( tarjeta.getSaldo().toString());
+		
+		FichadaTren fichadaPruebaB = new FichadaTren (FuncionesGregorian.traerFecha(2018, 03, 6),lanusTren,eTipoFichadaTren.SALIDA);
+		
+		tarjeta.procesarFichada(fichadaPruebaB);
+		System.out.println(tarjeta.getSaldo().toString());
 		
 		// procesado de  fichadas----------------------------------------------------------------------------------------------------------------------------
 		FichadaSubte fichadaSubte = new FichadaSubte(FuncionesGregorian.traerFecha(2018, 07, 31),constitucion);
 		FichadaColectivo fichadaColectivo = new FichadaColectivo (FuncionesGregorian.traerFecha(2018, 07,31), cruceAMonteGrande);
+		
+		
 		//TransaccionSUBE transaccion = new TransaccionSUBE (fichadaSubte, new BigDecimal (11));
 		tarjeta.procesarFichada(fichadaSubte);
 		//System.out.println("Saldo depsues fichada subte"+tarjeta.toString());
@@ -76,9 +98,6 @@ public class TestA {
 		
 		Set<TransaccionSUBE>auxTransaccion = tarjeta.getTransacciones();
 		System.out.println("Lista de  transacciones");
-		for (int i = 0; i< auxTransaccion.size(); i++) {
-			System.out.println(i+"-"+auxTransaccion.get(i).toString());
-		}
 		
 		//--------------------------------------------------------------------------------------------------------------------------
 		
@@ -93,8 +112,7 @@ public class TestA {
 		System.out.println(persona.getDescuentoTarifaSocial());
 		System.out.println(tarjeta.getTransacciones().get(0));
 		*/
-		tarjeta.procesarFichada(fichadaTrenA);
-		tarjeta.procesarFichada(fichadaTrenB);
+		
 		
 		
 	}

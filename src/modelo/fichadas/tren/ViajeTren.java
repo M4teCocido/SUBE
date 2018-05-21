@@ -8,7 +8,6 @@ public class ViajeTren {
 	private SeccionTren seccionTren;
 	private RecorridoTren recorrido;
 	
-
 	public ViajeTren(EstacionTren estacionOrigen) {
 		super();
 		this.estacionOrigen = estacionOrigen;
@@ -67,5 +66,4 @@ public class ViajeTren {
 	public void setRecorrido(RecorridoTren recorrido) {
 		this.recorrido = recorrido;
 	}
-
 }

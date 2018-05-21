@@ -92,7 +92,9 @@ public class TarjetaSube {
 			System.out.println("Es de entrada");
 			
 			//System.out.println(this.transacciones.get(this.transacciones.size()-1).toString());
-			fichadaTren.getEstacion().getRecorridoTren().getViajes().add(new ViajeTren (fichadaTren.getEstacion()));
+			//fichadaTren.getEstacion().getRecorridoTren().getViajes().add(new ViajeTren (fichadaTren.getEstacion()));
+			//BigDecimal monto = procesarDescuento(fichadaTren.get)
+		
 		}
 		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {

@@ -2,13 +2,15 @@ package modelo.fichadas.tren;
 
 import java.math.BigDecimal;
 
+import util.IndexableSet;
+
 public class SeccionTren {
 	
 	private int idSeccion;
 	private String nombre;
 	private BigDecimal importe;
 	private RecorridoTren recorrido;
-	
+	private IndexableSet<ViajeTren> viajesTren;
 	public SeccionTren() {}
 	
 	public SeccionTren(String nombre, BigDecimal importe, RecorridoTren recorrido) {
@@ -16,6 +18,7 @@ public class SeccionTren {
 		this.nombre = nombre;
 		this.importe = importe;
 		this.recorrido = recorrido;
+		this.viajesTren = new IndexableSet<ViajeTren>();
 	}
 
 	public int getIdSeccion() {
@@ -49,4 +52,14 @@ public class SeccionTren {
 	public void setRecorrido(RecorridoTren recorrido) {
 		this.recorrido = recorrido;
 	}
+
+	public IndexableSet<ViajeTren> getViajesTren() {
+		return viajesTren;
+	}
+
+	public void setViajesTren(IndexableSet<ViajeTren> viajesTren) {
+		this.viajesTren = viajesTren;
+	}
+
+	
 }

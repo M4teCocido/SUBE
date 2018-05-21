@@ -23,8 +23,7 @@ public class Persona {
 	
 	public Persona() {}
 	
-	public Persona(String nombre, String apellido, Documento documento, eGenero genero,
-			GregorianCalendar fechaNacimiento, String email, String celular, String telefono) throws Exception {
+	public Persona(String nombre, String apellido, Documento documento, eGenero genero, GregorianCalendar fechaNacimiento, String email, String celular, String telefono) throws Exception {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -34,6 +33,7 @@ public class Persona {
 		this.setEmail(email);
 		this.setCelular(celular);
 		this.setTelefono(telefono);
+		this.tarjetasAsociadas = new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -141,30 +141,35 @@ public class Persona {
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
 		this.descuentoBoletoEstudiantil = descuento;
-		return false;
+		return true;
 	}
 	
-	public boolean quitarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
-		descuento = null;
-		return false;
+	public boolean quitarDescuentoBoletoEstudiantil() {
+		this.descuentoBoletoEstudiantil = null;
+		return true;
 	}
 	
 	public boolean asignarDescuentoTarifaSocial(DescuentoTarifaSocial descuento) {
 		this.descuentoTarifaSocial = descuento;
-		return false;
+		return true;
 	}
 	
-	public boolean quitarDescuentoTarifaSocial(DescuentoTarifaSocial descuento) {
-		descuento = null;
-		return false;
+	public boolean quitarDescuentoTarifaSocial() {
+		this.descuentoTarifaSocial = null;
+		return true;
 	}
 	
 	public boolean asociarTarjeta(TarjetaSube tarjeta) throws Exception {
 		boolean asociado = false;
-		if (tarjetasAsociadas.contains(tarjeta)) throw new Exception("La tarjeta ya esta asociada a esta persona.");
-		else {
-			Persona propietario = new Persona(this.getNombre(), this.getApellido(), this.getDocumento(), this.getGenero(), this.getFechaNacimiento(), this.getEmail(), this.getCelular(), this.getTelefono());
-			tarjeta.setPropietario(propietario);
+		if (getTarjetasAsociadas().isEmpty() == false) {
+			if (tarjetasAsociadas.contains(tarjeta)) throw new Exception("La tarjeta ya esta asociada a esta persona.");
+			else {
+				tarjeta.setPropietario(this);
+				tarjetasAsociadas.add(tarjeta);
+				asociado = true;
+			}
+		} else {
+			tarjeta.setPropietario(this);
 			tarjetasAsociadas.add(tarjeta);
 			asociado = true;
 		}

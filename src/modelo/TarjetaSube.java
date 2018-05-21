@@ -61,9 +61,6 @@ public class TarjetaSube {
 		return transacciones;
 	}
 
-	
-	
-
 	public void setTransacciones(IndexableSet<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}

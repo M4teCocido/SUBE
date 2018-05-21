@@ -1,10 +1,12 @@
-package dao;
+package modelo.dao;
 
 
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import dao.HibernateUtil;
 
 public class PermisoDao {
 

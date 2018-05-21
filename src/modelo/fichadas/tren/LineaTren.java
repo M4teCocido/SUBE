@@ -92,4 +92,14 @@ public class LineaTren {
 		}
 		return montoMayor;
 	}
-}
+	
+	public ViajeTren obtenerViaje (EstacionTren estacionOrigen, EstacionTren estacionDestino) {
+		ViajeTren viajeTren = null;
+		for(int i=0; i<this.viajes.size(); i++) {
+			if(this.viajes.get(i).getEstacionOrigen()==estacionOrigen && this.viajes.get(i).getEstacionDestino()==estacionDestino) {
+		        viajeTren = this.viajes.get(i);    
+		    }
+		}
+		return viajeTren;
+	}
+} 

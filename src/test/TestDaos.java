@@ -21,13 +21,13 @@ public class TestDaos {
 		Persona persona = new Persona();
 		Usuario usuario = new Usuario("Gonzalocapo", "capomal", persona);
 		dao2.agregarUsuario(usuario);*/
+		
 		/*Permiso permiso2 = dao.traerPermiso(1);
 		permiso2.setNombre("Nombre modificado");
 		permiso2.setDescripcion("Modificado correctamente");
 		permiso2.setCodigo("2222");
 		dao.modificarPermiso(permiso2);
 		dao.eliminarPermiso(permiso2);*/
-		
 		
 		/*try {
 			DocumentoDao dao3 = new DocumentoDao();

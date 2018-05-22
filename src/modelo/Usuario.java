@@ -1,6 +1,8 @@
 package modelo;
 
+import java.util.HashSet;
 import java.util.Set;
+
 import util.IndexableSet;
 
 public class Usuario {
@@ -9,7 +11,7 @@ public class Usuario {
 	private String nombreUsuario;
 	private String password;
 	private Persona persona;
-	private IndexableSet<Permiso> permisos;
+	private Set<Permiso> permisos;
 
 	public Usuario() {}
 	
@@ -17,7 +19,7 @@ public class Usuario {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
 		this.persona = persona;
-		this.permisos = new IndexableSet<Permiso>(); 
+		this.permisos = new HashSet<Permiso>(); 
 	}
 
 	public int getIdUsuario() {
@@ -28,11 +30,7 @@ public class Usuario {
 		this.idUsuario = idUsuario;
 	}
 	
-	public void setPermisos(IndexableSet<Permiso> permisos) {
-		this.permisos = permisos;
-	}
-	
-	public void getPermisos(IndexableSet<Permiso> permisos) {
+	public void setPermisos(Set<Permiso> permisos) {
 		this.permisos = permisos;
 	}
 	

@@ -2,7 +2,9 @@ package modelo.Descuentos;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import modelo.fichadas.Fichada;
 import util.IndexableSet;
@@ -13,14 +15,14 @@ public class LapsoDescuentoRedSube {
 	private static BigDecimal descuento50 = new BigDecimal(0.5);
 	private static BigDecimal descuento75 = new BigDecimal(0.25);
 	private GregorianCalendar fechaHoraVencimiento;
-	private IndexableSet<Fichada> viajesRealizados;
+	private Set<Fichada> viajesRealizados;
 
 	public LapsoDescuentoRedSube() {}
 	
 	public LapsoDescuentoRedSube(GregorianCalendar fechaHoraVencimiento) {
 		super();
 		this.fechaHoraVencimiento = fechaHoraVencimiento;
-		this.viajesRealizados = new IndexableSet<Fichada>();
+		this.viajesRealizados = new HashSet<Fichada>();
 	}
 
 	public int getIdLapso() {
@@ -39,11 +41,11 @@ public class LapsoDescuentoRedSube {
 		this.fechaHoraVencimiento = fechaHoraVencimiento;
 	}
 
-	public IndexableSet<Fichada> getViajesRealizados() {
+	public Set<Fichada> getViajesRealizados() {
 		return viajesRealizados;
 	}
 
-	public void setViajesRealizados(IndexableSet<Fichada> viajesRealizados) {
+	public void setViajesRealizados(Set<Fichada> viajesRealizados) {
 		this.viajesRealizados = viajesRealizados;
 	}
 	

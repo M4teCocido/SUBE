@@ -1,6 +1,7 @@
 package modelo.fichadas.colectivo;
 
 import java.util.Set;
+import java.util.HashSet;
 
 public class LineaColectivo {
 	
@@ -13,6 +14,7 @@ public class LineaColectivo {
 	public LineaColectivo(String nombre) {
 		super();
 		this.nombre = nombre;
+		this.ramalesColectivo = new HashSet<RamalColectivo>();
 	}
 
 	public int getIdLinea() {

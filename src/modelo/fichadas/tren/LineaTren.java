@@ -1,22 +1,21 @@
 package modelo.fichadas.tren;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
-import util.IndexableSet;
 
 import modelo.fichadas.tren.ViajeTren;
 import modelo.fichadas.tren.SeccionTren;
 import modelo.fichadas.tren.EstacionTren;
-
 
 public class LineaTren {
 
 	private int idLinea;
 	private String nombre;
 
-	private IndexableSet<SeccionTren> secciones;
-	private IndexableSet<EstacionTren> estaciones;
-	private IndexableSet<ViajeTren> viajes;
+	private Set<SeccionTren> secciones;
+	private Set<EstacionTren> estaciones;
+	private Set<ViajeTren> viajes;
 
 	public LineaTren() {}
 	
@@ -24,14 +23,9 @@ public class LineaTren {
 		super();
 		this.nombre = nombre;
 
-		this.secciones = new IndexableSet<SeccionTren>();
-		this.estaciones = new IndexableSet<EstacionTren>();
-		this.viajes = new IndexableSet<ViajeTren>();
-
-		this.estaciones = new IndexableSet<EstacionTren>();
-		this.viajes = new IndexableSet<ViajeTren>();
-		this.secciones = new IndexableSet<SeccionTren>();
-
+		this.secciones = new HashSet<SeccionTren>();
+		this.estaciones = new HashSet<EstacionTren>();
+		this.viajes = new HashSet<ViajeTren>();
 	}
 
 	public int getIdLinea() {
@@ -46,27 +40,27 @@ public class LineaTren {
 		return nombre;
 	}
 
-	public IndexableSet<SeccionTren> getSecciones() {
+	public Set<SeccionTren> getSecciones() {
 		return secciones;
 	}
 
-	public void setSecciones(IndexableSet<SeccionTren> secciones) {
+	public void setSecciones(Set<SeccionTren> secciones) {
 		this.secciones = secciones;
 	}
 
-	public IndexableSet<EstacionTren> getEstaciones() {
+	public Set<EstacionTren> getEstaciones() {
 		return estaciones;
 	}
 
-	public void setEstaciones(IndexableSet<EstacionTren> estaciones) {
+	public void setEstaciones(Set<EstacionTren> estaciones) {
 		this.estaciones = estaciones;
 	}
 
-	public IndexableSet<ViajeTren> getViajes() {
+	public Set<ViajeTren> getViajes() {
 		return viajes;
 	}
 
-	public void setViajes(IndexableSet<ViajeTren> viajes) {
+	public void setViajes(Set<ViajeTren> viajes) {
 		this.viajes = viajes;
 	}
 
@@ -74,11 +68,11 @@ public class LineaTren {
 		this.nombre = nombre;
 	}
 
-	public IndexableSet<SeccionTren> getSeccionesTren() {
+	public Set<SeccionTren> getSeccionesTren() {
 		return secciones;
 	}
 
-	public void setSeccionesTren(IndexableSet<SeccionTren> seccionesTren) {
+	public void setSeccionesTren(Set<SeccionTren> seccionesTren) {
 		this.secciones = seccionesTren;
 	}
 

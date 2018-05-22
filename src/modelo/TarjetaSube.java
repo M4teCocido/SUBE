@@ -2,7 +2,9 @@ package modelo;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import modelo.Descuentos.*;
 
@@ -20,7 +22,7 @@ public class TarjetaSube {
 	private int idTarjeta;
 	private String codigo;
 	private Persona propietario;
-	private IndexableSet<TransaccionSUBE> transacciones;
+	private Set<TransaccionSUBE> transacciones;
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 
@@ -30,7 +32,7 @@ public class TarjetaSube {
 		super();
 		this.codigo = codigo;
 		this.saldo = saldo;
-		this.transacciones = new IndexableSet <TransaccionSUBE> ();
+		this.transacciones = new HashSet<TransaccionSUBE>();
 		this.descuentoRedSube = new DescuentoRedSube();
 	}
 
@@ -66,11 +68,11 @@ public class TarjetaSube {
 		this.descuentoRedSube = descuentoRedSube;
 	}
 	
-	public IndexableSet<TransaccionSUBE> getTransacciones() {
+	public Set<TransaccionSUBE> getTransacciones() {
 		return transacciones;
 	}
 
-	public void setTransacciones(IndexableSet<TransaccionSUBE> transacciones) {
+	public void setTransacciones(Set<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}
 

@@ -1,6 +1,9 @@
 package modelo;
 //import java.math.BigDecimal;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
+
 import modelo.Documento;
 import modelo.TarjetaSube;
 import modelo.Descuentos.*;
@@ -19,7 +22,7 @@ public class Persona {
 	private String email;
 	private String celular;
 	private String telefono;
-	private IndexableSet<TarjetaSube> tarjetasAsociadas;
+	private Set<TarjetaSube> tarjetasAsociadas;
 	private DescuentoTarifaSocial descuentoTarifaSocial;
 	private DescuentoBoletoEstudiantil descuentoBoletoEstudiantil;
 	
@@ -35,7 +38,7 @@ public class Persona {
 		this.setEmail(email);
 		this.setCelular(celular);
 		this.setTelefono(telefono);
-		this.tarjetasAsociadas = new IndexableSet<TarjetaSube>();
+		this.tarjetasAsociadas = new HashSet<TarjetaSube>();
 	}
 
 	public int getIdPersona() {
@@ -119,11 +122,11 @@ public class Persona {
 		}
 	}
 	
-	public IndexableSet<TarjetaSube> getTarjetasAsociadas() {
+	public Set<TarjetaSube> getTarjetasAsociadas() {
 		return tarjetasAsociadas;
 	}
 	
-	public void setTarjetasAsociadas(IndexableSet<TarjetaSube> tarjetasAsociadas) {
+	public void setTarjetasAsociadas(Set<TarjetaSube> tarjetasAsociadas) {
 		this.tarjetasAsociadas = tarjetasAsociadas;
 	}
 	

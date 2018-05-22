@@ -1,6 +1,8 @@
 package modelo.fichadas.tren;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import util.IndexableSet;
 
@@ -10,7 +12,7 @@ public class SeccionTren {
 	private String nombre;
 	private BigDecimal importe;
 	private LineaTren linea;
-	private IndexableSet<ViajeTren> viajesTren;
+	private Set<ViajeTren> viajesTren;
 
 	public SeccionTren() {}
 	
@@ -19,7 +21,7 @@ public class SeccionTren {
 		this.nombre = nombre;
 		this.importe = importe;
 		this.linea = linea;
-		this.viajesTren = new IndexableSet<ViajeTren>();
+		this.viajesTren = new HashSet<ViajeTren>();
 
 	}
 
@@ -55,11 +57,11 @@ public class SeccionTren {
 		this.linea = linea;
 	}
 
-	public IndexableSet<ViajeTren> getViajesTren() {
+	public Set<ViajeTren> getViajesTren() {
 		return viajesTren;
 	}
 
-	public void setViajesTren(IndexableSet<ViajeTren> viajesTren) {
+	public void setViajesTren(Set<ViajeTren> viajesTren) {
 		this.viajesTren = viajesTren;
 	}
 

@@ -11,7 +11,7 @@
 		<property column="codigo" name="codigo" type="string" />
 		
 		<set name="usuarios" table="permisopersona" outer-join="true">
-			<key column="idPermiso" />
+			<key column="Permiso_idPermiso" />
 			<many-to-many column="Usuario_idUsuario" class="modelo.Usuario" />
 		</set>
 		

@@ -1,5 +1,6 @@
 package modelo.fichadas.colectivo;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class RamalColectivo {
@@ -15,6 +16,7 @@ public class RamalColectivo {
 		super();
 		this.linea = linea;
 		this.nombre = nombre;
+		this.tramos = new HashSet<TramoColectivo>();
 	}
 	
 	public int getIdRamal() {

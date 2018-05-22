@@ -163,17 +163,19 @@ public class TarjetaSube {
 
 	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO);
-		//Aplica descuentos
-		if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().LeQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
-			montoFinal=this.propietario.getDescuentoBoletoEstudiantil().aplicarDescuento(montoFinal, fichada);
-		} else {
-			if (this.propietario.getDescuentoTarifaSocial() != null) {
-				montoFinal=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(montoFinal, fichada);
+		if (this.propietario != null) {
+			//Aplica descuentos
+			if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().LeQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
+				montoFinal=this.propietario.getDescuentoBoletoEstudiantil().aplicarDescuento(montoFinal, fichada);
+			} else {
+				if (this.propietario.getDescuentoTarifaSocial() != null) {
+					montoFinal=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(montoFinal, fichada);
+				}
 			}
-			
-			if (this.descuentoRedSube != null) {
-				montoFinal = this.descuentoRedSube.aplicarDescuento(montoFinal, fichada);
-			}
+		}
+		
+		if (this.descuentoRedSube != null) {
+			montoFinal = this.descuentoRedSube.aplicarDescuento(montoFinal, fichada);
 		}
 		
 		return montoFinal;

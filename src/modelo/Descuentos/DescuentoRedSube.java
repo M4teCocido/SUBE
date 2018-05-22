@@ -11,11 +11,11 @@ public class DescuentoRedSube extends DescuentoSube {
 		
 	public DescuentoRedSube() {
 		super("Desc. RED SUBE");
-		this.lapsoDescuentoRedSube = this.crearNuevoLapso();
+		//this.lapsoDescuentoRedSube = this.crearNuevoLapso();
 	}
 
-	private LapsoDescuentoRedSube crearNuevoLapso() {
-		GregorianCalendar post2Horas = (GregorianCalendar) new GregorianCalendar();
+	private LapsoDescuentoRedSube crearNuevoLapso(GregorianCalendar fechaFichada) {
+		GregorianCalendar post2Horas = (GregorianCalendar) fechaFichada.clone();
 		post2Horas.add(Calendar.HOUR_OF_DAY, 2);
 		return new LapsoDescuentoRedSube(post2Horas);
 	}
@@ -36,7 +36,7 @@ public class DescuentoRedSube extends DescuentoSube {
 	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {
 		//Falta chequear el caso de fichada tren.
 		if (this.lapsoDescuentoRedSube == null || this.lapsoDescuentoRedSube.yaTermino(fichada.getFechaHora())) {
-			this.lapsoDescuentoRedSube = this.crearNuevoLapso();
+			this.lapsoDescuentoRedSube = this.crearNuevoLapso(fichada.getFechaHora());
 		}
 		return this.lapsoDescuentoRedSube.aplicarDescuento(importe, fichada);
 	}

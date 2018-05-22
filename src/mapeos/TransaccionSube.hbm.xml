@@ -8,5 +8,6 @@
 		</id>
 		<property column="importe" name="importe" type="java.math.BigDecimal" />
 		<one-to-one name="fichada" class="modelo.fichadas.Fichada"></one-to-one>
+		
 	</class>
 </hibernate-mapping>

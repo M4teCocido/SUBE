@@ -1,11 +1,15 @@
 package modelo;
 
+import util.IndexableSet;
+import modelo.Usuario;
+
 public class Permiso {
 	
 	private int idPermiso;
 	private String nombre;
 	private String descripcion;
 	private String codigo;
+	private IndexableSet<Usuario> usuarios;
 	
 	public Permiso() {}
 	
@@ -13,6 +17,7 @@ public class Permiso {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.codigo = codigo;
+		this.setUsuarios(new IndexableSet<Usuario>());
 	}
 	
 	public int getIdPermiso() {
@@ -53,5 +58,13 @@ public class Permiso {
 			equivalente = true;	
 		}
 		return equivalente;
+	}
+
+	public IndexableSet<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(IndexableSet<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 }

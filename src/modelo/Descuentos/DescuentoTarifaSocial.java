@@ -8,6 +8,10 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 	
 	private BigDecimal porcentajeDescuento;
 
+	public DescuentoTarifaSocial() {
+		
+	}
+	
 	public DescuentoTarifaSocial(String nombre, float porcentajeDescuento) {
 		super(nombre);
 		if (porcentajeDescuento > 1)

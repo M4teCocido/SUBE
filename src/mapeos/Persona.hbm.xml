@@ -19,14 +19,16 @@
 		<property column="email" name="email" type="string" />
 		<property column="celular" name="celular" type="string" />
 		<property column="telefono" name="telefono" type="string" />
-		<one-to-one name="documento" class="modelo.Documento"></one-to-one>
+		
+		<one-to-one name="documento" class="modelo.Documento" cascade="all">
+		</one-to-one>
 		
 		<!--  
 		<one-to-one name="descuentoTarifaSocial" class="modelo.Descuentos.DescuentoTarifaSocial"></one-to-one>
 		<one-to-one name="descuentoBoletoEstudiantil" class="modelo.Descuentos.DescuentoBoletoEstudiantil"></one-to-one>
 		-->
 		
-		<set name="tarjetasAsociadas" table="tarjetasube" order-by="idTarjetaSube asc" inverse="true" lazy="true" fetch="select">
+		<set name="tarjetasAsociadas" table="tarjetasube" order-by="idTarjetaSube asc" inverse="true" lazy="false" fetch="select">
 			<key column="idPropietario" not-null="true" />
 			<one-to-many class="modelo.TarjetaSube" />
 		</set>

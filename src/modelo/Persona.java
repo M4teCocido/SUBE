@@ -29,11 +29,11 @@ public class Persona {
 	
 	public Persona() {}
 	
-	public Persona(String nombre, String apellido, Documento documento, eGenero genero, GregorianCalendar fechaNacimiento, String email, String celular, String telefono) throws Exception {
+	public Persona(String nombre, String apellido, eGenero genero, GregorianCalendar fechaNacimiento, String email, String celular, String telefono) throws Exception {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.documento = documento;
+		//this.documento = documento;
 		this.genero = genero;
 		this.fechaNacimiento = fechaNacimiento;
 		this.setEmail(email);

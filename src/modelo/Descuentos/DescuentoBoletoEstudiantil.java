@@ -21,6 +21,10 @@ public class DescuentoBoletoEstudiantil extends DescuentoSube {
 	
 	//Los viajes no los recargamos : Le asignamos un nuevo descuento y listo.
 	
+	public DescuentoBoletoEstudiantil() {
+		
+	}
+	
 	public DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil tipoBoletoEstudiantil) {
 		super("Boleto Estudiantil");
 		if (tipoBoletoEstudiantil == eTipoBoletoEstudiantil.ESCOLAR) {

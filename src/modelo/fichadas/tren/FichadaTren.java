@@ -10,6 +10,10 @@ public  class FichadaTren extends Fichada {
 	private EstacionTren estacion;
 	private eTipoFichadaTren tipoFichada;
 	
+	public FichadaTren() {
+		
+	}
+	
 	public FichadaTren(GregorianCalendar fechaHora, EstacionTren estacion, eTipoFichadaTren tipoFichada) {
 		super(fechaHora);
 		this.estacion = estacion;

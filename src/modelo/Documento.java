@@ -6,20 +6,14 @@ public class Documento {
 	private int idDocumento;
 	private String numero;
 	private eTipoDocumento tipoDocumento;
+	private Persona persona;
 	
 	public Documento() {}
 	
-	public Documento(String numero, eTipoDocumento tipoDocumento) throws Exception {
+	public Documento(String numero, eTipoDocumento tipoDocumento, Persona persona) throws Exception {
 		this.setNumero(numero);
 		this.setTipoDocumento(tipoDocumento);
-	}
-	
-	protected void setIdDocumento(int idDocumento) {
-		this.idDocumento = idDocumento;
-	}
-	
-	public int getIdDocumento() {
-		return this.idDocumento;
+		this.persona = persona;
 	}
 	
 	public String getNumero() {
@@ -39,9 +33,26 @@ public class Documento {
 		this.tipoDocumento = tipoDocumento;
 	}
 
+	public int getIdDocumento() {
+		return idDocumento;
+	}
+
+	public void setIdDocumento(int idDocumento) {
+		this.idDocumento = idDocumento;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+	
 	@Override
 	public String toString() {
-		return getNumero() + "\nTipo de documento: " + getTipoDocumento();
+		return "Documento [idDocumento=" + idDocumento + ", numero=" + numero + ", tipoDocumento=" + tipoDocumento + ", Persona=" + this.persona.getNombre() 
+				+ "]";
 	}
 
 	public boolean validar(String numero) {

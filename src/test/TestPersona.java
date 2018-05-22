@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 import modelo.Documento;
-import modelo.Documento.eTipoDocumento;
+import modelo.eTipoDocumento;
 import modelo.Persona;
 import modelo.TarjetaSube;
-import modelo.Persona.eGenero;
+import modelo.eGenero;
 
 public class TestPersona {
 

@@ -26,6 +26,7 @@ public class TarjetaSube {
 	private LinkedHashSet<TransaccionSUBE> transacciones;
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
+	private boolean activa;
 
 	public TarjetaSube() {}
 	
@@ -35,6 +36,7 @@ public class TarjetaSube {
 		this.saldo = saldo;
 		this.transacciones = new LinkedHashSet<TransaccionSUBE>();
 		this.descuentoRedSube = new DescuentoRedSube();
+		this.activa = true;
 	}
 
 	protected void setIdTarjeta(int idTarjeta) {
@@ -84,7 +86,15 @@ public class TarjetaSube {
 	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
-
+	
+	public boolean isActiva() {
+		return activa;
+	}
+	
+	public void setActiva(boolean activa) {
+		this.activa = activa;
+	}
+	
 	public void efectuarCarga (BigDecimal monto) {
 		
 	}

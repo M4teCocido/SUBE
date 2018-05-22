@@ -6,7 +6,11 @@
 		<id column="idDocumento" name="idDocumento">
 			<generator class="identity" />
 		</id>
-		<property column="numero" name="numero" type="string" />
-		<property column="tipo" name="tipoDocumento" type="int" />
+		<property column="numero" name="numero" type="string" />		
+		<property column="tipo" name="tipoDocumento">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">modelo.eTipoDocumento</param>
+	    	</type>
+	    </property>
 	</class>
 </hibernate-mapping>

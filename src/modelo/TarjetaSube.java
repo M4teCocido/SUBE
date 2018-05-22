@@ -3,7 +3,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Set;
 
 import modelo.Descuentos.*;
 
@@ -18,6 +17,7 @@ import util.IndexableSet;
 
 public class TarjetaSube {
 	
+	private int idTarjeta;
 	private String codigo;
 	private Persona propietario;
 	private IndexableSet<TransaccionSUBE> transacciones;
@@ -34,6 +34,14 @@ public class TarjetaSube {
 		this.descuentoRedSube = new DescuentoRedSube();
 	}
 
+	protected void setIdTarjeta(int idTarjeta) {
+		this.idTarjeta = idTarjeta;
+	}
+	
+	public int getIdTarjeta() {
+		return this.idTarjeta;
+	}
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -165,17 +173,19 @@ public class TarjetaSube {
 
 	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO);
-		//Aplica descuentos
-		if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().LeQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
-			montoFinal=this.propietario.getDescuentoBoletoEstudiantil().aplicarDescuento(montoFinal, fichada);
-		} else {
-			if (this.propietario.getDescuentoTarifaSocial() != null) {
-				montoFinal=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(montoFinal, fichada);
+		if (this.propietario != null) {
+			//Aplica descuentos
+			if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().LeQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
+				montoFinal=this.propietario.getDescuentoBoletoEstudiantil().aplicarDescuento(montoFinal, fichada);
+			} else {
+				if (this.propietario.getDescuentoTarifaSocial() != null) {
+					montoFinal=this.propietario.getDescuentoTarifaSocial().aplicarDescuento(montoFinal, fichada);
+				}
 			}
-			
-			if (this.descuentoRedSube != null) {
-				montoFinal = this.descuentoRedSube.aplicarDescuento(montoFinal, fichada);
-			}
+		}
+		
+		if (this.descuentoRedSube != null) {
+			montoFinal = this.descuentoRedSube.aplicarDescuento(montoFinal, fichada);
 		}
 		
 		return montoFinal;

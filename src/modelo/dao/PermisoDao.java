@@ -39,7 +39,7 @@ public class PermisoDao {
 		return id;
 	}
 	
-	public void modificarPermiso(Permiso permiso) {
+	public void modificarPermiso(Permiso permiso) throws HibernateException{
 		try {
 			iniciaOperacion();
 			session.update(permiso);
@@ -52,7 +52,7 @@ public class PermisoDao {
 		}
 	}
 	
-	public void eliminarPermiso(Permiso permiso) {
+	public void eliminarPermiso(Permiso permiso) throws HibernateException{
 		try {
 			iniciaOperacion();
 			session.delete(permiso);
@@ -94,7 +94,7 @@ public class PermisoDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Permiso> traerPermiso() throws HibernateException {
+	public List<Permiso> traerPermisos() throws HibernateException {
 		List<Permiso> lista = null;
 		try {
 			iniciaOperacion();

@@ -39,7 +39,6 @@ public class TestDescuentos1 {
 		tx = tarjeta.procesarFichada(f1);
 		printTransaccion(f1, tx);
 		
-		
 		System.out.println("Red Sube 1");
 		f1 = new FichadaSubte(new GregorianCalendar(), constitucion);
 		tx = tarjeta.procesarFichada(f1);
@@ -70,18 +69,19 @@ public class TestDescuentos1 {
 		tx = tarjeta.procesarFichada(f1);
 		printTransaccion(f1, tx);
 		
+		/*
 		System.out.println("Aplicando todas las de Boleto Estudiantil");
 		
 		GregorianCalendar fechaFueraBoleto = new GregorianCalendar();
 		fechaFueraBoleto.set(Calendar.HOUR_OF_DAY, 4);
-		
+
 		persona.asignarDescuentoBoletoEstudiantil(new DescuentoBoletoEstudiantil (DescuentoBoletoEstudiantil.eTipoBoletoEstudiantil.ESCOLAR));
 		for (int i = 0; i < 51; i++) {
 			
 			f1 = new FichadaSubte(fechaFueraBoleto, constitucion);
 			tx = tarjeta.procesarFichada(f1);
 			printTransaccion(f1, tx);
-		}
+		}*/
 		
 		/*
 		System.out.println("Fichada Con SOCIAL");
@@ -95,6 +95,38 @@ public class TestDescuentos1 {
 		FichadaSubte f3 = new FichadaSubte(new GregorianCalendar(), constitucion);
 		tx = tarjeta.procesarFichada(f3);
 		printTransaccion(f3, tx);*/
+		
+		System.out.println("Fichadas sin descuentos (Solo Red Sube) en Subte. Precio base : $11.00. Vamos a desplazar la hora a ver si lo excluye");
+		
+		TarjetaSube tarjeta2 = new TarjetaSube("9998",new BigDecimal (20));
+		
+		System.out.println("Red Sube 0");
+		FichadaSubte f2 = new FichadaSubte(new GregorianCalendar(), constitucion);
+		tx = tarjeta2.procesarFichada(f2);
+		printTransaccion(f2, tx);
+		
+		System.out.println("Red Sube 1");
+		f2 = new FichadaSubte(new GregorianCalendar(), constitucion);
+		tx = tarjeta2.procesarFichada(f2);
+		printTransaccion(f2, tx);
+		
+		System.out.println("Red Sube 2 (Fuera de horario, se deberia crear un lapso nuevo)");
+		GregorianCalendar fechaAdelantada = new GregorianCalendar();
+		fechaAdelantada.add(Calendar.HOUR, 3);
+		f2 = new FichadaSubte(fechaAdelantada, constitucion);
+		tx = tarjeta2.procesarFichada(f2);
+		printTransaccion(f2, tx);
+		
+		System.out.println("Red Sube 3 (Segundo de nuevo lapso)");
+		f2 = new FichadaSubte(fechaAdelantada, constitucion);
+		tx = tarjeta2.procesarFichada(f2);
+		printTransaccion(f2, tx);
+		
+		System.out.println("Red Sube 3 (Tercero de nuevo lapso)");
+		f2 = new FichadaSubte(fechaAdelantada, constitucion);
+		tx = tarjeta2.procesarFichada(f2);
+		printTransaccion(f2, tx);
+		
 	}
 	
 	private static void printTransaccion(Fichada fichada, TransaccionSUBE tx) {

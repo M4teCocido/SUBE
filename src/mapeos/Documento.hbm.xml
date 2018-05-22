@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping >
-	<class name = "modelo.Documento" table = "documentopersona">
-		<id column = "idDocumento" name = "idDocumento">
-			<generator class = "identity" />
+	<class name="modelo.Documento" table="documentopersona">
+		<id column="idDocumento" name="idDocumento">
+			<generator class="identity" />
 		</id>
-		<property column = "numero" name = "numero" type = "string" />
-		<property column = "tipo" name = "tipoDocumento" type = "int" />
+		<property column="numero" name="numero" type="string" />
+		<property column="tipo" name="tipoDocumento" type="int" />
 	</class>
 </hibernate-mapping>

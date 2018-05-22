@@ -9,8 +9,10 @@ import java.util.GregorianCalendar;
 public class FuncionesGregorian {
 
 	private static int [] diasDelMes = {31,28,31,30,31,30,31,31,30,31,30,31};
+	
 	private static String [] daysOfWeek = 
 		{"Domingo","Lunes", "Martes","Miercoles","Jueves","Viernes","Sabado"};
+	
 	private static String [] months = 
 		{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 	

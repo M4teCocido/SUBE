@@ -97,40 +97,60 @@ public class TarjetaSube {
 
 	}
 	
-	public void procesarFichada(FichadaTren fichadaTren) {
+	private TransaccionSUBE getUltimaTransaccion() {
+		if (this.transacciones.size() > 0)
+			return this.transacciones.get(this.transacciones.size()-1);
+		else
+			return null;
+	}
+	
+	private Fichada getUltimaFichada() {
+		TransaccionSUBE tx = this.getUltimaTransaccion();
+		if (tx != null)
+			return tx.getFichada();
+		else
+			return null;
+	}
+	
+	public TransaccionSUBE procesarFichada(FichadaTren fichadaTren) {
 		
+		TransaccionSUBE transaccion = null;
+		System.out.println(fichadaTren.toString());
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
 			procesarSaldoMaximo (fichadaTren);
-			/*System.out.println("Es de entrada");
-			BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
-			//procesarDescuento (monto, fichadaTren);
-			transaccion = procesarTransaccion (fichadaTren,monto);
-			this.transacciones.add(transaccion);*/
-		}
-		
-		
-		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
+		} else {
 			
-			TransaccionSUBE transaccion = null;
-			if (this.transacciones.get(this.transacciones.size()-1).getFichada() instanceof FichadaTren) {
-				FichadaTren fichaAux =  (FichadaTren) this.transacciones.get(this.transacciones.size()-1).getFichada();
+			FichadaTren fichaAux =  (FichadaTren) this.transacciones.get(this.transacciones.size()-1).getFichada();
+			
+			Fichada ultimaFichada = this.getUltimaFichada();
+			
+			if (ultimaFichada instanceof FichadaTren) {
+
+				System.out.println(fichaAux.toString());
 				
 				if (fichaAux.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)){
+
 					//Significa q entro y salio  sin anomalias (FLUJO NORMAL)
 					
 					
 					ViajeTren viajeAux = fichadaTren.getEstacion().getLinea().obtenerViaje(fichaAux.getEstacion(), fichadaTren.getEstacion());
+					
 					BigDecimal bonificacion = new BigDecimal(0);
-					bonificacion = this.transacciones.get(this.transacciones.size()-1)
-							.getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
+					
+					bonificacion = this.transacciones.get(this.transacciones.size()-1).getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
+					
 					transaccion = procesarTransaccion (fichadaTren, bonificacion);
-					//System.out.println("Trasaccion bonifiacion"+transaccion.getImporte().toString());
+					
+					//System.out.println("Quiero saber q  pasa");
+					this.transacciones.add(transaccion);
+					
 					
 				 
-				} 
-			}
+				} else procesarSaldoMaximo (fichadaTren);
+			} else procesarSaldoMaximo (fichadaTren);
+
 		}
-		
+		return transaccion;
 	}
 	
 	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) {
@@ -200,7 +220,6 @@ public class TarjetaSube {
 		this.saldo = this.saldo.subtract(montoFinal);
 		return new TransaccionSUBE (fichada, montoFinal);
 	
-	
 	}
 
 	@Override
@@ -212,7 +231,7 @@ public class TarjetaSube {
 		System.out.println("Es de entrada");
 		BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
 		//procesarDescuento (monto, fichadaTren);
-		transaccion = procesarTransaccion (fichadaTren,monto);
+		transaccion = procesarTransaccion (fichadaTren, monto);
 		this.transacciones.add(transaccion);
 		System.out.println("Transaccion en fichada entrada "+transaccion.getImporte().toString());
 	}

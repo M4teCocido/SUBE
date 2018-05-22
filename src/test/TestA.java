@@ -31,7 +31,7 @@ public class TestA {
 		Persona persona = new Persona();
 		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", 55));
 		
-		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (21));
+		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (200));
 		//tarjeta.setSaldo(new BigDecimal (21));
 		tarjeta.setPropietario(persona);
 		
@@ -75,18 +75,24 @@ public class TestA {
 		
 		//Instancio Fichada tren-----------------------------------------------------------------------------------------
 		
-		FichadaTren fichadaPruebaA = new FichadaTren (FuncionesGregorian.traerFecha(2018, 03, 6),constitucionTren,eTipoFichadaTren.ENTRADA);
+		FichadaTren fichadaPruebaA = new FichadaTren (FuncionesGregorian.traerFecha(2018, 03, 6),constitucionTren, eTipoFichadaTren.ENTRADA);
 		
-		tarjeta.procesarFichada(fichadaPruebaA);
-		System.out.println( tarjeta.getSaldo().toString());
+		TransaccionSUBE transaccion = tarjeta.procesarFichada(fichadaPruebaA);
+		//System.out.println( tarjeta.getSaldo().toString());
 		
-		FichadaTren fichadaPruebaB = new FichadaTren (FuncionesGregorian.traerFecha(2018, 03, 6),lanusTren,eTipoFichadaTren.SALIDA);
-		
-		tarjeta.procesarFichada(fichadaPruebaB);
-		System.out.println(tarjeta.getSaldo().toString());
-		
+		FichadaTren fichadaPruebaB = new FichadaTren (FuncionesGregorian.traerFecha(2018, 03, 6), lanusTren, eTipoFichadaTren.SALIDA);
+		transaccion = tarjeta.procesarFichada(fichadaPruebaB);
+	  
+	    FichadaTren fichadaPruebaC = new FichadaTren (FuncionesGregorian.traerFecha(2018, 03, 6), aKornTren, eTipoFichadaTren.SALIDA);
+	    transaccion =  tarjeta.procesarFichada(fichadaPruebaC);
+	    
+	    for (TransaccionSUBE t : tarjeta.getTransacciones()) {
+	    	System.out.println(t.toString());
+	    }
+	    
 		// procesado de  fichadas----------------------------------------------------------------------------------------------------------------------------
-		FichadaSubte fichadaSubte = new FichadaSubte(FuncionesGregorian.traerFecha(2018, 07, 31),constitucion);
+		/*
+	    FichadaSubte fichadaSubte = new FichadaSubte(FuncionesGregorian.traerFecha(2018, 07, 31),constitucion);
 		FichadaColectivo fichadaColectivo = new FichadaColectivo (FuncionesGregorian.traerFecha(2018, 07,31), cruceAMonteGrande);
 		
 		
@@ -97,7 +103,7 @@ public class TestA {
 		System.out.println("Saldo despues fichada colectivo"+tarjeta.toString());
 		
 		Set<TransaccionSUBE>auxTransaccion = tarjeta.getTransacciones();
-		System.out.println("Lista de  transacciones");
+		System.out.println("Lista de  transacciones");*/
 		
 		//--------------------------------------------------------------------------------------------------------------------------
 		

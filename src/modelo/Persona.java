@@ -3,7 +3,7 @@ package modelo;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
-
+import modelo.eGenero;
 import modelo.Documento;
 import modelo.TarjetaSube;
 import modelo.Descuentos.*;
@@ -11,7 +11,8 @@ import util.FuncionesGregorian;
 import util.IndexableSet;
 
 public class Persona {
-	public enum eGenero {M, F};
+	
+	//public enum eGenero {M, F};
 	
 	private int idPersona;
 	private String nombre;

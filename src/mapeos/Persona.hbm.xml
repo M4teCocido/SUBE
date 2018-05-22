@@ -11,7 +11,7 @@
 		
 		<property column="genero" name="genero">
 			<type name="org.hibernate.type.EnumType">
-	    	    <param name="enumClass">modelo.Persona.eGenero</param>
+				<param name="enumClass">modelo.eGenero</param>
 	    	</type>
 	    </property>
 	    

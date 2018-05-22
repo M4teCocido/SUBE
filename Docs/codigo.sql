@@ -18,7 +18,7 @@ USE `mydb` ;
 -- Table `mydb`.`DescuentoSUBE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`DescuentoSUBE` (
-  `idDescuento` INT NOT NULL,
+  `idDescuento` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idDescuento`))
 ENGINE = InnoDB;
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 -- Table `mydb`.`DocumentoPersona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`DocumentoPersona` (
-  `idDocumento` INT NOT NULL,
+  `idDocumento` INT NOT NULL AUTO_INCREMENT,
   `numero` VARCHAR(45) NOT NULL,
-  `tipo` VARCHAR(45) NOT NULL,
+  `tipo` INT NOT NULL,
   PRIMARY KEY (`idDocumento`))
 ENGINE = InnoDB;
 
@@ -39,7 +39,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Persona` (
-  `idPersona` INT NOT NULL,
+  `idPersona` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `idDocumento` INT NOT NULL,
@@ -62,7 +62,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`TarjetaSUBE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`TarjetaSUBE` (
-  `idTarjetaSube` INT NOT NULL,
+  `idTarjetaSube` INT NOT NULL AUTO_INCREMENT,
   `codigo` VARCHAR(45) NOT NULL,
   `idPropietario` INT NULL,
   `saldo` DECIMAL NOT NULL,
@@ -102,7 +102,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`LapsoDescuentoRedSUBE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`LapsoDescuentoRedSUBE` (
-  `idLapso` INT NOT NULL,
+  `idLapso` INT NOT NULL AUTO_INCREMENT,
   `fechaHoraVencimiento` DATE NOT NULL,
   `idDescuentoRedSube` INT NOT NULL,
   PRIMARY KEY (`idLapso`),
@@ -119,7 +119,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Fichada`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Fichada` (
-  `idFichada` INT NOT NULL,
+  `idFichada` INT NOT NULL AUTO_INCREMENT,
   `fechaHora` DATE NOT NULL,
   `idLapsoDescuentoRedSUBE` INT NULL,
   PRIMARY KEY (`idFichada`),
@@ -136,26 +136,9 @@ ENGINE = InnoDB;
 -- Table `mydb`.`LineaTren`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`LineaTren` (
-  `idLinea` INT NOT NULL,
+  `idLinea` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idLinea`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`RecorridoTren`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`RecorridoTren` (
-  `idRecorrido` INT NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
-  `idLinea` INT NOT NULL,
-  PRIMARY KEY (`idRecorrido`),
-  INDEX `idLinea_idx` (`idLinea` ASC),
-  CONSTRAINT `idLinea`
-    FOREIGN KEY (`idLinea`)
-    REFERENCES `mydb`.`LineaTren` (`idLinea`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -163,14 +146,15 @@ ENGINE = InnoDB;
 -- Table `mydb`.`EstacionTren`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`EstacionTren` (
-  `idEstacion` INT NOT NULL,
+  `idEstacion` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `idRecorrido` INT NOT NULL,
+  `idLinea` INT NOT NULL,
   PRIMARY KEY (`idEstacion`),
-  INDEX `idRecorrido_idx` (`idRecorrido` ASC),
-  CONSTRAINT `idRecorrido`
-    FOREIGN KEY (`idRecorrido`)
-    REFERENCES `mydb`.`RecorridoTren` (`idRecorrido`)
+  INDEX `fk_EstacionTren_LineaTren1_idx` (`idLinea` ASC),
+  CONSTRAINT `fk_EstacionTren_LineaTren1`
+    FOREIGN KEY (`idLinea`)
+    REFERENCES `mydb`.`LineaTren` (`idLinea`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -202,7 +186,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`LineaColectivo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`LineaColectivo` (
-  `idLinea` INT NOT NULL,
+  `idLinea` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idLinea`))
 ENGINE = InnoDB;
@@ -212,7 +196,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`RamalColectivo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`RamalColectivo` (
-  `idRamal` INT NOT NULL,
+  `idRamal` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `idLinea` INT NOT NULL,
   PRIMARY KEY (`idRamal`),
@@ -229,7 +213,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`TramoColectivo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`TramoColectivo` (
-  `idTramo` INT NOT NULL,
+  `idTramo` INT NOT NULL AUTO_INCREMENT,
   `precio` DECIMAL NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `idRamal` INT NOT NULL,
@@ -268,7 +252,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`LineaSubte`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`LineaSubte` (
-  `idLinea` INT NOT NULL,
+  `idLinea` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(1) NOT NULL,
   `precioViaje` DECIMAL NOT NULL,
   PRIMARY KEY (`idLinea`))
@@ -279,7 +263,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`EstacionSubte`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`EstacionSubte` (
-  `idEstacion` INT NOT NULL,
+  `idEstacion` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `idLinea` INT NOT NULL,
   PRIMARY KEY (`idEstacion`),
@@ -317,8 +301,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`FichadaRecarga`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`FichadaRecarga` (
-  `idFichada` INT NOT NULL,
   `monto` DECIMAL NOT NULL,
+  `idFichada` INT NOT NULL,
   PRIMARY KEY (`idFichada`),
   CONSTRAINT `fk_FichadaRecarga_Fichada1`
     FOREIGN KEY (`idFichada`)
@@ -332,15 +316,16 @@ ENGINE = InnoDB;
 -- Table `mydb`.`SeccionTren`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`SeccionTren` (
-  `idSeccion` INT NOT NULL,
+  `idSeccion` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `importe` DECIMAL NOT NULL,
   `idRecorrido` INT NOT NULL,
+  `idLinea` INT NOT NULL,
   PRIMARY KEY (`idSeccion`),
-  INDEX `fk_SeccionTren_RecorridoTren1_idx` (`idRecorrido` ASC),
-  CONSTRAINT `fk_SeccionTren_RecorridoTren1`
-    FOREIGN KEY (`idRecorrido`)
-    REFERENCES `mydb`.`RecorridoTren` (`idRecorrido`)
+  INDEX `fk_SeccionTren_LineaTren1_idx` (`idLinea` ASC),
+  CONSTRAINT `fk_SeccionTren_LineaTren1`
+    FOREIGN KEY (`idLinea`)
+    REFERENCES `mydb`.`LineaTren` (`idLinea`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -350,21 +335,16 @@ ENGINE = InnoDB;
 -- Table `mydb`.`ViajeTren`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ViajeTren` (
-  `idViaje` INT NOT NULL,
-  `idRecorrido` INT NOT NULL,
+  `idViaje` INT NOT NULL AUTO_INCREMENT,
   `idSeccion` INT NOT NULL,
   `idEstacionOrigen` INT NOT NULL,
   `idEstacionDestino` INT NOT NULL,
+  `idLinea` INT NOT NULL,
   PRIMARY KEY (`idViaje`),
-  INDEX `fk_ViajeTren_RecorridoTren1_idx` (`idRecorrido` ASC),
   INDEX `fk_ViajeTren_SeccionTren1_idx` (`idSeccion` ASC),
   INDEX `fk_ViajeTren_EstacionTren1_idx` (`idEstacionOrigen` ASC),
   INDEX `fk_ViajeTren_EstacionTren2_idx` (`idEstacionDestino` ASC),
-  CONSTRAINT `fk_ViajeTren_RecorridoTren1`
-    FOREIGN KEY (`idRecorrido`)
-    REFERENCES `mydb`.`RecorridoTren` (`idRecorrido`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_ViajeTren_LineaTren1_idx` (`idLinea` ASC),
   CONSTRAINT `fk_ViajeTren_SeccionTren1`
     FOREIGN KEY (`idSeccion`)
     REFERENCES `mydb`.`SeccionTren` (`idSeccion`)
@@ -379,6 +359,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ViajeTren` (
     FOREIGN KEY (`idEstacionDestino`)
     REFERENCES `mydb`.`EstacionTren` (`idEstacion`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ViajeTren_LineaTren1`
+    FOREIGN KEY (`idLinea`)
+    REFERENCES `mydb`.`LineaTren` (`idLinea`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -387,7 +372,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`TransaccionSUBE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`TransaccionSUBE` (
-  `idTransaccion` INT NOT NULL,
+  `idTransaccion` INT NOT NULL AUTO_INCREMENT,
   `importe` DECIMAL NOT NULL,
   `idTarjetaSube` INT NOT NULL,
   `idFichada` INT NOT NULL,
@@ -457,7 +442,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Usuario` (
-  `idUsuario` INT NOT NULL,
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `idPersona` INT NULL,
   `nombreUsuario` VARCHAR(45) NOT NULL,
   `contraseña` VARCHAR(45) NOT NULL,
@@ -475,7 +460,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Permiso`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Permiso` (
-  `idPermiso` INT NOT NULL,
+  `idPermiso` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NOT NULL,
   `codigo` VARCHAR(45) NOT NULL,
@@ -508,3 +493,5 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+SELECT * FROM Permiso;

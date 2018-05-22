@@ -2,32 +2,27 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping >
-	<class name="modelo.fichadas.Fichada" table="fichada">
-		<id column="idFichada" name="idFichada">
+	<class name="modelo.Descuentos.DescuentoSube" table="descuentosube">
+		<id column="idDescuento" name="idDescuento">
 			<generator class = "identity" />
 		</id>
-		<property column="fechaHora" name="fechaHora" type="calendar" />
+		<property column="nombre" name="nombre" type="string" />
 	</class>
-	
-	<joined-subclass name = "modelo.fichadas.subte.FichadaSubte" table="fichadasubte" extends="modelo.fichadas.Fichada">
-		<key column="idFichada" />
-		<one-to-one name="estacionSubte" class="modelo.fichadas.subte.EstacionSubte"></one-to-one>
+	 
+	<joined-subclass name = "modelo.Descuentos.DescuentoRedSube" table="descuentoredsube" extends="modelo.Descuentos.DescuentoSube">
+		<key column="idDescuento" />
+		<one-to-one name="lapsoDescuentoRedSube" class="modelo.Descuentos.LapsoDescuentoRedSube"></one-to-one>
 	</joined-subclass>
 	
-	<joined-subclass name = "modelo.fichadas.colectivo.FichadaColectivo" table="fichadacolectivo" extends="modelo.fichadas.Fichada">
-		<key column="idFichada" />
-		<one-to-one name="tramo" class="modelo.fichadas.colectivo.TramoColectivo"></one-to-one>
+	<joined-subclass name = "modelo.Descuentos.DescuentoTarifaSocial" table="descuentotarifasocial" extends="modelo.Descuentos.DescuentoSube">
+		<key column="idDescuento" />
+		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" />
 	</joined-subclass>
-	
-	<joined-subclass name="modelo.fichadas.tren.FichadaTren" table="fichadatren" extends="modelo.fichadas.Fichada">
-		<key column="idFichada" />
-		<property name="tipoFichada" column="idTipoFichada" type="int" />
-		<one-to-one name="estacion" class="modelo.fichadas.tren.EstacionTren"></one-to-one>
+	 
+	<joined-subclass name="modelo.Descuentos.DescuentoBoletoEstudiantil" table="descuentoboletoestudiantil" extends="modelo.Descuentos.DescuentoSube">
+		<key column="idDescuento" />
+		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" />
+		<property name="viajesRestantes" column="viajesRestantes" type="int" />
+		<property name="tipoBoletoEstudiantil" column="tipoBoleto" type="int" />
 	</joined-subclass>
-	
-	<joined-subclass name="modelo.fichadas.FichadaRecarga" table="fichadarecarga" extends="modelo.fichadas.Fichada">
-		<key column="idFichada" />
-		<property column="monto" name="monto" type="java.math.BigDecimal" />
-	</joined-subclass>
-	
 </hibernate-mapping>

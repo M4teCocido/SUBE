@@ -1,15 +1,16 @@
 package modelo;
 //import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import modelo.Documento;
 import modelo.TarjetaSube;
 import modelo.Descuentos.*;
 import util.FuncionesGregorian;
+import util.IndexableSet;
 
 public class Persona {
 	public enum eGenero {M, F};
 	
+	private int idPersona;
 	private String nombre;
 	private String apellido;
 	private Documento documento;
@@ -18,7 +19,7 @@ public class Persona {
 	private String email;
 	private String celular;
 	private String telefono;
-	private ArrayList<TarjetaSube> tarjetasAsociadas;
+	private IndexableSet<TarjetaSube> tarjetasAsociadas;
 	private DescuentoTarifaSocial descuentoTarifaSocial;
 	private DescuentoBoletoEstudiantil descuentoBoletoEstudiantil;
 	
@@ -34,9 +35,17 @@ public class Persona {
 		this.setEmail(email);
 		this.setCelular(celular);
 		this.setTelefono(telefono);
-		this.tarjetasAsociadas = new ArrayList<>();
+		this.tarjetasAsociadas = new IndexableSet<TarjetaSube>();
 	}
 
+	public int getIdPersona() {
+		return this.idPersona;
+	}
+	
+	protected void setIdPersona(int idPersona) {
+		this.idPersona = idPersona;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -110,11 +119,11 @@ public class Persona {
 		}
 	}
 	
-	public ArrayList<TarjetaSube> getTarjetasAsociadas() {
+	public IndexableSet<TarjetaSube> getTarjetasAsociadas() {
 		return tarjetasAsociadas;
 	}
 	
-	public void setTarjetasAsociadas(ArrayList<TarjetaSube> tarjetasAsociadas) {
+	public void setTarjetasAsociadas(IndexableSet<TarjetaSube> tarjetasAsociadas) {
 		this.tarjetasAsociadas = tarjetasAsociadas;
 	}
 	

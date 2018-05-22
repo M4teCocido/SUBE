@@ -7,7 +7,7 @@
 			<generator class = "identity" />
 		</id>
 		<property column="nombreUsuario" name="nombreUsuario" type="string" />
-		<property column="contraseña" name="password" type="int" />
+		<property column="contraseña" name="password" type="string" />
 		
 		<one-to-one name="Persona" class="modelo.Persona"></one-to-one>
 		

@@ -67,7 +67,8 @@ public class Usuario {
 		int i = 0;
 		
 		while ((encontrado == false)&&(i < permisos.size())){
-			if (permisos.get(i).equals(permiso)) {
+			if (IndexableSet.get(permisos,i).equals(permiso)){
+			
 				encontrado = true;
 			}
 			i++;

@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class TarjetaSube {
 	private int idTarjeta;
 	private String codigo;
 	private Persona propietario;
-	private Set<TransaccionSUBE> transacciones;
+	private LinkedHashSet<TransaccionSUBE> transacciones;
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 
@@ -32,7 +33,7 @@ public class TarjetaSube {
 		super();
 		this.codigo = codigo;
 		this.saldo = saldo;
-		this.transacciones = new HashSet<TransaccionSUBE>();
+		this.transacciones = new LinkedHashSet<TransaccionSUBE>();
 		this.descuentoRedSube = new DescuentoRedSube();
 	}
 
@@ -72,7 +73,7 @@ public class TarjetaSube {
 		return transacciones;
 	}
 
-	public void setTransacciones(Set<TransaccionSUBE> transacciones) {
+	public void setTransacciones(LinkedHashSet<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}
 
@@ -99,7 +100,9 @@ public class TarjetaSube {
 	
 	private TransaccionSUBE getUltimaTransaccion() {
 		if (this.transacciones.size() > 0)
-			return this.transacciones.get(this.transacciones.size()-1);
+			return IndexableSet.get(this.transacciones,this.transacciones.size()-1);
+					
+					
 		else
 			return null;
 	}
@@ -112,42 +115,40 @@ public class TarjetaSube {
 			return null;
 	}
 	
-	public TransaccionSUBE procesarFichada(FichadaTren fichadaTren) {
+	public TransaccionSUBE procesarFichada(FichadaTren fichadaActual) {
 		
 		TransaccionSUBE transaccion = null;
-		System.out.println(fichadaTren.toString());
-		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
-			procesarSaldoMaximo (fichadaTren);
+		System.out.println(fichadaActual.toString());
+		if (fichadaActual.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
+			procesarSaldoMaximo (fichadaActual);
 		} else {
 			
-			FichadaTren fichaAux =  (FichadaTren) this.transacciones.get(this.transacciones.size()-1).getFichada();
-			
+			FichadaTren fichadaAnterior =  (FichadaTren) getUltimaFichada();
 			Fichada ultimaFichada = this.getUltimaFichada();
 			
 			if (ultimaFichada instanceof FichadaTren) {
 
-				System.out.println(fichaAux.toString());
+				System.out.println(fichadaAnterior.toString());
 				
-				if (fichaAux.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)){
-
-					//Significa q entro y salio  sin anomalias (FLUJO NORMAL)
+				if (fichadaAnterior.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)){
+					System.out.print("Delta tiempo");
 					
+					System.out.println(fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY));
 					
-					ViajeTren viajeAux = fichadaTren.getEstacion().getLinea().obtenerViaje(fichaAux.getEstacion(), fichadaTren.getEstacion());
+					if((fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY))<2){
+						ViajeTren viajeAux = fichadaActual.getEstacion().getLinea().obtenerViaje(fichadaAnterior.getEstacion(), fichadaActual.getEstacion());
+					    BigDecimal bonificacion = new BigDecimal(0);
 					
-					BigDecimal bonificacion = new BigDecimal(0);
+				     	bonificacion = getUltimaTransaccion().getImporte();
+			    		transaccion = procesarTransaccion (fichadaActual, bonificacion);
 					
-					bonificacion = this.transacciones.get(this.transacciones.size()-1).getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
-					
-					transaccion = procesarTransaccion (fichadaTren, bonificacion);
-					
-					//System.out.println("Quiero saber q  pasa");
-					this.transacciones.add(transaccion);
-					
+					    System.out.println("Bonificacion:" + bonificacion.toString());
+				    	this.transacciones.add(transaccion);
+					}
 					
 				 
-				} else procesarSaldoMaximo (fichadaTren);
-			} else procesarSaldoMaximo (fichadaTren);
+				} else procesarSaldoMaximo (fichadaActual);
+			} else procesarSaldoMaximo (fichadaActual);
 
 		}
 		return transaccion;
@@ -230,12 +231,11 @@ public class TarjetaSube {
 		TransaccionSUBE transaccion = null;
 		System.out.println("Es de entrada");
 		BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
-		//procesarDescuento (monto, fichadaTren);
+		monto=procesarDescuento (monto, fichadaTren);
 		transaccion = procesarTransaccion (fichadaTren, monto);
 		this.transacciones.add(transaccion);
 		System.out.println("Transaccion en fichada entrada "+transaccion.getImporte().toString());
 	}
 	
-	//hacer  clase  "numero importe" subclase de  bigdecimal
-	//hacer  metodo interno para  reutilizar  comprovacion de not null y  calculo descuento 
+
 }

@@ -31,5 +31,10 @@ public  class FichadaTren extends Fichada {
 	public void setEstacion(EstacionTren estacion) {
 		this.estacion = estacion;
 	}
+
+	@Override
+	public String toString() {
+		return "FichadaTren [estacion=" + estacion + ", tipoFichada=" + tipoFichada + "]";
+	}
 	
 }

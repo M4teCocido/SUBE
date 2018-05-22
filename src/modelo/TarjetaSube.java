@@ -95,40 +95,55 @@ public class TarjetaSube {
 
 	}
 	
-	public void procesarFichada(FichadaTren fichadaTren) {
+	public TransaccionSUBE procesarFichada(FichadaTren fichadaTren) {
 		
+		TransaccionSUBE transaccion = null;
+		System.out.println(fichadaTren.toString());
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
 			procesarSaldoMaximo (fichadaTren);
-			/*System.out.println("Es de entrada");
-			BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
-			//procesarDescuento (monto, fichadaTren);
-			transaccion = procesarTransaccion (fichadaTren,monto);
-			this.transacciones.add(transaccion);*/
 		}
 		
 		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
 			
-			TransaccionSUBE transaccion = null;
+			
+			
+			
+			
+			
+			FichadaTren fichaAux =  (FichadaTren) this.transacciones.get(this.transacciones.size()-1).getFichada();
+			
 			if (this.transacciones.get(this.transacciones.size()-1).getFichada() instanceof FichadaTren) {
-				FichadaTren fichaAux =  (FichadaTren) this.transacciones.get(this.transacciones.size()-1).getFichada();
+				
+				
+				System.out.println(fichaAux.toString());
 				
 				if (fichaAux.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)){
 					//Significa q entro y salio  sin anomalias (FLUJO NORMAL)
 					
 					
 					ViajeTren viajeAux = fichadaTren.getEstacion().getLinea().obtenerViaje(fichaAux.getEstacion(), fichadaTren.getEstacion());
+					
 					BigDecimal bonificacion = new BigDecimal(0);
-					bonificacion = this.transacciones.get(this.transacciones.size()-1)
-							.getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
+					
+					bonificacion = this.transacciones.get(this.transacciones.size()-1).getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
+					
 					transaccion = procesarTransaccion (fichadaTren, bonificacion);
-					//System.out.println("Trasaccion bonifiacion"+transaccion.getImporte().toString());
+					
+					System.out.println("Quiero saber q  pasa");
+					this.transacciones.add(transaccion);
+					
 					
 				 
-				} 
+				} else {procesarSaldoMaximo (fichadaTren);}
 			}
-		}
+			
+			
 		
+		 
+		
+		}
+		return transaccion;
 	}
 	
 	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) {

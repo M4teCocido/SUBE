@@ -95,20 +95,21 @@ public class TarjetaSube {
 
 	}
 	
-	public TransaccionSUBE procesarFichada(FichadaTren fichadaTren) {
-		TransaccionSUBE transaccion = null;
+	public void procesarFichada(FichadaTren fichadaTren) {
+		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
-			System.out.println("Es de entrada");
+			procesarSaldoMaximo (fichadaTren);
+			/*System.out.println("Es de entrada");
 			BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
 			//procesarDescuento (monto, fichadaTren);
 			transaccion = procesarTransaccion (fichadaTren,monto);
-			this.transacciones.add(transaccion);
+			this.transacciones.add(transaccion);*/
 		}
 		
 		
 		if (fichadaTren.getTipoFichada().equals(eTipoFichadaTren.SALIDA)) {
 			
-			
+			TransaccionSUBE transaccion = null;
 			if (this.transacciones.get(this.transacciones.size()-1).getFichada() instanceof FichadaTren) {
 				FichadaTren fichaAux =  (FichadaTren) this.transacciones.get(this.transacciones.size()-1).getFichada();
 				
@@ -121,12 +122,13 @@ public class TarjetaSube {
 					bonificacion = this.transacciones.get(this.transacciones.size()-1)
 							.getImporte().subtract(viajeAux.getSeccionTren().getImporte()); 
 					transaccion = procesarTransaccion (fichadaTren, bonificacion);
-					//this.saldo=this.saldo.add(bonificacion);
+					//System.out.println("Trasaccion bonifiacion"+transaccion.getImporte().toString());
+					
 				 
-				} //Si no, no se le bonifica nada.
+				} 
 			}
 		}
-		return transaccion;
+		
 	}
 	
 	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) {
@@ -203,7 +205,15 @@ public class TarjetaSube {
 	public String toString() {
 		return this.saldo.toString();
 	}
-	
+	public void procesarSaldoMaximo (FichadaTren fichadaTren) {
+		TransaccionSUBE transaccion = null;
+		System.out.println("Es de entrada");
+		BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
+		//procesarDescuento (monto, fichadaTren);
+		transaccion = procesarTransaccion (fichadaTren,monto);
+		this.transacciones.add(transaccion);
+		System.out.println("Transaccion en fichada entrada "+transaccion.getImporte().toString());
+	}
 	
 	//hacer  clase  "numero importe" subclase de  bigdecimal
 	//hacer  metodo interno para  reutilizar  comprovacion de not null y  calculo descuento 

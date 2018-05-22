@@ -29,7 +29,7 @@ public class TestA {
 
 	public static void main(String[] args) {
 		Persona persona = new Persona();
-		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", new BigDecimal (55)));
+		//persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", new BigDecimal (55)));
 		
 		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (21));
 		//tarjeta.setSaldo(new BigDecimal (21));

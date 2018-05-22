@@ -8,7 +8,13 @@
 		</id>
 		<property column="nombre" name="nombre" type="string" />
 		<property column="apellido" name="apellido" type="string" />
-		<property column="genero" name="genero" type="int" />
+		
+		<property column="genero" name="genero">
+			<type name="org.hibernate.type.EnumType">
+	    	    <param name="enumClass">modelo.Persona.eGenero</param>
+	    	</type>
+	    </property>
+	    
 		<property column="fechaNacimiento" name="fechaNacimiento" type="calendar" />
 		<property column="email" name="email" type="string" />
 		<property column="celular" name="celular" type="string" />

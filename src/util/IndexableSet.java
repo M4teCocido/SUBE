@@ -2,9 +2,10 @@ package util;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class IndexableSet <T> extends HashSet<T>{
+public class IndexableSet <T> extends LinkedHashSet<T>{
 
 	public T get (int index) {
 		

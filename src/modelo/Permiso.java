@@ -1,6 +1,9 @@
 package modelo;
 
 import util.IndexableSet;
+
+import java.util.Set;
+
 import modelo.Usuario;
 
 public class Permiso {
@@ -9,7 +12,7 @@ public class Permiso {
 	private String nombre;
 	private String descripcion;
 	private String codigo;
-	private IndexableSet<Usuario> usuarios;
+	private Set<Usuario> usuarios;
 	
 	public Permiso() {}
 	
@@ -60,11 +63,11 @@ public class Permiso {
 		return equivalente;
 	}
 
-	public IndexableSet<Usuario> getUsuarios() {
+	public Set<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(IndexableSet<Usuario> usuarios) {
+	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 }

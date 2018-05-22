@@ -28,6 +28,8 @@ public class PermisoDao {
 		int id = 0;
 		try {
 			iniciaOperacion();
+			System.out.println("Hola");
+			System.out.println(session.save(permiso).toString());
 			id = Integer.parseInt(session.save(permiso).toString());
 			tx.commit();
 		} catch (HibernateException he) {

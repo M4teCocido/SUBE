@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DescuentoSUBE` (
   PRIMARY KEY (`idDescuento`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`DocumentoPersona`
 -- -----------------------------------------------------
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DocumentoPersona` (
   `tipo` INT NOT NULL,
   PRIMARY KEY (`idDocumento`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Persona`

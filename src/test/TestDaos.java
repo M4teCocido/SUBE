@@ -4,7 +4,8 @@ import java.util.GregorianCalendar;
 
 import modelo.Documento;
 import modelo.Documento.eTipoDocumento;
-import modelo.Persona.eGenero;
+//import modelo.Persona.eGenero;
+import modelo.eGenero;
 import modelo.Permiso;
 import modelo.Persona;
 import modelo.Usuario;
@@ -24,8 +25,8 @@ public class TestDaos {
 		try {
 			UsuarioDao dao2 = new UsuarioDao();
 			Documento doc = new Documento("37612478", eTipoDocumento.DNI);
-			//DocumentoDao dao4 = new DocumentoDao();
-			//dao4.agregarDocumento(doc);
+			DocumentoDao dao4 = new DocumentoDao();
+			dao4.agregarDocumento(doc);
 			GregorianCalendar cal = new GregorianCalendar(1993, 11, 16);
 			Persona persona = new Persona("Gonzalo", "Montaña", doc, eGenero.M, cal, "gonzamcomps@gmail.com", "1558912066", "42991823");
 			PersonaDao dao3 = new PersonaDao();

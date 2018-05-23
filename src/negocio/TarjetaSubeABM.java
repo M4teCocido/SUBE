@@ -7,7 +7,7 @@ import modelo.TarjetaSube;
 public class TarjetaSubeABM {
 	TarjetaSubeDao dao = new TarjetaSubeDao();
 	
-	public TarjetaSube traerTarjeta(int idTarjeta)throws Exception {
+	public TarjetaSube traerTarjetaPorId(int idTarjeta)throws Exception {
 		TarjetaSube t = dao.traerTarjeta(idTarjeta);
 		if(t == null) throw new Exception("No existe una tarjeta con id: " + idTarjeta); 
 		return t;
@@ -27,7 +27,10 @@ public class TarjetaSubeABM {
 	}
 	
 	public void modificar(TarjetaSube t) {
-		//falta hacer el metodo "actualizar" en el dao
+		/* implementar antes de actualizar que no exista una linea
+		con el mismo nombre a modificar
+		y con el mismo id, lanzar la Exception */
+		dao.modificarTarjetaSube(t);
 	}
 	
 	public void eliminarPorId(int idTarjeta) {

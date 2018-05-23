@@ -64,7 +64,7 @@ public class UsuarioDao {
 		}
 	}
 	
-	public Usuario traerUsuario(int idUsuario) throws HibernateException {
+	public Usuario traerUsuarioPorId(int idUsuario) throws HibernateException {
 		Usuario usuario = null;
 		try {
 			iniciaOperacion();

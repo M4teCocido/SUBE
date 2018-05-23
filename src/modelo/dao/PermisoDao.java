@@ -67,7 +67,7 @@ public class PermisoDao {
 		}
 	}
 	
-	public Permiso traerPermiso(int idPermiso) throws HibernateException {
+	public Permiso traerPermisoPorId(int idPermiso) throws HibernateException {
 		Permiso permiso = null;
 		try {
 			iniciaOperacion();
@@ -81,7 +81,7 @@ public class PermisoDao {
 		return permiso;
 	}
 	
-	public Permiso traerPermiso(String nombre) throws HibernateException {
+	public Permiso traerPermisoPorNombre(String nombre) throws HibernateException {
 		Permiso permiso = null;
 		try {
 			iniciaOperacion();

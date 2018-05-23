@@ -64,7 +64,7 @@ public class LineaTrenDao {
 		}
 	}
 	
-	public LineaTren traerLinea(int idLinea) throws HibernateException {
+	public LineaTren traerLineaPorId(int idLinea) throws HibernateException {
 		LineaTren fichada = null;
 		try {
 			iniciaOperacion();

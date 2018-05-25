@@ -16,7 +16,6 @@
 		<mapping resource="mapeos/EstacionSubte.hbm.xml" />
 		<mapping resource="mapeos/Fichada.hbm.xml" />
 		<mapping resource="mapeos/LineaColectivo.hbm.xml" />
-		<mapping resource="mapeos/RamalColectivo.hbm.xml" />
 		<mapping resource="mapeos/TramoColectivo.hbm.xml" />
 		<mapping resource="mapeos/LineaTren.hbm.xml" />
 		<mapping resource="mapeos/SeccionTren.hbm.xml" />

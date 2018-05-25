@@ -14,7 +14,7 @@ import modelo.fichadas.*;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.tren.FichadaTren;
-import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
+import modelo.fichadas.tren.eTipoFichadaTren;
 import modelo.fichadas.tren.ViajeTren;
 import util.IndexableSet;
 
@@ -100,20 +100,16 @@ public class TarjetaSube {
 	}
 	
 	public TransaccionSUBE procesarFichada(FichadaColectivo fichadaColectivo) {
-		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecioColectivo(), fichadaColectivo);
+		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecio(), fichadaColectivo);
 		
 		TransaccionSUBE transaccion = this.procesarTransaccion(fichadaColectivo, monto); 
 		this.transacciones.add(transaccion);
 		return transaccion;
-		
-
 	}
 	
 	private TransaccionSUBE getUltimaTransaccion() {
 		if (this.transacciones.size() > 0)
-			return IndexableSet.get(this.transacciones,this.transacciones.size()-1);
-					
-					
+			return IndexableSet.get(this.transacciones,this.transacciones.size()-1);		
 		else
 			return null;
 	}
@@ -209,7 +205,7 @@ public class TarjetaSube {
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO);
 		if (this.propietario != null) {
 			//Aplica descuentos
-			if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().LeQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
+			if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().leQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
 				montoFinal=this.propietario.getDescuentoBoletoEstudiantil().aplicarDescuento(montoFinal, fichada);
 			} else {
 				if (this.propietario.getDescuentoTarifaSocial() != null) {

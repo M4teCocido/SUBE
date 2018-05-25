@@ -3,18 +3,20 @@ package modelo.fichadas.colectivo;
 import java.util.Set;
 import java.util.HashSet;
 
+
 public class LineaColectivo {
 	
 	private int idLinea;
 	private String nombre;
-	private Set<RamalColectivo> ramalesColectivo;
+	
+	private Set<InternoColectivo> internoColectivo;
 
 	public LineaColectivo() {}
 	
 	public LineaColectivo(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.ramalesColectivo = new HashSet<RamalColectivo>();
+		this.internoColectivo = new HashSet<InternoColectivo>();
 	}
 
 	public int getIdLinea() {
@@ -33,13 +35,6 @@ public class LineaColectivo {
 		this.nombre = nombre;
 	}
 
-	public Set<RamalColectivo> getRamalesColectivo() {
-		return this.ramalesColectivo;
-	}
-
-	public void setRamalesColectivo(Set<RamalColectivo> ramalesColectivo) {
-		this.ramalesColectivo = ramalesColectivo;
-	}
 
 	@Override
 	public String toString() {

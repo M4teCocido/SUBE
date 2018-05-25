@@ -11,8 +11,7 @@ import modelo.fichadas.Fichada;
 import modelo.fichadas.TransaccionSUBE;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.colectivo.LineaColectivo;
-import modelo.fichadas.colectivo.RamalColectivo;
-import modelo.fichadas.colectivo.TramoColectivo;
+
 import modelo.fichadas.subte.EstacionSubte;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.subte.LineaSubte;
@@ -45,8 +44,8 @@ public class TestA {
 		//Instancia de objetos para fichada Colectivo-----------------------------------------------------------------------------------------
 		
 		LineaColectivo l165 = new LineaColectivo ("165");
-		RamalColectivo ramal3 = new RamalColectivo ( l165,"Ramal 3 por San Martin");
-		TramoColectivo cruceAMonteGrande = new TramoColectivo ("Desde el cruce de Lomas hasta Est. Monte Grande", new BigDecimal (9),ramal3);
+	
+	
 		
 		//Instancia Objetos Fichada Tren
 		LineaTren roca = new LineaTren ("Roca");

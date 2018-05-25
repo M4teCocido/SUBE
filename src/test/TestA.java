@@ -10,8 +10,9 @@ import modelo.Descuentos.DescuentoTarifaSocial;
 import modelo.fichadas.Fichada;
 import modelo.fichadas.TransaccionSUBE;
 import modelo.fichadas.colectivo.FichadaColectivo;
+import modelo.fichadas.colectivo.InternoColectivo;
 import modelo.fichadas.colectivo.LineaColectivo;
-
+import modelo.fichadas.colectivo.TramoColectivo;
 import modelo.fichadas.subte.EstacionSubte;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.subte.LineaSubte;
@@ -44,10 +45,17 @@ public class TestA {
 		//Instancia de objetos para fichada Colectivo-----------------------------------------------------------------------------------------
 		
 		LineaColectivo l165 = new LineaColectivo ("165");
+		InternoColectivo internoA = new InternoColectivo (l165, "internoA");
+		TramoColectivo tramoColectivoA = new TramoColectivo ("Tramo A",new BigDecimal (9),l165);
+		
+		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA);
+		
+		
+		
 	
 	
 		
-		//Instancia Objetos Fichada Tren
+		//Instancia Objetos Fichada Tren-------------------------------------------------------
 		LineaTren roca = new LineaTren ("Roca");
 		
 		EstacionTren constitucionTren = new EstacionTren("Constitucion", roca); 

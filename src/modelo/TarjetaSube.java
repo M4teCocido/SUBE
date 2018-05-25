@@ -101,6 +101,7 @@ public class TarjetaSube {
 	
 	public TransaccionSUBE procesarFichada(FichadaColectivo fichadaColectivo) {
 		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecioColectivo(), fichadaColectivo);
+		
 		TransaccionSUBE transaccion = this.procesarTransaccion(fichadaColectivo, monto); 
 		this.transacciones.add(transaccion);
 		return transaccion;
@@ -247,5 +248,16 @@ public class TarjetaSube {
 		System.out.println("Transaccion en fichada entrada "+transaccion.getImporte().toString());
 	}
 	
+	public boolean comprobarSaldoSuficiente (BigDecimal monto ) {
+		boolean saldoSuficiente = true;
+		BigDecimal montoAux = new BigDecimal (0);
+		
+		montoAux = this.saldo.subtract(monto);
+		
+		if( montoAux.compareTo(new BigDecimal (-19))==-1) {
+			saldoSuficiente = false;
+		}
+		return saldoSuficiente;
+	}
 
 }

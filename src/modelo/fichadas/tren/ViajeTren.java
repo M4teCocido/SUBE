@@ -8,9 +8,7 @@ public class ViajeTren {
 	private SeccionTren seccionTren;
 	private LineaTren linea;
 	
-	public ViajeTren() {
-		
-	}
+	public ViajeTren() {}
 	
 	public ViajeTren(EstacionTren estacionOrigen) {
 		super();

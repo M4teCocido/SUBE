@@ -23,7 +23,6 @@ public class LineaTren {
 	public LineaTren(String nombre) {
 		super();
 		this.nombre = nombre;
-
 		this.secciones = new HashSet<SeccionTren>();
 		this.estaciones = new HashSet<EstacionTren>();
 		this.viajes = new HashSet<ViajeTren>();
@@ -80,12 +79,9 @@ public class LineaTren {
 	public BigDecimal obtenerMayorSeccion() {
 		BigDecimal montoMayor = new BigDecimal (0);
 		
-		for (int i=0; i<this.secciones.size()-1; i++) {
-			
-			
+		for (int i = 0; i < this.secciones.size()-1; i++) {		
 			if (montoMayor.compareTo(IndexableSet.get(this.secciones,i).getImporte())==-1){
-				montoMayor = IndexableSet.get(this.secciones,i).getImporte(); 
-						
+				montoMayor = IndexableSet.get(this.secciones,i).getImporte(); 			
 			}
 		}
 		return montoMayor;
@@ -94,9 +90,8 @@ public class LineaTren {
 	public ViajeTren obtenerViaje (EstacionTren estacionOrigen, EstacionTren estacionDestino) {
 		ViajeTren viajeTren = null;
 		for(int i=0; i<this.viajes.size(); i++) {
-			if(IndexableSet.get(this.viajes,i).getEstacionOrigen()==estacionOrigen && IndexableSet.get(this.viajes,i).getEstacionDestino()==estacionDestino) {
+			if(IndexableSet.get(this.viajes,i).getEstacionOrigen() == estacionOrigen && IndexableSet.get(this.viajes,i).getEstacionDestino() == estacionDestino) {
 		        viajeTren = IndexableSet.get(this.viajes,i); 
-		        
 		    }
 		}
 		return viajeTren;

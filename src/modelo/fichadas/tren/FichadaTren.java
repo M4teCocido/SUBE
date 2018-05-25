@@ -3,16 +3,14 @@ import java.util.GregorianCalendar;
 
 import modelo.fichadas.Fichada;
 import modelo.fichadas.tren.EstacionTren;
+import modelo.fichadas.tren.eTipoFichadaTren;
 
 public  class FichadaTren extends Fichada {
-	public enum eTipoFichadaTren {ENTRADA,SALIDA};
 	
 	private EstacionTren estacion;
 	private eTipoFichadaTren tipoFichada;
 	
-	public FichadaTren() {
-		
-	}
+	public FichadaTren() {}
 	
 	public FichadaTren(GregorianCalendar fechaHora, EstacionTren estacion, eTipoFichadaTren tipoFichada) {
 		super(fechaHora);

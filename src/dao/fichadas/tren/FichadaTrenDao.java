@@ -1,5 +1,4 @@
-package modelo.fichadas.tren.dao;
-
+package dao.fichadas.tren;
 import java.util.List;
 
 import org.hibernate.HibernateException;

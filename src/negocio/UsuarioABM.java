@@ -2,7 +2,7 @@ package negocio;
 
 import modelo.Persona;
 import modelo.Usuario;
-import modelo.dao.UsuarioDao;
+import dao.UsuarioDao;
 
 public class UsuarioABM {
 	UsuarioDao dao = new UsuarioDao();

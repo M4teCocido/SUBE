@@ -1,4 +1,4 @@
-package modelo.fichadas.colectivo.dao;
+package modelo.fichadas.colectivo;
 
 import java.math.BigDecimal;
 

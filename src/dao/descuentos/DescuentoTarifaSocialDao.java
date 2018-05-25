@@ -1,16 +1,15 @@
-package modelo.dao;
-
+package dao.descuentos;
 
 import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.Permiso;
+import modelo.Descuentos.DescuentoTarifaSocial;
 
-public class PermisoDao {
-
+public class DescuentoTarifaSocialDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -24,13 +23,11 @@ public class PermisoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarPermiso(Permiso permiso) {
+	public int agregarDescuento(DescuentoTarifaSocial descuento) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			System.out.println("Hola");
-			System.out.println(session.save(permiso).toString());
-			id = Integer.parseInt(session.save(permiso).toString());
+			id = Integer.parseInt(session.save(descuento).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -41,10 +38,10 @@ public class PermisoDao {
 		return id;
 	}
 	
-	public void modificarPermiso(Permiso permiso) throws HibernateException{
+	public void modificarDescuento(DescuentoTarifaSocial descuento) {
 		try {
 			iniciaOperacion();
-			session.update(permiso);
+			session.update(descuento);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -54,10 +51,10 @@ public class PermisoDao {
 		}
 	}
 	
-	public void eliminarPermiso(Permiso permiso) throws HibernateException{
+	public void eliminarDescuento(DescuentoTarifaSocial descuento) {
 		try {
 			iniciaOperacion();
-			session.delete(permiso);
+			session.delete(descuento);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -67,40 +64,26 @@ public class PermisoDao {
 		}
 	}
 	
-	public Permiso traerPermisoPorId(int idPermiso) throws HibernateException {
-		Permiso permiso = null;
+	public DescuentoTarifaSocial traerDescuento(int idDescuento) throws HibernateException {
+		DescuentoTarifaSocial descuento = null;
 		try {
 			iniciaOperacion();
-			permiso = (Permiso) session.get(Permiso.class, idPermiso);
+			descuento = (DescuentoTarifaSocial) session.get(DescuentoTarifaSocial.class, idDescuento);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return permiso;
-	}
-	
-	public Permiso traerPermisoPorNombre(String nombre) throws HibernateException {
-		Permiso permiso = null;
-		try {
-			iniciaOperacion();
-			permiso = (Permiso) session.get(Permiso.class, nombre);
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
-			session.close();
-		}
-		return permiso;
+		return descuento;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Permiso> traerPermisos() throws HibernateException {
-		List<Permiso> lista = null;
+	public List<DescuentoTarifaSocial> traerDescuentos() throws HibernateException {
+		List<DescuentoTarifaSocial> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Permiso p order by p.idPermiso asc").list();
+			lista = session.createQuery("from DescuentoTarifaSocial d order by d.idDescuento").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

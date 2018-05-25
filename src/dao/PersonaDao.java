@@ -1,15 +1,14 @@
-package modelo.fichadas.colectivo.dao;
+package dao;
 
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import dao.HibernateUtil;
-import modelo.fichadas.colectivo.TramoColectivo;
+import modelo.Persona;
 
-public class TramoColectivoDao {
+public class PersonaDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +22,11 @@ public class TramoColectivoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarTramo(TramoColectivo tramo) {
+	public int agregarPersona(Persona persona) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(tramo).toString());
+			id = Integer.parseInt(session.save(persona).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -38,10 +37,10 @@ public class TramoColectivoDao {
 		return id;
 	}
 	
-	public void modificarTramo(TramoColectivo tramo) {
+	public void modificarPersona(Persona persona) {
 		try {
 			iniciaOperacion();
-			session.update(tramo);
+			session.update(persona);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -51,10 +50,10 @@ public class TramoColectivoDao {
 		}
 	}
 	
-	public void eliminarTramo(TramoColectivo tramo) {
+	public void eliminarPersona(Persona persona) {
 		try {
 			iniciaOperacion();
-			session.delete(tramo);
+			session.delete(persona);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +63,40 @@ public class TramoColectivoDao {
 		}
 	}
 	
-	public TramoColectivo traerTramo(int idtramo) throws HibernateException {
-		TramoColectivo tramo = null;
+	public Persona traerPersona(int idPersona) throws HibernateException {
+		Persona persona = null;
 		try {
 			iniciaOperacion();
-			tramo = (TramoColectivo) session.get(TramoColectivo.class, idtramo);
+			persona = (Persona) session.get(Persona.class, idPersona); //tambien puede ser persona = (Persona) session.createQuery("from Persona p where p.idPersona=" + idPersona).uniqueResult();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return tramo;
+		return persona;
+	}
+	
+	public Persona traerPersona(String documento) throws HibernateException {
+		Persona persona = null;
+		try {
+			iniciaOperacion();
+			persona = (Persona) session.get(Persona.class, documento);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return persona;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<TramoColectivo> traerTramos() throws HibernateException {
-		List<TramoColectivo> lista = null;
+	public List<Persona> traerPersonas() throws HibernateException {
+		List<Persona> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from TramoColectivo t order by t.idTramo asc").list();
+			lista = session.createQuery("from Persona p order by p.idPersona asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

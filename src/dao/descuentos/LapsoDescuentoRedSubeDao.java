@@ -1,4 +1,4 @@
-package modelo.fichadas.colectivo.dao;
+package dao.descuentos;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.fichadas.colectivo.FichadaColectivo;
+import modelo.Descuentos.LapsoDescuentoRedSube;
 
-public class FichadaColectivoDao {
+public class LapsoDescuentoRedSubeDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +23,11 @@ public class FichadaColectivoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarFichada(FichadaColectivo fichada) {
+	public int agregarLapso(LapsoDescuentoRedSube lapso) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(fichada).toString());
+			id = Integer.parseInt(session.save(lapso).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -38,10 +38,10 @@ public class FichadaColectivoDao {
 		return id;
 	}
 	
-	public void modificarFichada(FichadaColectivo fichada) {
+	public void modificarLapso(LapsoDescuentoRedSube lapso) {
 		try {
 			iniciaOperacion();
-			session.update(fichada);
+			session.update(lapso);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -51,10 +51,10 @@ public class FichadaColectivoDao {
 		}
 	}
 	
-	public void eliminarFichada(FichadaColectivo fichada) {
+	public void eliminarLapso(LapsoDescuentoRedSube lapso) {
 		try {
 			iniciaOperacion();
-			session.delete(fichada);
+			session.delete(lapso);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +64,26 @@ public class FichadaColectivoDao {
 		}
 	}
 	
-	public FichadaColectivo traerFichada(int idFichada) throws HibernateException {
-		FichadaColectivo fichada = null;
+	public LapsoDescuentoRedSube traerLapso(int idLapso) throws HibernateException {
+		LapsoDescuentoRedSube lapso = null;
 		try {
 			iniciaOperacion();
-			fichada = (FichadaColectivo) session.get(FichadaColectivo.class, idFichada);
+			lapso = (LapsoDescuentoRedSube) session.get(LapsoDescuentoRedSube.class, idLapso);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return fichada;
+		return lapso;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<FichadaColectivo> traerFichadas() throws HibernateException {
-		List<FichadaColectivo> lista = null;
+	public List<LapsoDescuentoRedSube> traerDescuentos() throws HibernateException {
+		List<LapsoDescuentoRedSube> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from FichadaColectivo f order by f.idFichada asc").list();
+			lista = session.createQuery("from LapsoDescuentoRedSUBE l order by l.idLapso asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

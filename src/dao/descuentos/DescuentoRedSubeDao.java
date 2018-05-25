@@ -1,15 +1,17 @@
-package modelo.dao;
+package dao.descuentos;
 
 import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.Usuario;
+import modelo.Descuentos.DescuentoRedSube;
 
-public class UsuarioDao {
+public class DescuentoRedSubeDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +25,11 @@ public class UsuarioDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarUsuario(Usuario usuario) {
-		int idUsuario = 0;
+	public int agregarDescuento(DescuentoRedSube descuento) {
+		int id = 0;
 		try {
 			iniciaOperacion();
-			idUsuario = Integer.parseInt(session.save(usuario).toString());
+			id = Integer.parseInt(session.save(descuento).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -35,26 +37,13 @@ public class UsuarioDao {
 		} finally {
 			session.close();
 		}
-		return idUsuario;
+		return id;
 	}
 	
-	public void modificarUsuario(Usuario usuario) {
+	public void modificarDescuento(DescuentoRedSube descuento) {
 		try {
 			iniciaOperacion();
-			session.update(usuario);
-			tx.commit();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
-			session.close();
-		}
-	}
-	
-	public void eliminarUsuario(Usuario usuario) {
-		try {
-			iniciaOperacion();
-			session.delete(usuario);
+			session.update(descuento);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +53,39 @@ public class UsuarioDao {
 		}
 	}
 	
-	public Usuario traerUsuarioPorId(int idUsuario) throws HibernateException {
-		Usuario usuario = null;
+	public void eliminarDescuento(DescuentoRedSube descuento) {
 		try {
 			iniciaOperacion();
-			usuario = (Usuario) session.get(Usuario.class, idUsuario);
+			session.delete(descuento);
+			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return usuario;
+	}
+	
+	public DescuentoRedSube traerDescuento(int idDescuento) throws HibernateException {
+		DescuentoRedSube descuento = null;
+		try {
+			iniciaOperacion();
+			descuento = (DescuentoRedSube) session.get(DescuentoRedSube.class, idDescuento);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return descuento;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Usuario> traerUsuarios() throws HibernateException {
-		List<Usuario> lista = null;
+	public List<DescuentoRedSube> traerDescuentos() throws HibernateException {
+		List<DescuentoRedSube> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Usuario u order by u.idUsuario asc").list();
+			lista = session.createQuery("from DescuentoRedSUBE d order by d.idDescuento asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

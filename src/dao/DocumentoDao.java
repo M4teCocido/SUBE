@@ -1,4 +1,4 @@
-package modelo.fichadas.colectivo.dao;
+package dao;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.fichadas.colectivo.RamalColectivo;
+import modelo.Documento;
 
-public class RamalColectivoDao {
+public class DocumentoDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -18,16 +18,16 @@ public class RamalColectivoDao {
 		tx = session.beginTransaction();	
 	}
 	
-	private void manejaExcepcion(HibernateException he) throws HibernateException {
+	private void manejaExcepcion(HibernateException he) {
 		tx.rollback();
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarRamal(RamalColectivo ramal) {
+	public int agregarDocumento(Documento documento) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(ramal).toString());
+			id = Integer.parseInt(session.save(documento).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -38,10 +38,10 @@ public class RamalColectivoDao {
 		return id;
 	}
 	
-	public void modificarRamal(RamalColectivo ramal) {
+	public void modificarDocumento(Documento documento) {
 		try {
 			iniciaOperacion();
-			session.update(ramal);
+			session.update(documento);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -51,10 +51,10 @@ public class RamalColectivoDao {
 		}
 	}
 	
-	public void eliminarRamal(RamalColectivo ramal) {
+	public void eliminarDocumento(Documento documento) {
 		try {
 			iniciaOperacion();
-			session.delete(ramal);
+			session.delete(documento);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +64,40 @@ public class RamalColectivoDao {
 		}
 	}
 	
-	public RamalColectivo traerRamal(int idRamal) throws HibernateException {
-		RamalColectivo ramal = null;
+	public Documento traerDocumento(int idDocumento) throws HibernateException {
+		Documento documento = null;
 		try {
 			iniciaOperacion();
-			ramal = (RamalColectivo) session.get(RamalColectivo.class, idRamal);
+			documento = (Documento) session.get(Documento.class, idDocumento);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return ramal;
+		return documento;
+	}
+	
+	public Documento traerDocumento(String numero) throws HibernateException {
+		Documento documento = null;
+		try {
+			iniciaOperacion();
+			documento = (Documento) session.get(Documento.class, numero);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return documento;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<RamalColectivo> traerRamales() throws HibernateException {
-		List<RamalColectivo> lista = null;
+	public List<Documento> traerDocumentos() throws HibernateException {
+		List<Documento> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from RamalColectivo r order by r.idRamal asc").list();
+			lista = session.createQuery("from Documento d order by d.idDocumento asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

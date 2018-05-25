@@ -1,4 +1,4 @@
-package modelo.fichadas.colectivo.dao;
+package dao.fichadas;
 
 import java.util.List;
 
@@ -7,9 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.fichadas.colectivo.LineaColectivo;
+import modelo.fichadas.Fichada;
+import modelo.fichadas.FichadaRecarga;
 
-public class LineaColectivoDao {
+public class FichadaRecargaDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +24,11 @@ public class LineaColectivoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarLinea(LineaColectivo linea) {
+	public int agregarFichadaRecarga(FichadaRecarga fichada) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(linea).toString());
+			id = Integer.parseInt(session.save(fichada).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -38,10 +39,10 @@ public class LineaColectivoDao {
 		return id;
 	}
 	
-	public void modificarLinea(LineaColectivo linea) {
+	public void modificarFichadaRecarga(FichadaRecarga fichada) {
 		try {
 			iniciaOperacion();
-			session.update(linea);
+			session.update(fichada);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -51,10 +52,10 @@ public class LineaColectivoDao {
 		}
 	}
 	
-	public void eliminarLinea(LineaColectivo linea) {
+	public void elimninarFichadaRecarga(FichadaRecarga fichada) {
 		try {
 			iniciaOperacion();
-			session.delete(linea);
+			session.delete(fichada);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +65,26 @@ public class LineaColectivoDao {
 		}
 	}
 	
-	public LineaColectivo traerLineaPorId(int idLinea) throws HibernateException {
-		LineaColectivo linea = null;
+	public FichadaRecarga traerFichada(int idFichada) throws HibernateException {
+		FichadaRecarga fichada = null;
 		try {
 			iniciaOperacion();
-			linea = (LineaColectivo) session.get(LineaColectivo.class, idLinea);
+			fichada = (FichadaRecarga) session.get(FichadaRecarga.class, idFichada);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return linea;
+		return fichada;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<LineaColectivo> traerLineas() throws HibernateException {
-		List<LineaColectivo> lista = null;
+	public List<FichadaRecarga> traerFichadas() throws HibernateException {
+		List<FichadaRecarga> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from LineaColectivo l order by l.idLinea asc").list();
+			lista = session.createQuery("from FichadaRecarga f order by f.idFichada asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
@@ -92,5 +93,4 @@ public class LineaColectivoDao {
 		}
 		return lista;
 	}
-
 }

@@ -1,4 +1,4 @@
-package modelo.Descuentos.Dao;
+package dao.fichadas;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.Descuentos.LapsoDescuentoRedSube;
+import modelo.fichadas.TransaccionSUBE;
 
-public class LapsoDescuentoRedSubeDao {
+public class TransaccionSUBEDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +23,11 @@ public class LapsoDescuentoRedSubeDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarLapso(LapsoDescuentoRedSube lapso) {
+	public int agregarTransaccion(TransaccionSUBE transaccion) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(lapso).toString());
+			id = Integer.parseInt(session.save(transaccion).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -38,10 +38,10 @@ public class LapsoDescuentoRedSubeDao {
 		return id;
 	}
 	
-	public void modificarLapso(LapsoDescuentoRedSube lapso) {
+	public void modificarTransaccion(TransaccionSUBE transaccion) {
 		try {
 			iniciaOperacion();
-			session.update(lapso);
+			session.update(transaccion);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -51,10 +51,10 @@ public class LapsoDescuentoRedSubeDao {
 		}
 	}
 	
-	public void eliminarLapso(LapsoDescuentoRedSube lapso) {
+	public void eliminarTransaccion(TransaccionSUBE transaccion) {
 		try {
 			iniciaOperacion();
-			session.delete(lapso);
+			session.delete(transaccion);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +64,26 @@ public class LapsoDescuentoRedSubeDao {
 		}
 	}
 	
-	public LapsoDescuentoRedSube traerLapso(int idLapso) throws HibernateException {
-		LapsoDescuentoRedSube lapso = null;
+	public TransaccionSUBE traerTransaccion(int idTransaccion) throws HibernateException {
+		TransaccionSUBE transaccion = null;
 		try {
 			iniciaOperacion();
-			lapso = (LapsoDescuentoRedSube) session.get(LapsoDescuentoRedSube.class, idLapso);
+			transaccion = (TransaccionSUBE) session.get(TransaccionSUBE.class, idTransaccion);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return lapso;
+		return transaccion;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<LapsoDescuentoRedSube> traerDescuentos() throws HibernateException {
-		List<LapsoDescuentoRedSube> lista = null;
+	public List<TransaccionSUBE> traerTransacciones() throws HibernateException {
+		List<TransaccionSUBE> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from LapsoDescuentoRedSUBE l order by l.idLapso asc").list();
+			lista = session.createQuery("from TransaccionSUBE t order by t.idTransaccion asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

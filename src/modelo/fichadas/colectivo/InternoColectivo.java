@@ -1,7 +1,9 @@
-package modelo.fichadas.colectivo;
+package modelo.fichadas.colectivo
+;
+import modelo.fichadas.colectivo.LineaColectivo;
 
 public class InternoColectivo {
-	private LineaColectivo lineaColectivo;
+	private LineaColectivo lineaColectivo ;
 	private String nombre;
 	public InternoColectivo(LineaColectivo lineaColectivo, String nombre) {
 		super();
@@ -20,6 +22,6 @@ public class InternoColectivo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
+
+
 }

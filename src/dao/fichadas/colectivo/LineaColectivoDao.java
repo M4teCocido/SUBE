@@ -1,17 +1,15 @@
-package modelo.Descuentos.Dao;
+package dao.fichadas.colectivo;
 
 import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.Descuentos.DescuentoRedSube;
+import modelo.fichadas.colectivo.LineaColectivo;
 
-public class DescuentoRedSubeDao {
+public class LineaColectivoDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -25,11 +23,11 @@ public class DescuentoRedSubeDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarDescuento(DescuentoRedSube descuento) {
+	public int agregarLinea(LineaColectivo linea) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(descuento).toString());
+			id = Integer.parseInt(session.save(linea).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -40,10 +38,10 @@ public class DescuentoRedSubeDao {
 		return id;
 	}
 	
-	public void modificarDescuento(DescuentoRedSube descuento) {
+	public void modificarLinea(LineaColectivo linea) {
 		try {
 			iniciaOperacion();
-			session.update(descuento);
+			session.update(linea);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -53,10 +51,10 @@ public class DescuentoRedSubeDao {
 		}
 	}
 	
-	public void eliminarDescuento(DescuentoRedSube descuento) {
+	public void eliminarLinea(LineaColectivo linea) {
 		try {
 			iniciaOperacion();
-			session.delete(descuento);
+			session.delete(linea);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -66,26 +64,26 @@ public class DescuentoRedSubeDao {
 		}
 	}
 	
-	public DescuentoRedSube traerDescuento(int idDescuento) throws HibernateException {
-		DescuentoRedSube descuento = null;
+	public LineaColectivo traerLineaPorId(int idLinea) throws HibernateException {
+		LineaColectivo linea = null;
 		try {
 			iniciaOperacion();
-			descuento = (DescuentoRedSube) session.get(DescuentoRedSube.class, idDescuento);
+			linea = (LineaColectivo) session.get(LineaColectivo.class, idLinea);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return descuento;
+		return linea;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<DescuentoRedSube> traerDescuentos() throws HibernateException {
-		List<DescuentoRedSube> lista = null;
+	public List<LineaColectivo> traerLineas() throws HibernateException {
+		List<LineaColectivo> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from DescuentoRedSUBE d order by d.idDescuento asc").list();
+			lista = session.createQuery("from LineaColectivo l order by l.idLinea asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
@@ -94,4 +92,5 @@ public class DescuentoRedSubeDao {
 		}
 		return lista;
 	}
+
 }

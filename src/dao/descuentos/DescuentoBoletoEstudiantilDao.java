@@ -1,4 +1,4 @@
-package modelo.Descuentos.Dao;
+package dao.descuentos;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package modelo.dao;
+package dao;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.Documento;
+import modelo.TarjetaSube;
 
-public class DocumentoDao {
+public class TarjetaSubeDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -18,16 +18,16 @@ public class DocumentoDao {
 		tx = session.beginTransaction();	
 	}
 	
-	private void manejaExcepcion(HibernateException he) {
+	private void manejaExcepcion(HibernateException he) throws HibernateException {
 		tx.rollback();
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarDocumento(Documento documento) {
-		int id = 0;
+	public int agregarTarjetaSube(TarjetaSube tarjeta) {
+		int idTarjeta = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(documento).toString());
+			idTarjeta = Integer.parseInt(session.save(tarjeta).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -35,26 +35,13 @@ public class DocumentoDao {
 		} finally {
 			session.close();
 		}
-		return id;
+		return idTarjeta;
 	}
 	
-	public void modificarDocumento(Documento documento) {
+	public void modificarTarjetaSube(TarjetaSube tarjeta) {
 		try {
 			iniciaOperacion();
-			session.update(documento);
-			tx.commit();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
-			session.close();
-		}
-	}
-	
-	public void eliminarDocumento(Documento documento) {
-		try {
-			iniciaOperacion();
-			session.delete(documento);
+			session.update(tarjeta);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,40 +51,53 @@ public class DocumentoDao {
 		}
 	}
 	
-	public Documento traerDocumento(int idDocumento) throws HibernateException {
-		Documento documento = null;
+	public void eliminarTarjetaSube(TarjetaSube tarjeta) {
 		try {
 			iniciaOperacion();
-			documento = (Documento) session.get(Documento.class, idDocumento);
+			session.delete(tarjeta);
+			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return documento;
 	}
 	
-	public Documento traerDocumento(String numero) throws HibernateException {
-		Documento documento = null;
+	public TarjetaSube traerTarjeta(int idTarjetaSube) throws HibernateException {
+		TarjetaSube tarjeta = null;
 		try {
 			iniciaOperacion();
-			documento = (Documento) session.get(Documento.class, numero);
+			tarjeta = (TarjetaSube) session.get(TarjetaSube.class, idTarjetaSube);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return documento;
+		return tarjeta;
+	}
+	
+	public TarjetaSube traerTarjeta(String codigo) throws HibernateException {
+		TarjetaSube tarjeta = null;
+		try {
+			iniciaOperacion();
+			tarjeta = (TarjetaSube) session.get(TarjetaSube.class, codigo);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return tarjeta;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Documento> traerDocumentos() throws HibernateException {
-		List<Documento> lista = null;
+	public List<TarjetaSube> traerTarjetas() throws HibernateException {
+		List<TarjetaSube> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Documento d order by d.idDocumento asc").list();
+			lista = session.createQuery("from TarjetaSUBE t order by t.idTarjetaSube asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

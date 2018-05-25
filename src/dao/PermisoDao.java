@@ -1,15 +1,16 @@
-package modelo.dao;
+package dao;
+
 
 import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.TarjetaSube;
+import modelo.Permiso;
 
-public class TarjetaSubeDao {
+public class PermisoDao {
+
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +24,13 @@ public class TarjetaSubeDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarTarjetaSube(TarjetaSube tarjeta) {
-		int idTarjeta = 0;
+	public int agregarPermiso(Permiso permiso) {
+		int id = 0;
 		try {
 			iniciaOperacion();
-			idTarjeta = Integer.parseInt(session.save(tarjeta).toString());
+			System.out.println("Hola");
+			System.out.println(session.save(permiso).toString());
+			id = Integer.parseInt(session.save(permiso).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -35,26 +38,13 @@ public class TarjetaSubeDao {
 		} finally {
 			session.close();
 		}
-		return idTarjeta;
+		return id;
 	}
 	
-	public void modificarTarjetaSube(TarjetaSube tarjeta) {
+	public void modificarPermiso(Permiso permiso) throws HibernateException{
 		try {
 			iniciaOperacion();
-			session.update(tarjeta);
-			tx.commit();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
-			session.close();
-		}
-	}
-	
-	public void eliminarTarjetaSube(TarjetaSube tarjeta) {
-		try {
-			iniciaOperacion();
-			session.delete(tarjeta);
+			session.update(permiso);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,40 +54,53 @@ public class TarjetaSubeDao {
 		}
 	}
 	
-	public TarjetaSube traerTarjeta(int idTarjetaSube) throws HibernateException {
-		TarjetaSube tarjeta = null;
+	public void eliminarPermiso(Permiso permiso) throws HibernateException{
 		try {
 			iniciaOperacion();
-			tarjeta = (TarjetaSube) session.get(TarjetaSube.class, idTarjetaSube);
+			session.delete(permiso);
+			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return tarjeta;
 	}
 	
-	public TarjetaSube traerTarjeta(String codigo) throws HibernateException {
-		TarjetaSube tarjeta = null;
+	public Permiso traerPermisoPorId(int idPermiso) throws HibernateException {
+		Permiso permiso = null;
 		try {
 			iniciaOperacion();
-			tarjeta = (TarjetaSube) session.get(TarjetaSube.class, codigo);
+			permiso = (Permiso) session.get(Permiso.class, idPermiso);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return tarjeta;
+		return permiso;
+	}
+	
+	public Permiso traerPermisoPorNombre(String nombre) throws HibernateException {
+		Permiso permiso = null;
+		try {
+			iniciaOperacion();
+			permiso = (Permiso) session.get(Permiso.class, nombre);
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return permiso;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<TarjetaSube> traerTarjetas() throws HibernateException {
-		List<TarjetaSube> lista = null;
+	public List<Permiso> traerPermisos() throws HibernateException {
+		List<Permiso> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from TarjetaSUBE t order by t.idTarjetaSube asc").list();
+			lista = session.createQuery("from Permiso p order by p.idPermiso asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

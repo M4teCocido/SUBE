@@ -1,4 +1,4 @@
-package modelo.Descuentos.Dao;
+package dao.fichadas.colectivo;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.Descuentos.DescuentoTarifaSocial;
+import modelo.fichadas.colectivo.FichadaColectivo;
 
-public class DescuentoTarifaSocialDao {
+public class FichadaColectivoDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +23,11 @@ public class DescuentoTarifaSocialDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarDescuento(DescuentoTarifaSocial descuento) {
+	public int agregarFichada(FichadaColectivo fichada) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(descuento).toString());
+			id = Integer.parseInt(session.save(fichada).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -38,10 +38,10 @@ public class DescuentoTarifaSocialDao {
 		return id;
 	}
 	
-	public void modificarDescuento(DescuentoTarifaSocial descuento) {
+	public void modificarFichada(FichadaColectivo fichada) {
 		try {
 			iniciaOperacion();
-			session.update(descuento);
+			session.update(fichada);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -51,10 +51,10 @@ public class DescuentoTarifaSocialDao {
 		}
 	}
 	
-	public void eliminarDescuento(DescuentoTarifaSocial descuento) {
+	public void eliminarFichada(FichadaColectivo fichada) {
 		try {
 			iniciaOperacion();
-			session.delete(descuento);
+			session.delete(fichada);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +64,26 @@ public class DescuentoTarifaSocialDao {
 		}
 	}
 	
-	public DescuentoTarifaSocial traerDescuento(int idDescuento) throws HibernateException {
-		DescuentoTarifaSocial descuento = null;
+	public FichadaColectivo traerFichada(int idFichada) throws HibernateException {
+		FichadaColectivo fichada = null;
 		try {
 			iniciaOperacion();
-			descuento = (DescuentoTarifaSocial) session.get(DescuentoTarifaSocial.class, idDescuento);
+			fichada = (FichadaColectivo) session.get(FichadaColectivo.class, idFichada);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return descuento;
+		return fichada;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<DescuentoTarifaSocial> traerDescuentos() throws HibernateException {
-		List<DescuentoTarifaSocial> lista = null;
+	public List<FichadaColectivo> traerFichadas() throws HibernateException {
+		List<FichadaColectivo> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from DescuentoTarifaSocial d order by d.idDescuento").list();
+			lista = session.createQuery("from FichadaColectivo f order by f.idFichada asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

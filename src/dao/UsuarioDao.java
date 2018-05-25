@@ -1,14 +1,15 @@
-package modelo.dao;
+package dao;
 
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import dao.HibernateUtil;
-import modelo.Persona;
 
-public class PersonaDao {
+import dao.HibernateUtil;
+import modelo.Usuario;
+
+public class UsuarioDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -22,11 +23,11 @@ public class PersonaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarPersona(Persona persona) {
-		int id = 0;
+	public int agregarUsuario(Usuario usuario) {
+		int idUsuario = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(persona).toString());
+			idUsuario = Integer.parseInt(session.save(usuario).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -34,26 +35,13 @@ public class PersonaDao {
 		} finally {
 			session.close();
 		}
-		return id;
+		return idUsuario;
 	}
 	
-	public void modificarPersona(Persona persona) {
+	public void modificarUsuario(Usuario usuario) {
 		try {
 			iniciaOperacion();
-			session.update(persona);
-			tx.commit();
-		} catch (HibernateException he) {
-			manejaExcepcion(he);
-			throw he;
-		} finally {
-			session.close();
-		}
-	}
-	
-	public void eliminarPersona(Persona persona) {
-		try {
-			iniciaOperacion();
-			session.delete(persona);
+			session.update(usuario);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -63,40 +51,39 @@ public class PersonaDao {
 		}
 	}
 	
-	public Persona traerPersona(int idPersona) throws HibernateException {
-		Persona persona = null;
+	public void eliminarUsuario(Usuario usuario) {
 		try {
 			iniciaOperacion();
-			persona = (Persona) session.get(Persona.class, idPersona); //tambien puede ser persona = (Persona) session.createQuery("from Persona p where p.idPersona=" + idPersona).uniqueResult();
+			session.delete(usuario);
+			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return persona;
 	}
 	
-	public Persona traerPersona(String documento) throws HibernateException {
-		Persona persona = null;
+	public Usuario traerUsuarioPorId(int idUsuario) throws HibernateException {
+		Usuario usuario = null;
 		try {
 			iniciaOperacion();
-			persona = (Persona) session.get(Persona.class, documento);
+			usuario = (Usuario) session.get(Usuario.class, idUsuario);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return persona;
+		return usuario;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Persona> traerPersonas() throws HibernateException {
-		List<Persona> lista = null;
+	public List<Usuario> traerUsuarios() throws HibernateException {
+		List<Usuario> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Persona p order by p.idPersona asc").list();
+			lista = session.createQuery("from Usuario u order by u.idUsuario asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

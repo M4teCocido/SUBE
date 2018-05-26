@@ -3,12 +3,14 @@ package modelo.lectoras;
 import modelo.fichadas.colectivo.InternoColectivo;
 
 public class LectoraColectivo extends Lectora {
+	
 	private InternoColectivo interno;
 	
-
-	public LectoraColectivo() {
-		super();
-		
+	public LectoraColectivo() {}
+	
+	public LectoraColectivo(int nroSerie, InternoColectivo interno) {
+		super(nroSerie);
+		this.interno = interno;
 	}
 	
 	public InternoColectivo getInterno() {

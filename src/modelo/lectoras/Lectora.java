@@ -3,13 +3,13 @@ package modelo.lectoras;
 public abstract class Lectora {
 	
 	private int idLectora;
-	private String nombre;
+	private int nroSerie;
 
 	public Lectora() {}
 
-	public Lectora(String nombre) {
+	public Lectora(int nroSerie) {
 		super();
-		this.nombre = nombre;
+		this.setNroSerie(nroSerie);
 	}
 
 	public int getIdLectora() {
@@ -19,13 +19,13 @@ public abstract class Lectora {
 	protected void setIdLectora(int idLectora) {
 		this.idLectora = idLectora;
 	}
-	
-	public String getNombre() {
-		return nombre;
+
+	public int getNroSerie() {
+		return nroSerie;
 	}
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setNroSerie(int nroSerie) {
+		this.nroSerie = nroSerie;
 	}
-	
+
 }

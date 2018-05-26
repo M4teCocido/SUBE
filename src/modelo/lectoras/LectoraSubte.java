@@ -8,8 +8,8 @@ public class LectoraSubte extends Lectora{
 	
 	public LectoraSubte () {}
 	
-	public LectoraSubte(EstacionSubte estacion) {
-		super();
+	public LectoraSubte(int nroSerie, EstacionSubte estacion) {
+		super(nroSerie);
 		this.estacion = estacion;
 	}
 	

@@ -2,14 +2,14 @@ package modelo.lectoras;
 
 import modelo.fichadas.tren.EstacionTren;
 
-public class LectoraTren {
+public class LectoraTren extends Lectora{
 
 	public EstacionTren estacion;
 	
 	public LectoraTren() {}
 	
-	public LectoraTren(EstacionTren estacion) {
-		super();
+	public LectoraTren(int nroSerie, EstacionTren estacion) {
+		super(nroSerie);
 		this.estacion = estacion;
 	}
 	

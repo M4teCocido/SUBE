@@ -27,7 +27,8 @@ public class TarjetaSube {
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 	private boolean activa;
-
+	private const int saldoMinimo;
+	
 	public TarjetaSube() {}
 	
 	public TarjetaSube(String codigo, BigDecimal saldo) {

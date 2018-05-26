@@ -233,8 +233,7 @@ public class TarjetaSube {
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO); //Creamos uno nuevo
 		montoFinal = montoFinal.setScale(2, BigDecimal.ROUND_HALF_UP);
 		this.saldo = this.saldo.subtract(montoFinal);
-		return new TransaccionSUBE (fichada, montoFinal);
-	
+		return new TransaccionSUBE (fichada, montoFinal, this);
 	}
 
 	@Override

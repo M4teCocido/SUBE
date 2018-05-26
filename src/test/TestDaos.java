@@ -18,6 +18,7 @@ import dao.UsuarioDao;
 import dao.fichadas.TransaccionSUBEDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
+import modelo.fichadas.Fichada;
 import modelo.fichadas.TransaccionSUBE;
 
 //import modelo.Persona.eGenero;
@@ -37,6 +38,13 @@ public class TestDaos {
 		dao.agregarPermiso(permiso);*/
 		
 		try {
+			TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
+            GregorianCalendar cal = new GregorianCalendar(2018, 4, 25, 15, 25, 33);
+            Fichada fichada = new Fichada(cal) {
+            };
+            TransaccionSUBE transaccion = new TransaccionSUBE(fichada, new BigDecimal (5));
+            int idTransaccion = daoTransaccion.agregarTransaccion(transaccion);
+            transaccion = daoTransaccion.traerTransaccion(idTransaccion);
 			/*UsuarioDao daoUsuario = new UsuarioDao();
 			PersonaDao daoPersona = new PersonaDao();
 			DocumentoDao daoDocumento = new DocumentoDao();
@@ -67,9 +75,9 @@ public class TestDaos {
 			tarjeta = daoTarjeta.traerTarjeta(idTarjeta);
 			System.out.println(tarjeta);*/
 			//----------------------------TEST TRANSACCION----------------------------
-			TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
+			//TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
 			//FALTA MAPEAR FICHADAS
-			TransaccionSUBE transaccion = new TransaccionSUBE();
+			//TransaccionSUBE transaccion = new TransaccionSUBE();
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + ", " + e.getCause());
 			

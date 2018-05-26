@@ -2,18 +2,22 @@ package modelo.fichadas;
 
 import java.math.BigDecimal;
 
+import modelo.TarjetaSube;
+
 public class TransaccionSUBE {
 	
 	private int idTransaccion;
 	private Fichada fichada;
 	private BigDecimal importe;
+	private TarjetaSube tarjeta;
 	
 	public TransaccionSUBE() {}
 	
-	public TransaccionSUBE(Fichada fichada, BigDecimal importe) {
+	public TransaccionSUBE(Fichada fichada, BigDecimal importe, TarjetaSube tarjeta) {
 		super();
 		this.fichada = fichada;
 		this.importe = importe;
+		this.setTarjeta(tarjeta);
 	}
 
 	public int getIdTransaccion() {
@@ -43,6 +47,14 @@ public class TransaccionSUBE {
 	@Override
 	public String toString() {
 		return "TransaccionSUBE [fichada =" + fichada.toString() + ", importe=" + importe + "]";
+	}
+
+	public TarjetaSube getTarjeta() {
+		return tarjeta;
+	}
+
+	public void setTarjeta(TarjetaSube tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 	
 }

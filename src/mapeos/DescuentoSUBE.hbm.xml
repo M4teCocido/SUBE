@@ -26,8 +26,6 @@
 		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" />
 		<property name="viajesRestantes" column="viajesRestantes" type="int" />
 		
-		<property name="idPersona" column="idPersona" type="int" />
-		
 		<property column="tipoBoleto" name="tipoBoletoEstudiantil">
 			<type name="org.hibernate.type.EnumType">
 				<param name="enumClass">modelo.Descuentos.eTipoBoletoEstudiantil</param>

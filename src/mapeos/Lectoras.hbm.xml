@@ -7,6 +7,10 @@
 			<generator class = "identity" />
 		</id>
 		<property column="nroSerie" name="nroSerie" type="int" />
+		<set name="fichadas" table="fichadas" inverse="true" lazy="true" fetch="select"><!-- order-by="idEstacion asc"  -->
+			<key column="idLectora" not-null="true" />
+			<one-to-many class="modelo.lectoras.Lectora" />
+		</set>
 	</class>
 	
 	<joined-subclass name = "modelo.lectoras.LectoraColectivo" table="lectoracolectivo" extends="modelo.lectoras.Lectora">

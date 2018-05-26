@@ -1,17 +1,19 @@
 package modelo.fichadas;
 import java.util.GregorianCalendar;
 
+import modelo.lectoras.Lectora;
+
 public abstract class Fichada {
 	
 	private int idFichada;
-	private int idLectora;
+	private Lectora lectora;
 	private GregorianCalendar fechaHora; 
 	
 	public Fichada() {}
 	
-	public Fichada(GregorianCalendar fechaHora, int idLectora) {
+	public Fichada(GregorianCalendar fechaHora, Lectora lectora) {
 		super();
-		this.setIdLectora(idLectora);
+		this.setLectora(lectora);
 		this.fechaHora = fechaHora;
 	}
 
@@ -31,18 +33,17 @@ public abstract class Fichada {
 		this.idFichada = idFichada;
 	}
 	
-	public int getIdLectora() {
-		return idLectora;
-	}
-
-	public void setIdLectora(int idLectora) {
-		this.idLectora = idLectora;
-	}
-	
 	@Override
 	public String toString() {
 		return "Fichada [fechaHora=" + fechaHora;
 	}
 
+	public Lectora getLectora() {
+		return lectora;
+	}
+
+	public void setLectora(Lectora lectora) {
+		this.lectora = lectora;
+	}
 	
 }

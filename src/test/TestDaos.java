@@ -76,31 +76,40 @@ public class TestDaos {
 			System.out.println(tarjeta);*/
 			//----------------------------TEST TRANSACCION----------------------------
 			//Creo la persona y dao
+			
 			GregorianCalendar fechaNac = new GregorianCalendar(1993, 11, 16);
 			Persona persona2 = new Persona("Gonzalo", "Montaña", eGenero.M, fechaNac, "gonzamcomps@gmail.com", "1558912066", "42991823");
 			PersonaDao daoPersona2 = new PersonaDao();
+			
 			//Creo la tarjeta y le asigno propietario y dao
+			
 			TarjetaSube tarjeta2 = new TarjetaSube("9999", new BigDecimal (100));
 			tarjeta2.setPropietario(persona2);
 			TarjetaSubeDao daoTarjeta2 = new TarjetaSubeDao();
+			
 			//Creo la linea de subte, estacion y daos
 			LineaSubte lineaSubte = new LineaSubte("C", new BigDecimal (10));
 			LineaSubteDao daoLineaSubte = new LineaSubteDao();
 			EstacionSubte estacionSubte = new EstacionSubte("Constitucion", lineaSubte);
 			EstacionSubteDao daoEstacionSubte = new EstacionSubteDao();
+			
 			//Creo lectora y dao
 			Lectora lectora = new Lectora(1) {};
 			LectoraSubte lectoraSubte = new LectoraSubte(lectora.getNroSerie(), estacionSubte);
 			LectoraSubteDao daoLectoraSubte = new LectoraSubteDao();
+			
 			//Creo la fichada y dao
 			GregorianCalendar fechaHoraFichada = new GregorianCalendar(2018, 3, 15, 15, 10, 25);
-			Fichada fichada = new Fichada(fechaHoraFichada, lectora.getIdLectora()) {};
+			Fichada fichada = new Fichada(fechaHoraFichada, lectora) {};
+			
 			//Creo la fichadaSubte y dao
-			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), fichada.getIdLectora(), estacionSubte);
+			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), fichada.getLectora(), estacionSubte);
 			FichadaSubteDao daoFichadaSubte = new FichadaSubteDao();
+			
 			//Creo la transaccion y dao
 			TransaccionSUBE transaccion = new TransaccionSUBE(fichadaSubte, lineaSubte.getPrecioViaje(), tarjeta2);
 			TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
+			
 			//Persisto
 			daoPersona2.agregarPersona(persona2);
 			System.out.println("\nGuardamos persona\n");

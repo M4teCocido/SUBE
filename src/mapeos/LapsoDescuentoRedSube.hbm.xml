@@ -7,10 +7,9 @@
 			<generator class = "identity" />
 		</id>
 		<property column="fechaHoraVencimiento" name="fechaHoraVencimiento" type="calendar" />
-		<!-- <set name="viajesRealizados" table="fichada" order-by="idFichada asc" inverse="true" lazy="true" fetch="select">
+		<set name="viajesRealizados" table="fichada" inverse="true" lazy="true" fetch="select"><!-- order-by="idFichada asc" -->
 			<key column="idLapsoDescuentoRedSUBE" not-null="true" />
 			<one-to-many class="modelo.fichadas.Fichada" />
 		</set>
-		-->
 	</class>
 </hibernate-mapping>

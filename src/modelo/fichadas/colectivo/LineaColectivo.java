@@ -7,15 +7,20 @@ public class LineaColectivo {
 	
 	private int idLinea;
 	private String nombre;
-	
-	private Set<InternoColectivo> internoColectivo;
+	private Set<TramoColectivo> tramosColectivo;
+	private Set<InternoColectivo> internosColectivo;
 
 	public LineaColectivo() {}
 	
 	public LineaColectivo(String nombre) {
 		super();
 		this.nombre = nombre;
+<<<<<<< HEAD
+		this.internosColectivo = new HashSet<InternoColectivo>();
+		this.tramosColectivo = new HashSet<TramoColectivo>();
+=======
 		this.setInternoColectivo(new HashSet<InternoColectivo>());
+>>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 	}
 
 	public int getIdLinea() {
@@ -34,6 +39,24 @@ public class LineaColectivo {
 		this.nombre = nombre;
 	}
 	
+<<<<<<< HEAD
+	public Set<TramoColectivo> getTramosColectivo() {
+		return tramosColectivo;
+	}
+
+	public void setTramosColectivo(Set<TramoColectivo> tramosColectivo) {
+		this.tramosColectivo = tramosColectivo;
+	}
+
+	public Set<InternoColectivo> getInternosColectivo() {
+		return internosColectivo;
+	}
+
+	public void setInternosColectivo(Set<InternoColectivo> internosColectivo) {
+		this.internosColectivo = internosColectivo;
+	}
+
+=======
 	public Set<InternoColectivo> getInternoColectivo() {
 		return internoColectivo;
 	}
@@ -42,6 +65,7 @@ public class LineaColectivo {
 		this.internoColectivo = internoColectivo;
 	}	
 	
+>>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 	@Override
 	public String toString() {
 		return "LineaColectivo [Nombre=" + this.nombre + "]";

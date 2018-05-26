@@ -6,7 +6,7 @@
 		<property name="connection.driver_class" > com.mysql.jdbc.Driver </property >
 		<property name="connection.url" > jdbc:mysql://localhost/subedb</property >
 		<property name="connection.username" >root</property >
-		<property name="connection.password" >root</property >
+		<property name="connection.password" ></property >
 		<property name="connection.pool_size" >1</property >
 		<property name="dialect" >org.hibernate.dialect.MySQLDialect</property >
 		<property name="show_sql" >true</property > <!-- en true muestra hql en consola -->
@@ -20,7 +20,11 @@
 		<mapping resource="mapeos/LapsoDescuentoRedSube.hbm.xml" />
 		<mapping resource="mapeos/Lectoras.hbm.xml" />
 		<mapping resource="mapeos/LineaColectivo.hbm.xml" />
+<<<<<<< HEAD
+		<mapping resource="mapeos/TramoColectivo.hbm.xml" />
+=======
 		<mapping resource="mapeos/LineaSubte.hbm.xml"/>
+>>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 		<mapping resource="mapeos/LineaTren.hbm.xml" />
 		<mapping resource="mapeos/Permiso.hbm.xml" />
 		<mapping resource="mapeos/Persona.hbm.xml" />

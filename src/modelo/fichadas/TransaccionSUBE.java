@@ -1,6 +1,7 @@
 package modelo.fichadas;
 
 import java.math.BigDecimal;
+import modelo.TarjetaSube;
 
 import modelo.TarjetaSube;
 

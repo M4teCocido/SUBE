@@ -38,8 +38,9 @@ public class TarjetaSube {
 		this.transacciones = new HashSet<TransaccionSUBE>();
 		this.descuentoRedSube = new DescuentoRedSube();
 		this.activa = true;
-		
 	}
+	
+	
 
 	protected void setIdTarjeta(int idTarjeta) {
 		this.idTarjeta = idTarjeta;

@@ -40,8 +40,6 @@ public class TarjetaSube {
 		this.activa = true;
 	}
 	
-	
-
 	protected void setIdTarjeta(int idTarjeta) {
 		this.idTarjeta = idTarjeta;
 	}
@@ -116,17 +114,13 @@ public class TarjetaSube {
 		return transaccion;
 	}
 	
-
-
-	
 	public TransaccionSUBE procesarFichada(FichadaTren fichadaActual) { //Se procesa fichada tren. -----------
 		
 		TransaccionSUBE transaccion = null;
 		System.out.println(fichadaActual.toString());
 		if (fichadaActual.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
 			transaccion = procesarSaldoMaximo (fichadaActual);
-		} else {
-			
+		} else {		
 			FichadaTren fichadaAnterior =  (FichadaTren) getUltimaFichada();
 			Fichada ultimaFichada = this.getUltimaFichada();
 			
@@ -148,9 +142,7 @@ public class TarjetaSube {
 					
 					    System.out.println("Bonificacion:" + bonificacion.toString());
 				    	this.transacciones.add(transaccion);
-					}
-					
-				 
+					}		 
 				} else  transaccion = procesarSaldoMaximo (fichadaActual);
 			} else transaccion =  procesarSaldoMaximo (fichadaActual);
 
@@ -158,13 +150,9 @@ public class TarjetaSube {
 		return transaccion;
 	}
 	
-	
-	
 	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) { //procesa fichada subte------------
 		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio(), fichadaSubte);
-		
-		
-		
+			
 		TransaccionSUBE transaccion = null; 
 		Resultado resultado = comprobarSaldoSuficiente(monto);
 		
@@ -172,8 +160,6 @@ public class TarjetaSube {
 			transaccion = this.procesarTransaccion(fichadaSubte, monto); 
 			this.transacciones.add(transaccion);
 		}
-		
-		
 		return transaccion;
 	}
 	
@@ -182,8 +168,6 @@ public class TarjetaSube {
 		this.transacciones.add(transaccion);
 		return transaccion;
 	}
-
-
 
 	public List<Fichada> obtenerViajesRealizados(GregorianCalendar fechaInicio , GregorianCalendar fechaFin ) {
 		List<Fichada> fichadas = new ArrayList<Fichada>();
@@ -227,8 +211,7 @@ public class TarjetaSube {
 		
 		return montoFinal;
 	}
-	
-	
+
 	public TransaccionSUBE procesarTransaccion (Fichada fichada, BigDecimal monto) {
 		//Descuenta saldo y crea  transaccion
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO); //Creamos uno nuevo
@@ -251,8 +234,7 @@ public class TarjetaSube {
 		this.transacciones.add(transaccion);
 		System.out.println("Transaccion en fichada entrada "+transaccion.getImporte().toString());
 		
-		return transaccion;
-		
+		return transaccion;	
 	}
 	
 	public Resultado comprobarSaldoSuficiente (BigDecimal monto ) {//Comprueba saldo suficiente 
@@ -269,15 +251,13 @@ public class TarjetaSube {
 		return resultadoComprobacion;
 	}
 
-	
 	private TransaccionSUBE getUltimaTransaccion() {// Obtiene la ultima transaccion dentro de lista de trasacciones----------
 		if (this.transacciones.size() > 0)
 			return IndexableSet.get(this.transacciones,this.transacciones.size()-1);		
 		else
 			return null;
 	}
-	
-	
+
 	private Fichada getUltimaFichada() {// obtiene la  ultima  fichada dentro de la ultima transaccion---------
 		TransaccionSUBE tx = this.getUltimaTransaccion();
 		if (tx != null)
@@ -285,16 +265,11 @@ public class TarjetaSube {
 		else
 			return null;
 	}
-	
-	
+		
 	public void asignarDescuento(DescuentoRedSube descuento) {
 		
 	}
 
-	 
-	
-	
-	
 	class Resultado{
 		 private boolean aprobado;
 		 private String mensaje;
@@ -317,14 +292,7 @@ public class TarjetaSube {
 		}
 		public void setMensaje(String mensaje) {
 			this.mensaje = mensaje;
-		}
-		 
-		 
-		
-		 
-	 
+		}	 
 	 }
-	
-	
 }
 

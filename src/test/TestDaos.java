@@ -2,17 +2,17 @@ package test;
 
 import java.util.GregorianCalendar;
 
+import dao.DocumentoDao;
+import dao.PersonaDao;
+import dao.UsuarioDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
+import modelo.Descuentos.DescuentoBoletoEstudiantil;
 //import modelo.Persona.eGenero;
 import modelo.eGenero;
 import modelo.Permiso;
 import modelo.Persona;
 import modelo.Usuario;
-import modelo.dao.DocumentoDao;
-import modelo.dao.PermisoDao;
-import modelo.dao.PersonaDao;
-import modelo.dao.UsuarioDao;
 
 public class TestDaos {
 
@@ -33,6 +33,8 @@ public class TestDaos {
 			int idPersona = daoPersona.agregarPersona(persona);
 			Documento doc = new Documento("37612478", eTipoDocumento.DNI, persona);
 			int idDoc = daoDocumento.agregarDocumento(doc);
+			DescuentoBoletoEstudiantil dbe = new DescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil.eTipoBoletoEstudiantil.ESCOLAR);
+			int idDescuentoEstudiantil;
 			//Ahora levantamos y revisamos que funque.
 			doc = daoDocumento.traerDocumento(idDoc);
 			persona = daoPersona.traerPersona(idPersona);
@@ -41,7 +43,7 @@ public class TestDaos {
 			//Usuario usuario = new Usuario("Gonzalocapo", "capomal", persona);
 			//dao2.agregarUsuario(usuario);
 		} catch (Exception e) {
-			//System.out.println(e.getMessage() + e.getCause());
+			System.out.println(e.getMessage() + ", " + e.getCause());
 			
 			e.printStackTrace();
 		}

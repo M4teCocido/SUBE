@@ -7,9 +7,9 @@
 			<generator class = "identity" />
 		</id>
 		<property column="nombre" name="nombre" type="string" />
-		<set name="ramalesColectivo" table="ramalcolectivo" order-by="idRamal asc" inverse="true" lazy="true" fetch="select">
+		<set name="tramosColectivo" table="tramoColectivo" order-by="idTramo asc" inverse="true" lazy="true" fetch="select">
 			<key column="idLinea" not-null="true" />
-			<one-to-many class="modelo.fichadas.colectivo.RamalColectivo" />
+			<one-to-many class="modelo.fichadas.colectivo.TramoColectivo" />
 		</set>
 	</class>
 </hibernate-mapping>

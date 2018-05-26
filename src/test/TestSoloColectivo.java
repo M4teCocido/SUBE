@@ -30,7 +30,7 @@ public class TestSoloColectivo {
 		
 		InternoColectivo internoA = new InternoColectivo (l165, "internoA", lectoraColectivoA);
 		internoA.getLectora().setInterno(internoA);
-		TramoColectivo tramoColectivoA = new TramoColectivo ("Tramo A",new BigDecimal (9));
+		TramoColectivo tramoColectivoA = new TramoColectivo("Tramo A",new BigDecimal (9), l165);
 		
 		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA);
 		System.out.println(tarjeta.getSaldo().toString());

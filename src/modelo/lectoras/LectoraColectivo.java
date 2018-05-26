@@ -5,11 +5,10 @@ import modelo.fichadas.colectivo.InternoColectivo;
 public class LectoraColectivo extends Lectora {
 	private InternoColectivo interno;
 	
-	public LectoraColectivo() {}
-	
-	public LectoraColectivo(InternoColectivo interno) {
+
+	public LectoraColectivo() {
 		super();
-		this.interno = interno;
+		
 	}
 	
 	public InternoColectivo getInterno() {

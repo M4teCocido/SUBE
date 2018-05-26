@@ -22,7 +22,7 @@ import modelo.fichadas.tren.LineaTren;
 
 import modelo.fichadas.tren.SeccionTren;
 import modelo.fichadas.tren.ViajeTren;
-import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
+import modelo.fichadas.tren.eTipoFichadaTren;
 import util.FuncionesGregorian;
 
 public class TestA {
@@ -35,23 +35,7 @@ public class TestA {
 		//tarjeta.setSaldo(new BigDecimal (21));
 		tarjeta.setPropietario(persona);
 		
-		
-		//Instancia de objetos para fichada subte--------------------------------------------------
-		LineaSubte lineaC = new LineaSubte ("Linea C", new BigDecimal(11));						 
-		EstacionSubte constitucion= new EstacionSubte("Constitucion", lineaC); 
-		EstacionSubte moreno = new EstacionSubte("Moreno", lineaC); 
-		lineaC.getRecorridoSubte().add(constitucion);
-		lineaC.getRecorridoSubte().add(moreno);
-		//Instancia de objetos para fichada Colectivo-----------------------------------------------------------------------------------------
-		
-		LineaColectivo l165 = new LineaColectivo ("165");
-		InternoColectivo internoA = new InternoColectivo (l165, "internoA");
-		TramoColectivo tramoColectivoA = new TramoColectivo ("Tramo A",new BigDecimal (9),l165);
-		
-		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA);
-		
-		
-		
+
 	
 	
 		

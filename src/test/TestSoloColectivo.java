@@ -10,6 +10,7 @@ import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.colectivo.InternoColectivo;
 import modelo.fichadas.colectivo.LineaColectivo;
 import modelo.fichadas.colectivo.TramoColectivo;
+import modelo.lectoras.LectoraColectivo;
 
 public class TestSoloColectivo {
 
@@ -25,8 +26,11 @@ public class TestSoloColectivo {
 		
 		
 		LineaColectivo l165 = new LineaColectivo ("165");
-		InternoColectivo internoA = new InternoColectivo (l165, "internoA");
-		TramoColectivo tramoColectivoA = new TramoColectivo ("Tramo A",new BigDecimal (9),l165);
+		LectoraColectivo lectoraColectivoA= new LectoraColectivo ();
+		
+		InternoColectivo internoA = new InternoColectivo (l165, "internoA", lectoraColectivoA);
+		internoA.getLectora().setInterno(internoA);
+		TramoColectivo tramoColectivoA = new TramoColectivo ("Tramo A",new BigDecimal (9));
 		
 		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA);
 		System.out.println(tarjeta.getSaldo().toString());

@@ -9,6 +9,10 @@ public class TramoColectivo {
 	private BigDecimal precio;
 	private LineaColectivo lineaColectivo;
 
+	public TramoColectivo() {
+	
+	}
+	
 	public TramoColectivo(String nombre, BigDecimal precio, LineaColectivo lineaColectivo) {
 		super();
 		this.nombre = nombre;

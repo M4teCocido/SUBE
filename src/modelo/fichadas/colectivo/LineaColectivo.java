@@ -3,7 +3,6 @@ package modelo.fichadas.colectivo;
 import java.util.Set;
 import java.util.HashSet;
 
-
 public class LineaColectivo {
 	
 	private int idLinea;
@@ -16,8 +15,12 @@ public class LineaColectivo {
 	public LineaColectivo(String nombre) {
 		super();
 		this.nombre = nombre;
+<<<<<<< HEAD
 		this.internosColectivo = new HashSet<InternoColectivo>();
 		this.tramosColectivo = new HashSet<TramoColectivo>();
+=======
+		this.setInternoColectivo(new HashSet<InternoColectivo>());
+>>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 	}
 
 	public int getIdLinea() {
@@ -36,6 +39,7 @@ public class LineaColectivo {
 		this.nombre = nombre;
 	}
 	
+<<<<<<< HEAD
 	public Set<TramoColectivo> getTramosColectivo() {
 		return tramosColectivo;
 	}
@@ -52,9 +56,18 @@ public class LineaColectivo {
 		this.internosColectivo = internosColectivo;
 	}
 
+=======
+	public Set<InternoColectivo> getInternoColectivo() {
+		return internoColectivo;
+	}
+
+	public void setInternoColectivo(Set<InternoColectivo> internoColectivo) {
+		this.internoColectivo = internoColectivo;
+	}	
+	
+>>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 	@Override
 	public String toString() {
 		return "LineaColectivo [Nombre=" + this.nombre + "]";
-	}	
-	
+	}
 }

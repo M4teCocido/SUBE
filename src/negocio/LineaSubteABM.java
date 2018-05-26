@@ -1,7 +1,7 @@
 package negocio;
 
 import modelo.fichadas.subte.LineaSubte;
-import modelo.fichadas.subte.dao.LineaSubteDao;
+import dao.fichadas.subte.LineaSubteDao;
 import java.math.BigDecimal;
 
 public class LineaSubteABM {

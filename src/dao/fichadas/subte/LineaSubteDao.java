@@ -1,4 +1,4 @@
-package modelo.fichadas.subte.dao;
+package dao.fichadas.subte;
 
 import java.util.List;
 

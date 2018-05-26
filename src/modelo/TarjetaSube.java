@@ -14,7 +14,7 @@ import modelo.fichadas.*;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.tren.FichadaTren;
-import modelo.fichadas.tren.FichadaTren.eTipoFichadaTren;
+import modelo.fichadas.tren.eTipoFichadaTren;
 import modelo.fichadas.tren.ViajeTren;
 import util.IndexableSet;
 
@@ -23,20 +23,22 @@ public class TarjetaSube {
 	private int idTarjeta;
 	private String codigo;
 	private Persona propietario;
-	private LinkedHashSet<TransaccionSUBE> transacciones;
+	private Set<TransaccionSUBE> transacciones;
 	private DescuentoRedSube descuentoRedSube;
 	private BigDecimal saldo;
 	private boolean activa;
-
+	private final int saldoMinimo = -19;
+	
 	public TarjetaSube() {}
 	
 	public TarjetaSube(String codigo, BigDecimal saldo) {
 		super();
 		this.codigo = codigo;
 		this.saldo = saldo;
-		this.transacciones = new LinkedHashSet<TransaccionSUBE>();
+		this.transacciones = new HashSet<TransaccionSUBE>();
 		this.descuentoRedSube = new DescuentoRedSube();
 		this.activa = true;
+		
 	}
 
 	protected void setIdTarjeta(int idTarjeta) {
@@ -75,7 +77,7 @@ public class TarjetaSube {
 		return transacciones;
 	}
 
-	public void setTransacciones(LinkedHashSet<TransaccionSUBE> transacciones) {
+	public void setTransacciones(Set<TransaccionSUBE> transacciones) {
 		this.transacciones = transacciones;
 	}
 
@@ -100,38 +102,28 @@ public class TarjetaSube {
 	}
 	
 	public TransaccionSUBE procesarFichada(FichadaColectivo fichadaColectivo) {
-		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecioColectivo(), fichadaColectivo);
+		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecio(), fichadaColectivo);
 		
-		TransaccionSUBE transaccion = this.procesarTransaccion(fichadaColectivo, monto); 
-		this.transacciones.add(transaccion);
+		TransaccionSUBE transaccion = null; 
+			Resultado resultado = comprobarSaldoSuficiente(monto);
+			
+			if (resultado.aprobado == true ) {
+				transaccion = this.procesarTransaccion(fichadaColectivo, monto); 
+				this.transacciones.add(transaccion);
+			}
+		
 		return transaccion;
-		
+	}
+	
 
-	}
+
 	
-	private TransaccionSUBE getUltimaTransaccion() {
-		if (this.transacciones.size() > 0)
-			return IndexableSet.get(this.transacciones,this.transacciones.size()-1);
-					
-					
-		else
-			return null;
-	}
-	
-	private Fichada getUltimaFichada() {
-		TransaccionSUBE tx = this.getUltimaTransaccion();
-		if (tx != null)
-			return tx.getFichada();
-		else
-			return null;
-	}
-	
-	public TransaccionSUBE procesarFichada(FichadaTren fichadaActual) {
+	public TransaccionSUBE procesarFichada(FichadaTren fichadaActual) { //Se procesa fichada tren. -----------
 		
 		TransaccionSUBE transaccion = null;
 		System.out.println(fichadaActual.toString());
 		if (fichadaActual.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
-			procesarSaldoMaximo (fichadaActual);
+			transaccion = procesarSaldoMaximo (fichadaActual);
 		} else {
 			
 			FichadaTren fichadaAnterior =  (FichadaTren) getUltimaFichada();
@@ -158,17 +150,29 @@ public class TarjetaSube {
 					}
 					
 				 
-				} else procesarSaldoMaximo (fichadaActual);
-			} else procesarSaldoMaximo (fichadaActual);
+				} else  transaccion = procesarSaldoMaximo (fichadaActual);
+			} else transaccion =  procesarSaldoMaximo (fichadaActual);
 
 		}
 		return transaccion;
 	}
 	
-	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) {
+	
+	
+	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) { //procesa fichada subte------------
 		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio(), fichadaSubte);
-		TransaccionSUBE transaccion = procesarTransaccion(fichadaSubte, monto);
-		this.transacciones.add(transaccion);
+		
+		
+		
+		TransaccionSUBE transaccion = null; 
+		Resultado resultado = comprobarSaldoSuficiente(monto);
+		
+		if (resultado.aprobado == true ) {
+			transaccion = this.procesarTransaccion(fichadaSubte, monto); 
+			this.transacciones.add(transaccion);
+		}
+		
+		
 		return transaccion;
 	}
 	
@@ -178,9 +182,7 @@ public class TarjetaSube {
 		return transaccion;
 	}
 
-	public void asignarDescuento(DescuentoRedSube descuento) {
-		
-	}
+
 
 	public List<Fichada> obtenerViajesRealizados(GregorianCalendar fechaInicio , GregorianCalendar fechaFin ) {
 		List<Fichada> fichadas = new ArrayList<Fichada>();
@@ -205,11 +207,11 @@ public class TarjetaSube {
 	}
 
 
-	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {
+	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {//Interface para todo proceso de descuento---------
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO);
 		if (this.propietario != null) {
 			//Aplica descuentos
-			if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().LeQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
+			if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().leQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.
 				montoFinal=this.propietario.getDescuentoBoletoEstudiantil().aplicarDescuento(montoFinal, fichada);
 			} else {
 				if (this.propietario.getDescuentoTarifaSocial() != null) {
@@ -225,6 +227,7 @@ public class TarjetaSube {
 		return montoFinal;
 	}
 	
+	
 	public TransaccionSUBE procesarTransaccion (Fichada fichada, BigDecimal monto) {
 		//Descuenta saldo y crea  transaccion
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO); //Creamos uno nuevo
@@ -238,26 +241,90 @@ public class TarjetaSube {
 	public String toString() {
 		return this.saldo.toString();
 	}
-	public void procesarSaldoMaximo (FichadaTren fichadaTren) {
+	public TransaccionSUBE procesarSaldoMaximo (FichadaTren fichadaTren) {
 		TransaccionSUBE transaccion = null;
 		System.out.println("Es de entrada");
 		BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
 		monto=procesarDescuento (monto, fichadaTren);
+		
 		transaccion = procesarTransaccion (fichadaTren, monto);
 		this.transacciones.add(transaccion);
 		System.out.println("Transaccion en fichada entrada "+transaccion.getImporte().toString());
+		
+		return transaccion;
+		
 	}
 	
-	public boolean comprobarSaldoSuficiente (BigDecimal monto ) {
-		boolean saldoSuficiente = true;
+	public Resultado comprobarSaldoSuficiente (BigDecimal monto ) {//Comprueba saldo suficiente 
+		
+		Resultado resultadoComprobacion =  new Resultado (true,"Transaccion aprobada");
 		BigDecimal montoAux = new BigDecimal (0);
 		
 		montoAux = this.saldo.subtract(monto);
 		
-		if( montoAux.compareTo(new BigDecimal (-19))==-1) {
-			saldoSuficiente = false;
+		if( montoAux.compareTo(new BigDecimal (saldoMinimo))==-1) {
+			resultadoComprobacion.setAprobado(false);
+			resultadoComprobacion.setMensaje("Saldo Insuficiente");
 		}
-		return saldoSuficiente;
+		return resultadoComprobacion;
 	}
 
+	
+	private TransaccionSUBE getUltimaTransaccion() {// Obtiene la ultima transaccion dentro de lista de trasacciones----------
+		if (this.transacciones.size() > 0)
+			return IndexableSet.get(this.transacciones,this.transacciones.size()-1);		
+		else
+			return null;
+	}
+	
+	
+	private Fichada getUltimaFichada() {// obtiene la  ultima  fichada dentro de la ultima transaccion---------
+		TransaccionSUBE tx = this.getUltimaTransaccion();
+		if (tx != null)
+			return tx.getFichada();
+		else
+			return null;
+	}
+	
+	
+	public void asignarDescuento(DescuentoRedSube descuento) {
+		
+	}
+
+	 
+	
+	
+	
+	class Resultado{
+		 private boolean aprobado;
+		 private String mensaje;
+		public Resultado(boolean aprobado, String mensaje) {
+			super();
+			this.aprobado = aprobado;
+			this.mensaje = mensaje;
+		}
+		public Resultado() {
+			super();
+		}
+		public boolean isAprobado() {
+			return aprobado;
+		}
+		public void setAprobado(boolean aprobado) {
+			this.aprobado = aprobado;
+		}
+		public String getMensaje() {
+			return mensaje;
+		}
+		public void setMensaje(String mensaje) {
+			this.mensaje = mensaje;
+		}
+		 
+		 
+		
+		 
+	 
+	 }
+	
+	
 }
+

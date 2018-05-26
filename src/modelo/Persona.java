@@ -11,9 +11,7 @@ import util.FuncionesGregorian;
 import util.IndexableSet;
 
 public class Persona {
-	
-	//public enum eGenero {M, F};
-	
+		
 	private int idPersona;
 	private String nombre;
 	private String apellido;

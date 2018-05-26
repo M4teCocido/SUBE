@@ -8,5 +8,9 @@
 		</id>
 		<property column="nombre" name="nombre" type="string" />
 		<many-to-one name="lineaSubte" class="modelo.fichadas.subte.LineaSubte" fetch="select" column="idLinea" not-null="true" />
+		<!--  <set name="lectoras" table="lectorasubte" order-by="idLectora asc" inverse="true" lazy="true" fetch="select">
+			<key column="idEstacion" not-null="true" />
+			<one-to-many class="modelo.lectoras.LectoraSubte" />
+		</set> -->
  	</class>
 </hibernate-mapping>

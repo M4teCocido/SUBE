@@ -1,7 +1,7 @@
 package negocio;
 
 import modelo.fichadas.tren.LineaTren;
-import modelo.fichadas.tren.dao.LineaTrenDao;
+import dao.fichadas.tren.LineaTrenDao;
 
 public class LineaTrenABM {
 	LineaTrenDao dao = new LineaTrenDao();

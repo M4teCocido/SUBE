@@ -7,9 +7,12 @@
 			<generator class = "identity" />
 		</id>
 		<property column="nombre" name="nombre" type="string" />
+<<<<<<< HEAD
 		<set name="tramosColectivo" table="tramoColectivo" order-by="idTramo asc" inverse="true" lazy="true" fetch="select">
 			<key column="idLinea" not-null="true" />
 			<one-to-many class="modelo.fichadas.colectivo.TramoColectivo" />
 		</set>
+=======
+>>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 	</class>
 </hibernate-mapping>

@@ -1,11 +1,16 @@
 package modelo.fichadas.subte;
+
+import java.util.HashSet;
+import java.util.Set;
 import modelo.fichadas.subte.LineaSubte;
+import modelo.lectoras.LectoraSubte;
 
 public class EstacionSubte {
 	
 	private int idEstacion;
 	private String nombre;
 	private LineaSubte lineaSubte;
+	private Set<LectoraSubte> lectoras;
 	
 	public EstacionSubte() {}
 	
@@ -13,6 +18,7 @@ public class EstacionSubte {
 		super();
 		this.nombre = nombre;
 		this.lineaSubte = lineaSubte;
+		this.lectoras = new HashSet<LectoraSubte>();
 	}
 	
 	public int getIdEstacion() {
@@ -38,10 +44,19 @@ public class EstacionSubte {
 	public void setLineaSubte(LineaSubte lineaSubte) {
 		this.lineaSubte = lineaSubte;
 	}
+
+	public Set<LectoraSubte> getLectoras() {
+		return lectoras;
+	}
+
+	public void setLectoras(Set<LectoraSubte> lectoras) {
+		this.lectoras = lectoras;
+	}
 	
 	@Override
 	public String toString() {
 		return "EstacionSubte [nombre=" + nombre + ", lineaSubte=" + lineaSubte + "]";
 	}
+
 	
 }

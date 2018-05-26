@@ -1,11 +1,15 @@
 package modelo.fichadas.tren;
+import java.util.Set;
+
 import modelo.fichadas.tren.LineaTren;
+import modelo.lectoras.LectoraTren;
 
 public class EstacionTren {
 	
 	private int idEstacion;
 	private String nombre;
 	private LineaTren linea;
+	private Set<LectoraTren> lectoras;
 
 	public EstacionTren() {}
 	
@@ -39,6 +43,14 @@ public class EstacionTren {
 		this.linea = linea;
 	}
 
+	public Set<LectoraTren> getLectoras() {
+		return lectoras;
+	}
+
+	public void setLectoras(Set<LectoraTren> lectoras) {
+		this.lectoras = lectoras;
+	}
+	
 	@Override
 	public String toString() {
 		return  nombre;

@@ -14,7 +14,7 @@ public class FichadaSubte extends Fichada {
 	
 	public FichadaSubte(GregorianCalendar fechaHora, Lectora lectora, EstacionSubte estacionSubte) {
 		super(fechaHora, lectora);
-		this.estacionSubte = estacionSubte;
+		this.setEstacionSubte(estacionSubte);
 	}
 	
 	public EstacionSubte getEstacionSubte() {

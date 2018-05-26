@@ -3,13 +3,15 @@ package modelo.Descuentos;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import modelo.Persona;
 import modelo.Descuentos.eTipoBoletoEstudiantil;
 
 import modelo.fichadas.Fichada;
 
 public class DescuentoBoletoEstudiantil extends DescuentoSube {
 	
-	// 5.00h y las 23.00h.
+	// 5.00h y las 23.00h.s
 	
 	private static int horaInicio = 5;
 	private static int horaFin = 23;
@@ -17,12 +19,13 @@ public class DescuentoBoletoEstudiantil extends DescuentoSube {
 	private BigDecimal porcentajeDescuento;
 	private int viajesRestantes;
 	private eTipoBoletoEstudiantil tipoBoletoEstudiantil;
+	private Persona persona;
 	
 	//Los viajes no los recargamos : Le asignamos un nuevo descuento y listo.
 	
 	public DescuentoBoletoEstudiantil() {}
 	
-	public DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil tipoBoletoEstudiantil) {
+	public DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil tipoBoletoEstudiantil, Persona persona) {
 		super("Boleto Estudiantil");
 		if (tipoBoletoEstudiantil == eTipoBoletoEstudiantil.ESCOLAR) {
 			this.porcentajeDescuento = new BigDecimal(0);
@@ -31,6 +34,7 @@ public class DescuentoBoletoEstudiantil extends DescuentoSube {
 			this.porcentajeDescuento = new BigDecimal(0);
 			this.viajesRestantes = 45;	
 		}
+		this.persona = persona;
 		this.tipoBoletoEstudiantil = tipoBoletoEstudiantil;
 	}
 
@@ -77,4 +81,14 @@ public class DescuentoBoletoEstudiantil extends DescuentoSube {
 	public void setTipoBoletoEstudiantil(eTipoBoletoEstudiantil tipoBoletoEstudiantil) {
 		this.tipoBoletoEstudiantil = tipoBoletoEstudiantil;
 	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+	
+	
 }

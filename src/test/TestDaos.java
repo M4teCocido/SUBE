@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 import dao.DocumentoDao;
-<<<<<<< HEAD
+
 import dao.PersonaDao;
 import dao.UsuarioDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
 import modelo.Descuentos.DescuentoBoletoEstudiantil;
-=======
+
 import dao.PermisoDao;
 import dao.PersonaDao;
 import dao.TarjetaSubeDao;
@@ -19,17 +19,14 @@ import dao.fichadas.TransaccionSUBEDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
 import modelo.fichadas.TransaccionSUBE;
->>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
+
 //import modelo.Persona.eGenero;
 import modelo.eGenero;
 import modelo.Permiso;
 import modelo.Persona;
 import modelo.TarjetaSube;
 import modelo.Usuario;
-<<<<<<< HEAD
-=======
 
->>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 
 public class TestDaos {
 

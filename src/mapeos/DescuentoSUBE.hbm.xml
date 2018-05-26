@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping >
+
 	<class name="modelo.Descuentos.DescuentoSube" table="descuentosube">
 		<id column="idDescuento" name="idDescuento">
 			<generator class = "identity" />
@@ -21,8 +22,19 @@
 	 
 	<joined-subclass name="modelo.Descuentos.DescuentoBoletoEstudiantil" table="descuentoboletoestudiantil" extends="modelo.Descuentos.DescuentoSube">
 		<key column="idDescuento" />
+
 		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" />
 		<property name="viajesRestantes" column="viajesRestantes" type="int" />
-		<property name="tipoBoletoEstudiantil" column="tipoBoleto" type="int" />
+		
+		<property name="idPersona" column="idPersona" type="int" />
+		
+		<property column="tipoBoleto" name="tipoBoletoEstudiantil">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">modelo.Descuentos.eTipoBoletoEstudiantil</param>
+	    	</type>
+	    </property>
+		
+		<one-to-one name = "Persona" class = "modelo.Persona" foreign-key ="idPersona" constrained="true"> </one-to-one >
+		
 	</joined-subclass>
 </hibernate-mapping>

@@ -4,9 +4,9 @@
 <hibernate-mapping >
 	<class name="modelo.Documento" table="documentoPersona">
 		<id name="idDocumento" type="int" column="idDocumento">
-        <generator class="foreign">
-            <param name="property">Persona</param>
-        </generator>
+	        <generator class="foreign">
+	            <param name="property">Persona</param>
+	        </generator>
         </id>
 		
 		<property column="numero" name="numero" type="string" />		

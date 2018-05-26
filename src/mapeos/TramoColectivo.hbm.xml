@@ -10,10 +10,7 @@
 		
 		<property column="nombre" name="nombre" type="string" />
 		<property column="precio" name="precio" type="java.math.BigDecimal" />
-<<<<<<< HEAD
+
 		<many-to-one name="lineaColectivo" class="modelo.fichadas.colectivo.LineaColectivo" fetch="select" column="idLinea" not-null="true" />
-		
-=======
->>>>>>> a84f8f01c047347ca76e4dc77dbc95a2f946368d
 	</class>
 </hibernate-mapping>

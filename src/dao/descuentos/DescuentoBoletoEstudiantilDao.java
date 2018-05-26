@@ -11,6 +11,7 @@ import javassist.runtime.Desc;
 import modelo.Descuentos.DescuentoBoletoEstudiantil;
 
 public class DescuentoBoletoEstudiantilDao {
+	
 	private static Session session;
 	private Transaction tx;
 	

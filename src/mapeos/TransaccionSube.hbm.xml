@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping >
-	<class name="modelo.fichadas.TransaccionSUBE" table="transacccionsube">
+	<class name="modelo.fichadas.TransaccionSUBE" table="transaccionsube">
 		<id column="idTransaccion" name="idTransaccion">
 			<generator class = "identity" />
 		</id>

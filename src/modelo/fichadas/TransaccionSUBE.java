@@ -1,12 +1,14 @@
 package modelo.fichadas;
 
 import java.math.BigDecimal;
+import modelo.TarjetaSube;
 
 public class TransaccionSUBE {
 	
 	private int idTransaccion;
 	private Fichada fichada;
 	private BigDecimal importe;
+	private TarjetaSube tarjeta;
 	
 	public TransaccionSUBE() {}
 	

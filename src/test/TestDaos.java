@@ -4,13 +4,11 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 import dao.DocumentoDao;
-
 import dao.PersonaDao;
 import dao.UsuarioDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
 import modelo.Descuentos.DescuentoBoletoEstudiantil;
-
 import dao.PermisoDao;
 import dao.PersonaDao;
 import dao.TarjetaSubeDao;

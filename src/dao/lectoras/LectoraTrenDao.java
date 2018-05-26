@@ -1,4 +1,4 @@
-package dao.fichadas;
+package dao.lectoras;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.fichadas.FichadaRecarga;
+import modelo.lectoras.LectoraTren;
 
-public class FichadaRecargaDao {
+public class LectoraTrenDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,11 +23,11 @@ public class FichadaRecargaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarFichadaRecarga(FichadaRecarga fichada) {
+	public int agregarLectora(LectoraTren lectora) {
 		int id = 0;
 		try {
 			iniciaOperacion();
-			id = Integer.parseInt(session.save(fichada).toString());
+			id = Integer.parseInt(session.save(lectora).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -38,10 +38,10 @@ public class FichadaRecargaDao {
 		return id;
 	}
 	
-	public void modificarFichadaRecarga(FichadaRecarga fichada) {
+	public void modificarLectora(LectoraTren lectora) {
 		try {
 			iniciaOperacion();
-			session.update(fichada);
+			session.update(lectora);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -51,10 +51,10 @@ public class FichadaRecargaDao {
 		}
 	}
 	
-	public void elimninarFichadaRecarga(FichadaRecarga fichada) {
+	public void elimninarLectora(LectoraTren lectora) {
 		try {
 			iniciaOperacion();
-			session.delete(fichada);
+			session.delete(lectora);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -64,26 +64,26 @@ public class FichadaRecargaDao {
 		}
 	}
 	
-	public FichadaRecarga traerFichada(int idFichada) throws HibernateException {
-		FichadaRecarga fichada = null;
+	public LectoraTren traerLectora(int idLectora) throws HibernateException {
+		LectoraTren lectora= null;
 		try {
 			iniciaOperacion();
-			fichada = (FichadaRecarga) session.get(FichadaRecarga.class, idFichada);
+			lectora = (LectoraTren) session.get(LectoraTren.class, idLectora);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
 			session.close();
 		}
-		return fichada;
+		return lectora;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<FichadaRecarga> traerFichadas() throws HibernateException {
-		List<FichadaRecarga> lista = null;
+	public List<LectoraTren> traerLectoras() throws HibernateException {
+		List<LectoraTren> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from FichadaRecarga f order by f.idFichada asc").list();
+			lista = session.createQuery("from LectoraTren l order by l.idLectora asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
-import modelo.fichadas.FichadaRecarga;
+import modelo.fichadas.Fichada;
 
-public class FichadaRecargaDao {
+public class FichadaDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -23,7 +23,7 @@ public class FichadaRecargaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarFichadaRecarga(FichadaRecarga fichada) {
+	public int agregarFichadaRecarga(Fichada fichada) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -38,7 +38,7 @@ public class FichadaRecargaDao {
 		return id;
 	}
 	
-	public void modificarFichadaRecarga(FichadaRecarga fichada) {
+	public void modificarFichadaRecarga(Fichada fichada) {
 		try {
 			iniciaOperacion();
 			session.update(fichada);
@@ -51,7 +51,7 @@ public class FichadaRecargaDao {
 		}
 	}
 	
-	public void elimninarFichadaRecarga(FichadaRecarga fichada) {
+	public void elimninarFichadaRecarga(Fichada fichada) {
 		try {
 			iniciaOperacion();
 			session.delete(fichada);
@@ -64,11 +64,11 @@ public class FichadaRecargaDao {
 		}
 	}
 	
-	public FichadaRecarga traerFichada(int idFichada) throws HibernateException {
-		FichadaRecarga fichada = null;
+	public Fichada traerFichada(int idFichada) throws HibernateException {
+		Fichada fichada = null;
 		try {
 			iniciaOperacion();
-			fichada = (FichadaRecarga) session.get(FichadaRecarga.class, idFichada);
+			fichada = (Fichada) session.get(Fichada.class, idFichada);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
@@ -79,11 +79,11 @@ public class FichadaRecargaDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<FichadaRecarga> traerFichadas() throws HibernateException {
-		List<FichadaRecarga> lista = null;
+	public List<Fichada> traerFichadas() throws HibernateException {
+		List<Fichada> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from FichadaRecarga f order by f.idFichada asc").list();
+			lista = session.createQuery("from Fichada f order by f.idFichada asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

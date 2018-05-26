@@ -37,8 +37,5 @@ public class TestSoloSubte {
 		if ( transaccionPrueba != null) {
 			System.out.print(transaccionPrueba.toString());
 			}
-		
-		
 	}	
-
 }

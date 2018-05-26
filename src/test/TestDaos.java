@@ -14,6 +14,7 @@ import dao.PersonaDao;
 import dao.TarjetaSubeDao;
 import dao.UsuarioDao;
 import dao.fichadas.TransaccionSUBEDao;
+import dao.fichadas.subte.FichadaSubteDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
 import modelo.fichadas.Fichada;
@@ -39,13 +40,18 @@ public class TestDaos {
 		
 		try {
 			TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
-            GregorianCalendar cal = new GregorianCalendar(2018, 4, 25, 15, 25, 33);
+			FichadaSubteDao daoFichada = new FichadaSubteDao();
+            TarjetaSubeDao daoTarjeta = new TarjetaSubeDao();
+            
+			GregorianCalendar cal = new GregorianCalendar(2018, 4, 25, 15, 25, 33);
             LineaSubte linea = new LineaSubte("A", new BigDecimal(8));
-            EstacionSubte estacion = new EstacionSubte("CaraGil", linea);
+            EstacionSubte estacion = new EstacionSubte("Carabobo", linea);
             FichadaSubte fichada = new FichadaSubte(cal, estacion);
             TarjetaSube tarjeta = new TarjetaSube("7515131531", new BigDecimal(6));
-            TarjetaSubeDao daoTarjeta = new TarjetaSubeDao();
+
+            daoFichada.agregarFichada(fichada);
             daoTarjeta.agregarTarjetaSube(tarjeta);
+            
             TransaccionSUBE transaccion = new TransaccionSUBE(fichada, new BigDecimal (5), tarjeta);
             int idTransaccion = daoTransaccion.agregarTransaccion(transaccion);
             transaccion = daoTransaccion.traerTransaccion(idTransaccion);

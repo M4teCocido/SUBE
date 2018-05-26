@@ -23,8 +23,6 @@ public class TestSoloColectivo {
 		
 		tarjeta.setPropietario(persona);
 		
-		
-		
 		LineaColectivo l165 = new LineaColectivo ("165");
 		LectoraColectivo lectoraColectivoA= new LectoraColectivo ();
 		

@@ -1,6 +1,6 @@
 package negocio;
 
-import modelo.fichadas.colectivo.dao.LineaColectivoDao;
+import dao.fichadas.colectivo.LineaColectivoDao;
 import modelo.fichadas.colectivo.LineaColectivo;
 
 public class LineaColectivoABM {

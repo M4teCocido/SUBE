@@ -23,9 +23,7 @@ public class FichadaColectivo extends Fichada {
 	public void setTramo(TramoColectivo tramo) {
 		this.tramo = tramo;
 	}
-	public BigDecimal obtenerPrecioColectivo() {
-		return this.tramo.getPrecio();
-	}
+	
 	public BigDecimal obtenerPrecio() {
 		return this.tramo.getPrecio();
 	}

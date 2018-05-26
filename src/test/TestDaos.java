@@ -1,18 +1,24 @@
 package test;
 
+import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
+import dao.DocumentoDao;
+import dao.PermisoDao;
+import dao.PersonaDao;
+import dao.TarjetaSubeDao;
+import dao.UsuarioDao;
+import dao.fichadas.TransaccionSUBEDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
+import modelo.fichadas.TransaccionSUBE;
 //import modelo.Persona.eGenero;
 import modelo.eGenero;
 import modelo.Permiso;
 import modelo.Persona;
+import modelo.TarjetaSube;
 import modelo.Usuario;
-import modelo.dao.DocumentoDao;
-import modelo.dao.PermisoDao;
-import modelo.dao.PersonaDao;
-import modelo.dao.UsuarioDao;
+
 
 public class TestDaos {
 
@@ -23,7 +29,7 @@ public class TestDaos {
 		dao.agregarPermiso(permiso);*/
 		
 		try {
-			UsuarioDao daoUsuario = new UsuarioDao();
+			/*UsuarioDao daoUsuario = new UsuarioDao();
 			PersonaDao daoPersona = new PersonaDao();
 			DocumentoDao daoDocumento = new DocumentoDao();
 			GregorianCalendar cal = new GregorianCalendar(1993, 11, 16);
@@ -36,30 +42,28 @@ public class TestDaos {
 			//Ahora levantamos y revisamos que funque.
 			doc = daoDocumento.traerDocumento(idDoc);
 			persona = daoPersona.traerPersona(idPersona);
-			System.out.println(persona);
+			//System.out.println(persona);
 			
-			//Usuario usuario = new Usuario("Gonzalocapo", "capomal", persona);
-			//dao2.agregarUsuario(usuario);
+			UsuarioDao daousuario = new UsuarioDao();
+			Usuario usuario = new Usuario("Gonzalocapo", "capomal", persona);
+			int idUsuario = daoUsuario.agregarUsuario(usuario);
+			usuario = daoUsuario.traerUsuarioPorId(idUsuario);*/
+			
+			//----------------------------TEST TARJETA SUBE----------------------------
+			/*TarjetaSubeDao daoTarjeta = new TarjetaSubeDao();
+			TarjetaSube tarjeta = new TarjetaSube("11111", new BigDecimal (100));
+			daoTarjeta.agregarTarjetaSube(tarjeta);
+			int idTarjeta = daoTarjeta.agregarTarjetaSube(tarjeta);
+			tarjeta = daoTarjeta.traerTarjeta(idTarjeta);
+			System.out.println(tarjeta);*/
+			//----------------------------TEST TRANSACCION----------------------------
+			TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
+			//FALTA MAPEAR FICHADAS
+			TransaccionSUBE transaccion = new TransaccionSUBE();
 		} catch (Exception e) {
 			//System.out.println(e.getMessage() + e.getCause());
 			
 			e.printStackTrace();
 		}
-		
-		/*Permiso permiso2 = dao.traerPermiso(1);
-		permiso2.setNombre("Nombre modificado");
-		permiso2.setDescripcion("Modificado correctamente");
-		permiso2.setCodigo("2222");
-		dao.modificarPermiso(permiso2);
-		dao.eliminarPermiso(permiso2);*/
-		
-		/*try {
-			DocumentoDao dao3 = new DocumentoDao();
-			Documento documento = new Documento("37612478", eTipoDocumento.DNI);
-			dao3.agregarDocumento(documento);
-		} catch (Exception e) {
-			System.out.println(e.getMessage() + e.getCause());
-			e.printStackTrace();
-		}*/
 	}
 }

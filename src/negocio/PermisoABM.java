@@ -1,7 +1,7 @@
 package negocio;
 
 import modelo.Permiso;
-import modelo.dao.PermisoDao;
+import dao.PermisoDao;
 
 public class PermisoABM {
 	PermisoDao dao = new PermisoDao();

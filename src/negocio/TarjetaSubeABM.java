@@ -1,6 +1,6 @@
 package negocio;
 
-import modelo.dao.TarjetaSubeDao;
+import dao.TarjetaSubeDao;
 import java.math.BigDecimal;
 import modelo.TarjetaSube;
 

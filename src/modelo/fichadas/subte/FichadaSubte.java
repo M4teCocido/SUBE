@@ -11,8 +11,8 @@ public class FichadaSubte extends Fichada {
 	
 	public FichadaSubte() {}
 	
-	public FichadaSubte(GregorianCalendar fechaHora, int idLectora, EstacionSubte estacionSubte) {
-		super(fechaHora, idLectora);
+	public FichadaSubte(GregorianCalendar fechaHora, EstacionSubte estacionSubte) {
+		super(fechaHora);
 		this.estacionSubte = estacionSubte;
 	}
 	

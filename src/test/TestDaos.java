@@ -94,9 +94,9 @@ public class TestDaos {
 			LectoraSubteDao daoLectoraSubte = new LectoraSubteDao();
 			//Creo la fichada y dao
 			GregorianCalendar fechaHoraFichada = new GregorianCalendar(2018, 3, 15, 15, 10, 25);
-			Fichada fichada = new Fichada(fechaHoraFichada, lectora.getIdLectora()) {};
+			Fichada fichada = new Fichada(fechaHoraFichada) {};
 			//Creo la fichadaSubte y dao
-			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), fichada.getIdLectora(), estacionSubte);
+			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), estacionSubte);
 			FichadaSubteDao daoFichadaSubte = new FichadaSubteDao();
 			//Creo la transaccion y dao
 			TransaccionSUBE transaccion = new TransaccionSUBE(fichadaSubte, lineaSubte.getPrecioViaje(), tarjeta2);

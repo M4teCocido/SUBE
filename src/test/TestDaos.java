@@ -103,7 +103,7 @@ public class TestDaos {
 			Fichada fichada = new Fichada(fechaHoraFichada, lectoraSubte) {};
 			
 			//Creo la fichadaSubte y dao
-			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), fichada.getLectora(), lectoraSubte.getEstacion());
+			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), fichada.getLectora(), estacionSubte);
 			FichadaSubteDao daoFichadaSubte = new FichadaSubteDao();
 			
 			//Creo la transaccion y dao

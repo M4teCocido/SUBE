@@ -33,11 +33,6 @@ public abstract class Fichada {
 		this.idFichada = idFichada;
 	}
 	
-	@Override
-	public String toString() {
-		return "Fichada [fechaHora=" + fechaHora;
-	}
-
 	public Lectora getLectora() {
 		return lectora;
 	}
@@ -46,4 +41,8 @@ public abstract class Fichada {
 		this.lectora = lectora;
 	}
 	
+	@Override
+	public String toString() {
+		return "Fichada [fechaHora=" + fechaHora;
+	}	
 }

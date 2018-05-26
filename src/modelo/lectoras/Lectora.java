@@ -23,7 +23,7 @@ public abstract class Lectora {
 		return idLectora;
 	}
 	
-	protected void setIdLectora(int idLectora) {
+	public void setIdLectora(int idLectora) {
 		this.idLectora = idLectora;
 	}
 

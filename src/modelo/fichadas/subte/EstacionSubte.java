@@ -25,7 +25,7 @@ public class EstacionSubte {
 		return this.idEstacion;
 	}
 	
-	protected void setIdEstacion(int idEstacion) {
+	public void setIdEstacion(int idEstacion) {
 		this.idEstacion = idEstacion;
 	}
 	

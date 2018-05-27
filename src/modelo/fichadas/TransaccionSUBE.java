@@ -12,8 +12,9 @@ public class TransaccionSUBE {
 	
 	public TransaccionSUBE() {}
 	
-	public TransaccionSUBE(BigDecimal importe, TarjetaSube tarjeta) {
+	public TransaccionSUBE(BigDecimal importe, TarjetaSube tarjeta, Fichada fichada) {
 		super();
+		this.fichada = fichada;
 		this.importe = importe;
 		this.setTarjeta(tarjeta);
 	}

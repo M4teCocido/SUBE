@@ -7,7 +7,7 @@ public abstract class Fichada {
 	
 	private int idFichada;
 	private Lectora lectora;
-	private GregorianCalendar fechaHora; 
+	private GregorianCalendar fechaHora;
 	
 	public Fichada() {}
 	

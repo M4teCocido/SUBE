@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 import modelo.fichadas.Fichada;
 import modelo.fichadas.colectivo.TramoColectivo;
-import modelo.lectoras.Lectora;
+import modelo.lectoras.LectoraColectivo;
 
 public class FichadaColectivo extends Fichada {
 	
@@ -12,7 +12,7 @@ public class FichadaColectivo extends Fichada {
 
 	public FichadaColectivo() {}
 
-	public FichadaColectivo(GregorianCalendar fechaHora, TramoColectivo tramo, Lectora lectora) {
+	public FichadaColectivo(GregorianCalendar fechaHora, TramoColectivo tramo, LectoraColectivo lectora) {
 		super(fechaHora, lectora);
 		this.tramo = tramo;
 	}

@@ -11,6 +11,6 @@
 		<set name="lectoras" table="lectorasubte" inverse="true" lazy="true" fetch="select"><!-- order-by="idLectora asc"  -->
 			<key column="idEstacion" not-null="true" />
 			<one-to-many class="modelo.lectoras.LectoraSubte" />
-		</set> 
+		</set>
  	</class>
 </hibernate-mapping>

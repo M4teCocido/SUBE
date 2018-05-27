@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 import modelo.fichadas.Fichada;
 import modelo.fichadas.tren.EstacionTren;
 import modelo.fichadas.tren.eTipoFichadaTren;
-import modelo.lectoras.Lectora;
+import modelo.lectoras.LectoraTren;
 
 public  class FichadaTren extends Fichada {
 	
@@ -13,7 +13,7 @@ public  class FichadaTren extends Fichada {
 	
 	public FichadaTren() {}
 	
-	public FichadaTren(GregorianCalendar fechaHora, EstacionTren estacion, eTipoFichadaTren tipoFichada, Lectora lectora) {
+	public FichadaTren(GregorianCalendar fechaHora, EstacionTren estacion, eTipoFichadaTren tipoFichada, LectoraTren lectora) {
 		super(fechaHora, lectora);
 		this.estacion = estacion;
 		this.tipoFichada = tipoFichada;

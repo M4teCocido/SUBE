@@ -25,7 +25,7 @@ public class EstacionSubte {
 		return this.idEstacion;
 	}
 	
-	public void setIdEstacion(int idEstacion) {
+	protected void setIdEstacion(int idEstacion) {
 		this.idEstacion = idEstacion;
 	}
 	
@@ -58,5 +58,4 @@ public class EstacionSubte {
 		return "EstacionSubte [nombre=" + nombre + ", lineaSubte=" + lineaSubte + "]";
 	}
 
-	
 }

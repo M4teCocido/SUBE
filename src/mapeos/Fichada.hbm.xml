@@ -12,7 +12,8 @@
 	
 	<joined-subclass name = "modelo.fichadas.subte.FichadaSubte" table="fichadasubte" extends="modelo.fichadas.Fichada">
 		<key column="idFichada" />
-		<one-to-one name="estacionSubte" class="modelo.fichadas.subte.EstacionSubte"></one-to-one>
+		<!--  <one-to-one name="estacionSubte" class="modelo.fichadas.subte.EstacionSubte"></one-to-one> -->
+		<many-to-one name="estacionSubte" class="modelo.fichadas.subte.EstacionSubte" fetch="select" column="idEstacion" not-null="true" />
 	</joined-subclass>
 	
 	<joined-subclass name = "modelo.fichadas.colectivo.FichadaColectivo" table="fichadacolectivo" extends="modelo.fichadas.Fichada">

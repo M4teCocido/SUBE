@@ -22,11 +22,7 @@
 		
 		<one-to-one name="documento" class="modelo.Documento" cascade="all" />
 		<one-to-one name="descuentoBoletoEstudiantil" class="modelo.Descuentos.DescuentoBoletoEstudiantil" cascade="all" />
-		
-		<!--  
 		<one-to-one name="descuentoTarifaSocial" class="modelo.Descuentos.DescuentoTarifaSocial"></one-to-one>
-		<one-to-one name="descuentoBoletoEstudiantil" class="modelo.Descuentos.DescuentoBoletoEstudiantil"></one-to-one>
-		-->
 		
 		<set name="tarjetasAsociadas" table="tarjetasube" order-by="idTarjetaSube asc" inverse="true" lazy="false" fetch="select">
 			<key column="idPropietario" not-null="true" />

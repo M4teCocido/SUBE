@@ -9,8 +9,8 @@
 		<property column="codigo" name="codigo" type="string" />
 		<property column="activa" name="activa" type="boolean" />
 		<property column="saldo" name="saldo" type="java.math.BigDecimal" />
-		
-		<one-to-one name="propietario" class="modelo.Persona"></one-to-one>
+
+		<many-to-one name="propietario" class="modelo.Persona" fetch="select" column="idPropietario" not-null="true" />
 		<one-to-one name="descuentoRedSube" class="modelo.Descuentos.DescuentoRedSube"></one-to-one>
 		<set name="transacciones" table="trasaccionsube" order-by="idTransaccion asc" inverse="true" lazy="true" fetch="select">
 			<key column="idTarjetaSube" not-null="true" />

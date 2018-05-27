@@ -10,6 +10,7 @@ import modelo.fichadas.TransaccionSUBE;
 import modelo.fichadas.subte.EstacionSubte;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.fichadas.subte.LineaSubte;
+import modelo.lectoras.LectoraSubte;
 
 public class TestSoloSubte {
 
@@ -24,15 +25,13 @@ public class TestSoloSubte {
 		
 		tarjeta.setPropietario(persona);
 		
-		
-				
-		
+		LectoraSubte lectora = new LectoraSubte();
 		LineaSubte lineaC = new LineaSubte ("Linea C", new BigDecimal(11));						 
 		EstacionSubte constitucion= new EstacionSubte("Constitucion", lineaC); 
 		EstacionSubte moreno = new EstacionSubte("Moreno", lineaC); 
 		lineaC.getRecorridoSubte().add(constitucion);
 		lineaC.getRecorridoSubte().add(moreno);
-		FichadaSubte fichadaSubte = new FichadaSubte (new GregorianCalendar(2018, 3, 6, 13,10,00), constitucion);		
+		FichadaSubte fichadaSubte = new FichadaSubte (new GregorianCalendar(2018, 3, 6, 13,10,00), lectora, constitucion);		
 		TransaccionSUBE transaccionPrueba = tarjeta.procesarFichada(fichadaSubte);
 		if ( transaccionPrueba != null) {
 			System.out.print(transaccionPrueba.toString());

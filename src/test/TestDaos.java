@@ -94,7 +94,7 @@ public class TestDaos {
 			EstacionSubteDao daoEstacionSubte = new EstacionSubteDao();
 			
 			//Creo lectora y dao
-			Lectora lectora = new Lectora(1) {};
+			Lectora lectora = new Lectora() {};
 			LectoraSubte lectoraSubte = new LectoraSubte(lectora.getNroSerie(), estacionSubte);
 			LectoraSubteDao daoLectoraSubte = new LectoraSubteDao();
 			

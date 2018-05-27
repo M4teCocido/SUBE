@@ -108,8 +108,7 @@ public class TestDaos {
 			FichadaSubteDao daoFichadaSubte = new FichadaSubteDao();
 			
 			//Creo la transaccion y dao
-			TransaccionSUBE transaccion = new TransaccionSUBE(lineaSubte.getPrecioViaje(), tarjeta2);
-			transaccion.setFichada(fichadaSubte);
+			TransaccionSUBE transaccion = new TransaccionSUBE(lineaSubte.getPrecioViaje(), tarjeta2, daoFichadaSubte.traerFichada(1));
 			TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
 			
 			//Persisto

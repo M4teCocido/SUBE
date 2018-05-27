@@ -100,7 +100,7 @@ public class TestDaos {
 			
 			//Creo la fichada y dao
 			GregorianCalendar fechaHoraFichada = new GregorianCalendar(2018, 3, 15, 15, 10, 25);
-			Fichada fichada = new Fichada(fechaHoraFichada, lectora) {};
+			Fichada fichada = new Fichada(fechaHoraFichada, lectoraSubte) {};
 			
 			//Creo la fichadaSubte y dao
 			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), fichada.getLectora(), estacionSubte);

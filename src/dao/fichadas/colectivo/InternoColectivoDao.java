@@ -24,7 +24,7 @@ public class InternoColectivoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarTramo(InternoColectivo interno) {
+	public int agregarInterno(InternoColectivo interno) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -39,7 +39,7 @@ public class InternoColectivoDao {
 		return id;
 	}
 	
-	public void modificarTramo(InternoColectivo interno) {
+	public void modificarInterno(InternoColectivo interno) {
 		try {
 			iniciaOperacion();
 			session.update(interno);
@@ -52,7 +52,7 @@ public class InternoColectivoDao {
 		}
 	}
 	
-	public void eliminarTramo(InternoColectivo interno) {
+	public void eliminarInterno(InternoColectivo interno) {
 		try {
 			iniciaOperacion();
 			session.delete(interno);
@@ -65,11 +65,11 @@ public class InternoColectivoDao {
 		}
 	}
 	
-	public InternoColectivo traerTramo(int idtramo) throws HibernateException {
+	public InternoColectivo traerInterno(int idInterno) throws HibernateException {
 		InternoColectivo interno = null;
 		try {
 			iniciaOperacion();
-			interno = (InternoColectivo) session.get(InternoColectivo.class, idtramo);
+			interno = (InternoColectivo) session.get(InternoColectivo.class, idInterno);
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
@@ -80,11 +80,11 @@ public class InternoColectivoDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<InternoColectivo> traerTramos() throws HibernateException {
+	public List<InternoColectivo> traerInternos() throws HibernateException {
 		List<InternoColectivo> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from InternoColectivo t order by t.idTramo asc").list();
+			lista = session.createQuery("from InternoColectivo t order by t.idInterno asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;

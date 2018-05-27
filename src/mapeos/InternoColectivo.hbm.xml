@@ -8,6 +8,6 @@
 		</id>
 		<property column="nombre" name="nombre" type="string" />
 		<many-to-one name="lineaColectivo" class="modelo.fichadas.colectivo.LineaColectivo" fetch="select" column="idLinea" not-null="true" />
-		<one-to-one name="lectora" class="modelo.lectoras.LectoraColectivo"></one-to-one>
+		<one-to-one name="lectora" class="modelo.lectoras.LectoraColectivo" cascade="save-update"></one-to-one>
  	</class>
 </hibernate-mapping>

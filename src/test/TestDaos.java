@@ -94,21 +94,20 @@ public class TestDaos {
 			EstacionSubteDao daoEstacionSubte = new EstacionSubteDao();
 			
 			//Creo lectora y dao
-			Lectora lectora = new Lectora() {};
-			LectoraSubte lectoraSubte = new LectoraSubte(lectora.getNroSerie(), estacionSubte);
+			LectoraSubte lectoraSubte = new LectoraSubte(12323, estacionSubte);
 			LectoraSubteDao daoLectoraSubte = new LectoraSubteDao();
 			
 			//Creo la fichada y dao
 			GregorianCalendar fechaHoraFichada = new GregorianCalendar(2018, 3, 15, 15, 10, 25);
-			Fichada fichada = new Fichada(fechaHoraFichada, lectoraSubte) {};
+			//Fichada fichada = new Fichada(fechaHoraFichada, lectoraSubte);
 			
 			//Creo la fichadaSubte y dao
 			//FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), lectoraSubte, daoEstacionSubte.traerEstacion(1));
-			FichadaSubte fichadaSubte = new FichadaSubte(fichada.getFechaHora(), lectoraSubte, estacionSubte);
+			FichadaSubte fichadaSubte = new FichadaSubte(fechaHoraFichada, lectoraSubte, estacionSubte);
 			FichadaSubteDao daoFichadaSubte = new FichadaSubteDao();
 			
 			//Creo la transaccion y dao
-			TransaccionSUBE transaccion = new TransaccionSUBE(lineaSubte.getPrecioViaje(), tarjeta2, daoFichadaSubte.traerFichada(1));
+			TransaccionSUBE transaccion = new TransaccionSUBE(lineaSubte.getPrecioViaje(), tarjeta2, fichadaSubte);
 			TransaccionSUBEDao daoTransaccion = new TransaccionSUBEDao();
 			
 			//Persisto

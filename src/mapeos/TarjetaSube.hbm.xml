@@ -7,6 +7,7 @@
 			<generator class = "identity" />
 		</id>
 		<property column="codigo" name="codigo" type="string" />
+		<property column="activa" name="activa" type="boolean" />
 		<property column="saldo" name="saldo" type="java.math.BigDecimal" />
 		<one-to-one name="propietario" class="modelo.Persona"></one-to-one>
 		<one-to-one name="descuentoRedSube" class="modelo.Descuentos.DescuentoRedSube"></one-to-one>

@@ -18,16 +18,16 @@
 	
 	<joined-subclass name = "modelo.fichadas.colectivo.FichadaColectivo" table="fichadacolectivo" extends="modelo.fichadas.Fichada">
 		<key column="idFichada" />
-		<one-to-one name="tramo" class="modelo.fichadas.colectivo.TramoColectivo"></one-to-one>
+		<many-to-one name="tramo" class="modelo.fichadas.colectivo.TramoColectivo"></many-to-one>
 	</joined-subclass>
 	
-	<joined-subclass name="modelo.fichadas.tren.FichadaTren" table="fichadatren" extends="modelo.fichadas.Fichada">
+	<joined-subclass name="modelo.fichadas.tren.FichadaTren" table="fichadaTren" extends="modelo.fichadas.Fichada">
 		<key column="idFichada" />
 		<property name="tipoFichada" column="idTipoFichada" type="int" />
-		<one-to-one name="estacion" class="modelo.fichadas.tren.EstacionTren"></one-to-one>
+		<many-to-one name="estacion" class="modelo.fichadas.tren.EstacionTren"></many-to-one>
 	</joined-subclass>
 	
-	<joined-subclass name="modelo.fichadas.FichadaRecarga" table="fichadarecarga" extends="modelo.fichadas.Fichada">
+	<joined-subclass name="modelo.fichadas.FichadaRecarga" table="fichadaRecarga" extends="modelo.fichadas.Fichada">
 		<key column="idFichada" />
 		<property column="monto" name="monto" type="java.math.BigDecimal" />
 	</joined-subclass>

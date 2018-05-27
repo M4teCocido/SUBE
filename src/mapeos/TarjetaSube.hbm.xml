@@ -9,15 +9,11 @@
 		<property column="codigo" name="codigo" type="string" />
 		<property column="activa" name="activa" type="boolean" />
 		<property column="saldo" name="saldo" type="java.math.BigDecimal" />
-<<<<<<< HEAD
-
-		<many-to-one name="propietario" class="modelo.Persona" fetch="select" column="idPropietario" not-null="true" />
-=======
 		
 		<many-to-one name="propietario" class="modelo.Persona" fetch="select" column="idPropietario" not-null="true" />
 		
->>>>>>> e4c3c04c917fb56b3a7df305efc1683165c2a2c2
 		<one-to-one name="descuentoRedSube" class="modelo.Descuentos.DescuentoRedSube"></one-to-one>
+		
 		<set name="transacciones" table="trasaccionsube" order-by="idTransaccion asc" inverse="true" lazy="true" fetch="select">
 			<key column="idTarjetaSube" not-null="true" />
 			<one-to-many class="modelo.fichadas.TransaccionSUBE" />

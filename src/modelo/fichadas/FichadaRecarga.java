@@ -1,6 +1,8 @@
 package modelo.fichadas;
 
 import modelo.fichadas.Fichada;
+import modelo.lectoras.Lectora;
+
 import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
@@ -10,8 +12,8 @@ public class FichadaRecarga extends Fichada {
 	
 	public FichadaRecarga() {}
 	
-	public FichadaRecarga(GregorianCalendar fechaHora, BigDecimal monto) {
-		super(fechaHora);
+	public FichadaRecarga(GregorianCalendar fechaHora, BigDecimal monto, Lectora lectora) {
+		super(fechaHora, lectora);
 		this.monto = monto;
 	}
 

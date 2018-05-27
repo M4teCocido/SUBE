@@ -3,8 +3,6 @@ package modelo.fichadas;
 import java.math.BigDecimal;
 import modelo.TarjetaSube;
 
-import modelo.TarjetaSube;
-
 public class TransaccionSUBE {
 	
 	private int idTransaccion;
@@ -14,9 +12,8 @@ public class TransaccionSUBE {
 	
 	public TransaccionSUBE() {}
 	
-	public TransaccionSUBE(Fichada fichada, BigDecimal importe, TarjetaSube tarjeta) {
+	public TransaccionSUBE(BigDecimal importe, TarjetaSube tarjeta) {
 		super();
-		this.fichada = fichada;
 		this.importe = importe;
 		this.setTarjeta(tarjeta);
 	}

@@ -24,13 +24,13 @@ public class TestSoloColectivo {
 		tarjeta.setPropietario(persona);
 		
 		LineaColectivo l165 = new LineaColectivo ("165");
-		LectoraColectivo lectoraColectivoA= new LectoraColectivo ();
+		LectoraColectivo lectoraColectivoA = new LectoraColectivo ();
 		
 		InternoColectivo internoA = new InternoColectivo (l165, "internoA", lectoraColectivoA);
 		internoA.getLectora().setInterno(internoA);
 		TramoColectivo tramoColectivoA = new TramoColectivo("Tramo A",new BigDecimal (9), l165);
 		
-		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA);
+		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA, lectoraColectivoA);
 		System.out.println(tarjeta.getSaldo().toString());
 		tarjeta.procesarFichada(fichadaAColectivo);
 		System.out.println(tarjeta.getSaldo().toString());

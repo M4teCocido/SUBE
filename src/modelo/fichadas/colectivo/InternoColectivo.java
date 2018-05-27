@@ -1,5 +1,5 @@
-package modelo.fichadas.colectivo
-;
+package modelo.fichadas.colectivo;
+
 import modelo.fichadas.colectivo.LineaColectivo;
 import modelo.lectoras.LectoraColectivo;
 
@@ -50,5 +50,4 @@ public class InternoColectivo {
 	public void setLectora(LectoraColectivo lectora) {
 		this.lectora = lectora;
 	}
-
 }

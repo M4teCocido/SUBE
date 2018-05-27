@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `SUBEdb`.`Fichada` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+ALTER TABLE Fichada ALTER idLectora SET DEFAULT 0;
 -- -----------------------------------------------------
 -- Table `SUBEdb`.`LineaTren`
 -- -----------------------------------------------------
@@ -646,3 +646,4 @@ SELECT * FROM DOCUMENTOPERSONA;
 SELECT * FROM USUARIO;
 SELECT * FROM TARJETASUBE;
 SELECT * FROM TRANSACCIONSUBE;
+SELECT * FROM LECTORASUBTE;

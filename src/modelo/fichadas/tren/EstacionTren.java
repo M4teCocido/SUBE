@@ -1,4 +1,5 @@
 package modelo.fichadas.tren;
+import java.util.HashSet;
 import java.util.Set;
 
 import modelo.fichadas.tren.LineaTren;
@@ -17,6 +18,7 @@ public class EstacionTren {
 		super();
 		this.nombre = nombre;
 		this.linea = linea;
+		this.lectoras = new HashSet<LectoraTren>();
 	}
 
 	public int getIdEstacion() {

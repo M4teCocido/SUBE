@@ -23,7 +23,7 @@ public class FichadaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregarFichadaRecarga(Fichada fichada) {
+	public int agregarFichada(Fichada fichada) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -38,7 +38,7 @@ public class FichadaDao {
 		return id;
 	}
 	
-	public void modificarFichadaRecarga(Fichada fichada) {
+	public void modificarFichada(Fichada fichada) {
 		try {
 			iniciaOperacion();
 			session.update(fichada);
@@ -51,7 +51,7 @@ public class FichadaDao {
 		}
 	}
 	
-	public void elimninarFichadaRecarga(Fichada fichada) {
+	public void elimninarFichada(Fichada fichada) {
 		try {
 			iniciaOperacion();
 			session.delete(fichada);

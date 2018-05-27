@@ -58,5 +58,4 @@ public class EstacionSubte {
 		return "EstacionSubte [nombre=" + nombre + ", lineaSubte=" + lineaSubte + "]";
 	}
 
-	
 }

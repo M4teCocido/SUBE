@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 
 import modelo.fichadas.Fichada;
+import modelo.lectoras.LectoraSubte;
 
 public class FichadaSubte extends Fichada {
 	
@@ -11,9 +12,9 @@ public class FichadaSubte extends Fichada {
 	
 	public FichadaSubte() {}
 	
-	public FichadaSubte(GregorianCalendar fechaHora, EstacionSubte estacionSubte) {
-		super(fechaHora);
-		this.estacionSubte = estacionSubte;
+	public FichadaSubte(GregorianCalendar fechaHora, LectoraSubte lectora, EstacionSubte estacionSubte) {
+		super(fechaHora, lectora);
+		this.setEstacionSubte(estacionSubte);
 	}
 	
 	public EstacionSubte getEstacionSubte() {

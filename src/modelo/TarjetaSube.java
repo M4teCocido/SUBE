@@ -163,7 +163,8 @@ public class TarjetaSube {
 				    	this.transacciones.add(transaccion);
 					
 					
-					}else{	if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
+					} else {
+						if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
 								transaccion = new  TransaccionSUBE ( new BigDecimal (0),this, fichadaActual );
 								resultado =  new Resultado (true, "-" + getUltimaTransaccion().getImporte() , transaccion );
 								
@@ -179,10 +180,10 @@ public class TarjetaSube {
 			
 			} else {	
 				if(comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
-							transaccion = procesarImporteMaximoTren (fichadaActual);
-							resultado = generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
-							//resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
-			   			}
+						transaccion = procesarImporteMaximoTren (fichadaActual);
+						resultado = generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
+						//resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
+		   			}
 				}
 
 		}

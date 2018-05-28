@@ -75,14 +75,13 @@ public class TestDaos {
 			tarjeta = daoTarjeta.traerTarjeta(idTarjeta);
 			System.out.println(tarjeta);*/
 			//----------------------------TEST TRANSACCION----------------------------
-			//Creo la persona y dao
 			
+			//Creo la persona y dao
 			GregorianCalendar fechaNac = new GregorianCalendar(1993, 11, 16);
 			Persona persona2 = new Persona("Gonzalo", "Montaña", eGenero.M, fechaNac, "gonzamcomps@gmail.com", "1558912066", "42991823");
 			PersonaDao daoPersona2 = new PersonaDao();
 			
 			//Creo la tarjeta y le asigno propietario y dao
-			
 			TarjetaSube tarjeta2 = new TarjetaSube("9999", new BigDecimal (100));
 			tarjeta2.setPropietario(persona2);
 			TarjetaSubeDao daoTarjeta2 = new TarjetaSubeDao();
@@ -128,7 +127,6 @@ public class TestDaos {
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + ", " + e.getCause());
-			
 			e.printStackTrace();
 		}
 	}

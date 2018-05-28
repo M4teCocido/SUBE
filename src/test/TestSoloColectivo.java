@@ -32,9 +32,8 @@ public class TestSoloColectivo {
 		
 		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA, lectoraColectivoA);
 		System.out.println(tarjeta.getSaldo().toString());
-		tarjeta.procesarFichada(fichadaAColectivo);
-		System.out.println(tarjeta.getSaldo().toString());
-		
+		System.out.println(tarjeta.procesarFichada(fichadaAColectivo).toString());
+
 	}
 
 }

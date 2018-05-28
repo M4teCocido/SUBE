@@ -6,14 +6,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import modelo.TarjetaSube;
+import modelo.TarjetaSube.Resultado;
 import modelo.fichadas.FichadaRecarga;
 import modelo.fichadas.tren.EstacionTren;
 import modelo.fichadas.tren.FichadaTren;
 import modelo.fichadas.tren.LineaTren;
 import modelo.fichadas.tren.SeccionTren;
-import modelo.fichadas.tren.ViajeTren;
 import modelo.fichadas.tren.eTipoFichadaTren;
-import modelo.lectoras.Lectora;
 import modelo.lectoras.LectoraExterna;
 import modelo.lectoras.LectoraTren;
 
@@ -57,7 +56,7 @@ public class testTarjetaSube {
 		listaEstacionesTren.add(new EstacionTren("Yrigoyen", lineaTren)); //13
 		listaEstacionesTren.add(new EstacionTren("Plaza Constitucion", lineaTren)); //14
 		
-		System.out.println(listaEstacionesTren);
+		//System.out.println(listaEstacionesTren);
 		
 		//Cargamos la lista de secciones de tren y chequeamos que se hayan guardado bien
 		List<SeccionTren> listaSeccionesTren = new ArrayList<SeccionTren>();
@@ -66,7 +65,7 @@ public class testTarjetaSube {
 		listaSeccionesTren.add(new SeccionTren("10 km", new BigDecimal (20), lineaTren));
 		listaSeccionesTren.add(new SeccionTren("15 km", new BigDecimal (30), lineaTren));
 		
-		System.out.println(listaSeccionesTren);
+		//System.out.println(listaSeccionesTren);
 		
 		//Simulamos viajes de tren y chequeamos el saldo al final
 		GregorianCalendar fechaFichadaTrenEntrada = new GregorianCalendar(2018, 5, 28, 10, 20, 0);
@@ -76,13 +75,15 @@ public class testTarjetaSube {
 		GregorianCalendar fechaFichadaTrenSalida = new GregorianCalendar(2018, 5, 28, 13, 20, 0);
 		LectoraTren lectoraTrenSalida = new LectoraTren(5, listaEstacionesTren.get(5), false);
 		FichadaTren fichadaTrenSalida = new FichadaTren(fechaFichadaTrenSalida, lectoraTrenSalida.getEstacion(), eTipoFichadaTren.SALIDA, lectoraTrenSalida);
+				
+		Resultado result1 = tarjeta.procesarFichada(fichadaTrenEntrada);
+		Resultado result2 = tarjeta.procesarFichada(fichadaTrenSalida);
 		
-		ViajeTren viaje = new ViajeTren(listaEstacionesTren.get(4), listaEstacionesTren.get(6), listaSeccionesTren.get(0), lineaTren);
+		System.out.println(result1);
+		System.out.println(result2);
 		
-		tarjeta.procesarFichada(fichadaTrenEntrada);
-		tarjeta.procesarFichada(fichadaTrenSalida);
+		/*System.out.println("Su saldo luego del viaje es: " + tarjeta.getSaldo());
 		
-		
-		System.out.println("Su saldo luego del viaje es: " + tarjeta.getSaldo());
+		System.out.println(tarjeta.getTransacciones());*/
 	}
 }

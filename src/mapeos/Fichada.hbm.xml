@@ -8,7 +8,7 @@
 		</id>
 		<property column="fechaHora" name="fechaHora" type="calendar" />
 		<many-to-one name="lectora" class="modelo.lectoras.Lectora" fetch="select" column="idLectora" not-null="true" />
-		<many-to-one name="lapso" class="modelo.Descuentos.LapsoDescuentoRedSube" fetch="select" column="idLapsoDescuentoRedSUBE" not-null="false" />
+		
 	</class>
 	
 	<joined-subclass name = "modelo.fichadas.subte.FichadaSubte" table="fichadasubte" extends="modelo.fichadas.Fichada">

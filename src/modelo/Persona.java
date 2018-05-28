@@ -158,7 +158,7 @@ public class Persona {
 		descuentoEstudiantilString =(this.descuentoBoletoEstudiantil != null ? this.descuentoBoletoEstudiantil.toString() : "Ninguno");
 		if (this.tarjetasAsociadas.size() > 0) {
 			tarjetasString = "";
-			for (int i = 0; i < this.tarjetasAsociadas.size(); i++) {
+			for (int i = 0; i < this.tarjetasAsociadas.size(); i++)	 {
 				if (i == 0)
 					tarjetasString += IndexableSet.get(this.tarjetasAsociadas, i).getCodigo();
 				else

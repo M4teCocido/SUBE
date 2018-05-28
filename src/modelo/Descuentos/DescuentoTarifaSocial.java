@@ -1,20 +1,22 @@
 package modelo.Descuentos;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
+import modelo.Persona;
 import modelo.Descuentos.DescuentoSube;
 import modelo.fichadas.Fichada;
 
 public class DescuentoTarifaSocial extends DescuentoSube{
 	
 	private BigDecimal porcentajeDescuento;
-
+	private Persona persona;
+	
 	public DescuentoTarifaSocial() {}
 	
-	public DescuentoTarifaSocial(String nombre, float porcentajeDescuento) {
-		super(nombre);
-		if (porcentajeDescuento > 1)
-			porcentajeDescuento = 1 - (porcentajeDescuento / 100);
-		this.porcentajeDescuento = new BigDecimal(porcentajeDescuento);
+	public DescuentoTarifaSocial(Persona persona) {
+		super("Tarifa Social");
+		this.porcentajeDescuento = new BigDecimal(0.45).setScale(4, RoundingMode.HALF_UP);
+		this.persona = persona;
 		//this.porcentajeDescuento = porcentajeDescuento;
 	}
 	
@@ -38,6 +40,14 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 		 return auxImporte;
 		 */
 		return importe.multiply(this.porcentajeDescuento);
+	}
+	
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 	@Override

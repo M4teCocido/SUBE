@@ -147,8 +147,26 @@ public class Persona {
 	
 	@Override
 	public String toString() {
-		return "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + getDocumento() + "\nGenero: " + getGenero() + "\nFecha nacimiento: " + FuncionesGregorian.traerFechaCorta(getFechaNacimiento()) + 
-				"\nEmail: " + getEmail() + "\nCelular: " + getCelular() + "\nTelefono: " + getTelefono() + "\nTarjetas: " + getTarjetasAsociadas() + "\nDescuento tarifa social: " + getDescuentoTarifaSocial();
+		
+		String tarjetasString;
+		String descuentoSocialString;
+		String descuentoEstudiantilString;
+		String documentoString;
+		
+		documentoString = (this.documento != null ? this.documento.toString() : "Ninguno");
+		descuentoSocialString = (this.descuentoTarifaSocial != null ? this.descuentoTarifaSocial.toString() : "Ninguno"); 
+		descuentoEstudiantilString =(this.descuentoBoletoEstudiantil != null ? this.descuentoBoletoEstudiantil.toString() : "Ninguno");
+		tarjetasString = String.valueOf(this.tarjetasAsociadas.size());
+		
+		
+		String resultado = "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + documentoString 
+				+ "\nGenero: " + getGenero() + "\nFecha nacimiento: " + FuncionesGregorian.traerFechaCorta(getFechaNacimiento()) 
+				+ "\nEmail: " + getEmail() + "\nCelular: " + getCelular() + "\nTelefono: " + getTelefono()
+				+ "\nTarjetas Asociadas: " + getTarjetasAsociadas() + "\nDescuento tarifa social: " + descuentoSocialString
+				+ "\nDescuento Boleto Estudiantil: " + descuentoEstudiantilString;
+		
+		return resultado;  
+				 
 	}
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {

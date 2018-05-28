@@ -16,7 +16,7 @@ import modelo.fichadas.tren.eTipoFichadaTren;
 import modelo.lectoras.LectoraExterna;
 import modelo.lectoras.LectoraTren;
 
-public class testTarjetaSube {
+public class TestTarjetaSube {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -60,13 +60,18 @@ public class testTarjetaSube {
 		
 		//Cargamos la lista de secciones de tren y chequeamos que se hayan guardado bien
 		List<SeccionTren> listaSeccionesTren = new ArrayList<SeccionTren>();
-		
+		/*
 		listaSeccionesTren.add(new SeccionTren("5 km", new BigDecimal (10), lineaTren));
 		listaSeccionesTren.add(new SeccionTren("10 km", new BigDecimal (20), lineaTren));
 		listaSeccionesTren.add(new SeccionTren("15 km", new BigDecimal (30), lineaTren));
+		*/
+		
+		lineaTren.agregarSeccion(new SeccionTren("5 km", new BigDecimal (10), lineaTren));
+		lineaTren.agregarSeccion(new SeccionTren("10 km", new BigDecimal (20), lineaTren));
+		lineaTren.agregarSeccion(new SeccionTren("15 km", new BigDecimal (30), lineaTren));
 		
 		//System.out.println(listaSeccionesTren);
-		
+
 		//Simulamos viajes de tren y chequeamos el saldo al final
 		GregorianCalendar fechaFichadaTrenEntrada = new GregorianCalendar(2018, 5, 28, 10, 20, 0);
 		LectoraTren lectoraTrenEntrada = new LectoraTren(4, listaEstacionesTren.get(4), true);
@@ -81,6 +86,8 @@ public class testTarjetaSube {
 		
 		System.out.println(result1);
 		System.out.println(result2);
+		
+		System.out.println("Su saldo es: " + tarjeta.getSaldo());
 		
 		/*System.out.println("Su saldo luego del viaje es: " + tarjeta.getSaldo());
 		

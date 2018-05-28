@@ -76,6 +76,11 @@ public class LineaTren {
 		this.secciones = seccionesTren;
 	}
 
+	public LineaTren agregarSeccion(SeccionTren seccion) {
+		this.secciones.add(seccion);
+		return this;
+	}
+	
 	public BigDecimal obtenerMayorSeccion() {
 		BigDecimal montoMayor = new BigDecimal (0);
 		

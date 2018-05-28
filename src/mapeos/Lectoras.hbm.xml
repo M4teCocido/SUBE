@@ -15,8 +15,7 @@
 	
 	<joined-subclass name = "modelo.lectoras.LectoraColectivo" table="lectoracolectivo" extends="modelo.lectoras.Lectora">
 		<key column="idLectora" />
-		<!-- <one-to-one name="interno" class="modelo.fichadas.colectivo.InternoColectivo" foreign-key="idInterno" constrained="true" ></one-to-one>  -->
-		<many-to-one name="interno" class="modelo.fichadas.colectivo.InternoColectivo" fetch="select" column="idInterno" not-null="true" />
+		<many-to-one name="interno" class="modelo.fichadas.colectivo.InternoColectivo" fetch="select" column="idInterno" not-null="true" /> 
 	</joined-subclass>
 	
 	<joined-subclass name = "modelo.lectoras.LectoraSubte" table="lectorasubte" extends="modelo.lectoras.Lectora">

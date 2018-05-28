@@ -43,6 +43,20 @@ public class InternoColectivo {
 		this.nombre = nombre;
 	}
 
+	
+	
+	@Override
+	public String toString() {
+		String lectoraString;
+		if (this.lectora == null)
+			lectoraString = "NINGUNA";
+		else
+			lectoraString = this.lectora.toString();
+		String resultado = "InternoColectivo [idInterno=" + idInterno + ", lineaColectivo=" + lineaColectivo + ", nombre=" + nombre + ", lectora=" + lectoraString + "]"; 
+		return resultado; 
+				
+	}
+
 	public LectoraColectivo getLectora() {
 		return lectora;
 	}

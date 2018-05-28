@@ -7,7 +7,7 @@
 			<generator class = "identity" />
 		</id>
 		<property column="nombre" name="nombre" type="string" />
-		<many-to-one name="lineaColectivo" class="modelo.fichadas.colectivo.LineaColectivo" fetch="select" column="idLinea" not-null="true" />
-		<one-to-one name="lectora" class="modelo.lectoras.LectoraColectivo" cascade="save-update"></one-to-one>
+		<many-to-one name="lineaColectivo" class="modelo.fichadas.colectivo.LineaColectivo" fetch="select" lazy="false" column="idLinea" not-null="true" />
+		<one-to-one name="lectora" class="modelo.lectoras.LectoraColectivo" lazy="false" cascade="all"></one-to-one>
  	</class>
 </hibernate-mapping>

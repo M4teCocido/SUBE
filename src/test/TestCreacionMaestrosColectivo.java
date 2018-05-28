@@ -66,8 +66,8 @@ public class TestCreacionMaestrosColectivo {
 				daoTramo.agregarTramo(t);
 			}
 			
-			InternoColectivo c = daoInterno.traerInterno(54);
-			System.out.println(c.getLectora().toString());
+			InternoColectivo c = daoInterno.traerInterno(27);
+			System.out.println(c.toString());
 			
 		} catch (HibernateException he) {
 			System.out.println(he.getMessage() + ", " + he.toString());

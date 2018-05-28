@@ -44,15 +44,20 @@ public class TestCreacionMaestrosTrenes {
 		seccionesRoca.add(new SeccionTren("10 km", new BigDecimal(12), lineaRoca));
 		seccionesRoca.add(new SeccionTren("15 km", new BigDecimal(18), lineaRoca));
 		
-		agregarEstacionTren("Constitucion", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("San Juan", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("Independencia", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("Mariano Moreno", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("Avenida de Mayo", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("Diagonal Norte", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("Lavalle", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("General San Martin", lineaRoca, estacionesRoca, lectorasRoca);
-		agregarEstacionTren("Retiro", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Alejandro Korn", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Guernica", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Glew", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Longchamps", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Adrogue", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Temperley", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Lomas de Zamora", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Banfield", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Remedios de Escalada", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Lanus", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Gerli", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Avellaneda", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Yrigoyen", lineaRoca, estacionesRoca, lectorasRoca);
+		agregarEstacionTren("Plaza Constitucion", lineaRoca, estacionesRoca, lectorasRoca);
 
 		viajesRoca = generarViajesPrueba(estacionesRoca, seccionesRoca, lineaRoca);
 		

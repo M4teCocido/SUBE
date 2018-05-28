@@ -176,11 +176,11 @@ public class TarjetaSube {
 					} else {
 						System.out.println("Fichada Tren : NO Es menor a 2 horas");
 						if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
-								transaccion = new  TransaccionSUBE ( new BigDecimal (0),this, fichadaActual );
-								resultado =  new Resultado (true, "-" + getUltimaTransaccion().getImporte() , transaccion );
-								
-							}
-						} 	
+							transaccion = new  TransaccionSUBE ( new BigDecimal (0),this, fichadaActual );
+							resultado =  new Resultado (true, "-" + getUltimaTransaccion().getImporte() , transaccion );
+							
+						}
+					} 	
 				} else {	
 					System.out.println("Fichada Tren : Anterior NO es de entrada");
 					if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){

@@ -6,9 +6,11 @@ import java.util.GregorianCalendar;
 import dao.DocumentoDao;
 import dao.PersonaDao;
 import dao.descuentos.DescuentoBoletoEstudiantilDao;
+import dao.descuentos.DescuentoTarifaSocialDao;
 import modelo.Documento;
 import modelo.eTipoDocumento;
 import modelo.Descuentos.DescuentoBoletoEstudiantil;
+import modelo.Descuentos.DescuentoTarifaSocial;
 import modelo.Descuentos.eTipoBoletoEstudiantil;
 import modelo.Persona;
 import modelo.TarjetaSube;
@@ -18,43 +20,40 @@ public class TestPersona {
 
 	public static void main(String[] args) {
 		GregorianCalendar fecha = new GregorianCalendar (1993, 11, 16);
+		
+			
+		PersonaDao daoPersona = new PersonaDao();
+		DocumentoDao daoDocumento = new DocumentoDao();
+		DescuentoBoletoEstudiantilDao daoBoletoEstudiantil = new DescuentoBoletoEstudiantilDao();
+		DescuentoTarifaSocialDao daoTarifaSocial = new DescuentoTarifaSocialDao();
+		
+		Persona persona;
+		Documento doc;
+		DescuentoTarifaSocial descuentoTarifaSocial;
+		DescuentoBoletoEstudiantil dbe;
 		try {
-			
-			PersonaDao daoPersona = new PersonaDao();
-			DocumentoDao daoDocumento = new DocumentoDao();
-			DescuentoBoletoEstudiantilDao daoBoletoEstudiantil = new DescuentoBoletoEstudiantilDao();
-			GregorianCalendar cal = new GregorianCalendar(1993, 11, 16);
-			
-			Persona persona = new Persona("Gonzalo", "Montaña", eGenero.M, cal, "gonzamcomps@gmail.com", "1558912066", "42991823");
-			Documento doc = persona.getDocumento();
-	
-			int idPersona = daoPersona.agregarPersona(persona);
-			
-			System.out.println("Guardamos el documento...");
+			//Creamos los objetos
+			persona = new Persona("Gonzalo", "Montaña", eGenero.M, fecha, "gonzamcomps@gmail.com", "1558912066", "42991823");
 			doc = new Documento("37612478", eTipoDocumento.DNI, persona);
+			descuentoTarifaSocial = new DescuentoTarifaSocial(persona);
+			dbe = new DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil.ESCOLAR, persona);
+			
+			//Persistimos
+			int idPersona = daoPersona.agregarPersona(persona);
 			int idDoc = daoDocumento.agregarDocumento(doc);
+			int idTarifaSocial = daoTarifaSocial.agregarDescuento(descuentoTarifaSocial);
+			int idBoletoEstudiantil = daoBoletoEstudiantil.agregarDescuento(dbe);
+			
+			//Traemos la persona y chequeamos si trae todo.
+			persona = daoPersona.traerPersona(idPersona);
+			System.out.println("Persona persistida : " + persona.toString());
 			
 			persona = daoPersona.traerPersona(idPersona);
-			doc = persona.getDocumento();
-
-			System.out.println("IdPersona : " + idPersona + " - IdDoc : " + idDoc);
-			daoPersona.eliminarPersona(persona);
-			
-			//DescuentoBoletoEstudiantil dbe = new DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil.ESCOLAR, persona);
-			//int idDescuentoEstudiantil = daoBoletoEstudiantil.agregarDescuento(dbe);
-			//Ahora levantamos y revisamos que funque.
-			//doc = daoDocumento.traerDocumento(idDoc);
-			
-			//System.out.println(persona);
-
-			/*
-			TarjetaSube tarjeta = new TarjetaSube("1111", new BigDecimal(100));
-			per.asociarTarjeta(tarjeta);
-			per.desasociarTarjeta(tarjeta);
-			per.asociarTarjeta(tarjeta);*/
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			e.printStackTrace();
+			System.out.println("Persona persistida : " + persona.toString());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+
 	}
 }

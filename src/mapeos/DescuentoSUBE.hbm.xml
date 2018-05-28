@@ -17,13 +17,14 @@
 	
 	<joined-subclass name = "modelo.Descuentos.DescuentoTarifaSocial" table="descuentotarifasocial" extends="modelo.Descuentos.DescuentoSube">
 		<key column="idDescuento" />
-		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" />
+		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" precision="2" />
+		<many-to-one name="persona" class="modelo.Persona" fetch="select" column="idPersona" lazy="false" not-null="true" />
 	</joined-subclass>
 	 
 	<joined-subclass name="modelo.Descuentos.DescuentoBoletoEstudiantil" table="descuentoboletoestudiantil" extends="modelo.Descuentos.DescuentoSube">
 		<key column="idDescuento" />
 
-		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" />
+		<property name="porcentajeDescuento" column="descuento" type="java.math.BigDecimal" precision="2" />
 		<property name="viajesRestantes" column="viajesRestantes" type="int" />
 		
 		<property column="tipoBoleto" name="tipoBoletoEstudiantil">
@@ -32,7 +33,7 @@
 	    	</type>
 	    </property>
 		
-		<one-to-one name = "Persona" class = "modelo.Persona" foreign-key ="idPersona" constrained="true"> </one-to-one >
+		<many-to-one name="persona" class="modelo.Persona" fetch="select" column="idPersona" lazy="false" not-null="true" />
 		
 	</joined-subclass>
 </hibernate-mapping>

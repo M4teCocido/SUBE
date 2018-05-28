@@ -8,7 +8,7 @@
 		</id>
 		<property column="codigo" name="codigo" type="string" />
 		<property column="activa" name="activa" type="boolean" />
-		<property column="saldo" name="saldo" type="java.math.BigDecimal" />
+		<property column="saldo" name="saldo" type="java.math.BigDecimal" precision="2" />
 		
 		<many-to-one name="propietario" class="modelo.Persona" fetch="select" column="idPropietario" not-null="true" />
 		

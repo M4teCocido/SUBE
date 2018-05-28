@@ -6,7 +6,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import dao.HibernateUtil;
+import dao.descuentos.DescuentoBoletoEstudiantilDao;
+import dao.descuentos.DescuentoTarifaSocialDao;
 import modelo.Persona;
+import modelo.Descuentos.DescuentoBoletoEstudiantil;
+import modelo.Descuentos.DescuentoTarifaSocial;
 
 public class PersonaDao {
 	private static Session session;

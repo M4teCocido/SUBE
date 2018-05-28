@@ -47,9 +47,7 @@ public class TestPersona {
 			//Traemos la persona y chequeamos si trae todo.
 			persona = daoPersona.traerPersona(idPersona);
 			System.out.println("Persona persistida : " + persona.toString());
-			
-			persona = daoPersona.traerPersona(idPersona);
-			System.out.println("Persona persistida : " + persona.toString());
+
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

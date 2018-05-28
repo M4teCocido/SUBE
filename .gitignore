@@ -3,3 +3,5 @@ bin/modelo/TarjetaSube.class
 bin/modelo/Persona.class
 bin/modelo/*.class
 
+bin/modelo/Persona.class
+src/test/TestDaos.java

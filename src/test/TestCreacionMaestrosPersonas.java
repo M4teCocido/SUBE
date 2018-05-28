@@ -21,6 +21,7 @@ import modelo.fichadas.FichadaRecarga;
 import modelo.fichadas.subte.EstacionSubte;
 import modelo.fichadas.subte.FichadaSubte;
 import modelo.lectoras.LectoraSubte;
+import util.RNG;
 import modelo.Persona;
 import modelo.TarjetaSube;
 import modelo.eGenero;
@@ -102,7 +103,13 @@ public class TestCreacionMaestrosPersonas {
 			persona.setDocumento(new Documento(nroDoc, eTipoDocumento.DNI, persona));
 			persona.asociarTarjeta(new TarjetaSube("TARJETA" + (contadorTarjeta++), 25));
 			persona.asociarTarjeta(new TarjetaSube("TARJETA" + (contadorTarjeta++), 10).SetActivaC(false));
-			
+			//Randomizamos agregados de Descuentos.
+			if (RNG.rollBoolean()) {
+				persona.asignarDescuentoBoletoEstudiantil(new DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil.ESCOLAR, persona));
+			}
+			if (RNG.rollBoolean()) {
+				persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial(persona));
+			}			
 			personas.add(persona);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class TarjetaSube {
 		super();
 		this.codigo = codigo;
 		this.saldo = saldo;
-		this.transacciones = new HashSet<TransaccionSUBE>();
+		this.transacciones = new LinkedHashSet<TransaccionSUBE>();
 		this.descuentoRedSube = new DescuentoRedSube(this);
 		this.activa = true;
 	}
@@ -130,9 +131,8 @@ public class TarjetaSube {
 		TransaccionSUBE transaccion = null;
 		Resultado resultado = null;
 		
-		
-		
 		if (fichadaActual.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
+			System.out.println("Fichada Tren : Actual es de ENTRADA");
 			if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
 				transaccion = procesarImporteMaximoTren (fichadaActual);
 				resultado =  generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
@@ -140,30 +140,41 @@ public class TarjetaSube {
 		} else {		
 			//FichadaTren fichadaAnterior =  (FichadaTren) getUltimaFichada();
 			Fichada ultimaFichada = this.getUltimaFichada();
+			System.out.println(ultimaFichada);
+			System.out.println("Fichada Tren : Actual es de SALIDA");
 			
 			if (ultimaFichada instanceof FichadaTren) {
 				FichadaTren fichadaAnterior =  (FichadaTren) getUltimaFichada();
-				//System.out.println(fichadaAnterior.toString());
+				System.out.println("Fichada Tren : Anterior es de tren");
 				
 				if (fichadaAnterior.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)){
-					//System.out.print("Delta tiempo");
+					System.out.println("Fichada Tren : Anterior es de ENTRADA");
 					
 					//System.out.println(fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY));
 					
 					if((fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY))<2){
-						
+						System.out.println("Fichada Tren : Es menor a 2 horas");
 						ViajeTren viajeAux = fichadaActual.getEstacion().getLinea().obtenerViaje(fichadaAnterior.getEstacion(), fichadaActual.getEstacion());
 					    BigDecimal bonificacion = new BigDecimal(0);
-					
-				     	bonificacion = getUltimaTransaccion().getImporte();
-			    		transaccion = procesarTransaccion (fichadaActual, bonificacion);
-			    		resultado = generarResultadoTransaccionExitosa("+"+getUltimaTransaccion().getImporte().subtract(bonificacion).toString(), transaccion );
+					    BigDecimal viajeDescontado;
+					    if (viajeAux != null)
+					    	viajeDescontado = procesarDescuento(viajeAux.getSeccionTren().getImporte(), fichadaActual);
+					    else
+					    	viajeDescontado = getUltimaTransaccion().getImporte().add(BigDecimal.ZERO);
+					    
+				     	bonificacion = getUltimaTransaccion().getImporte().subtract(viajeDescontado);
+				     	System.out.println("Viaje Descontado : " + viajeDescontado);
+				     	System.out.println("Bonificacion : " + bonificacion);
+			    		transaccion = procesarTransaccion (fichadaActual, bonificacion.negate());
+
+			    		resultado = generarResultadoTransaccionExitosa(" +" + bonificacion.toString(), transaccion );
 			    		//resultado = new Resultado (true, "+"+getUltimaTransaccion().getImporte().subtract(bonificacion).toString(),transaccion);
 					    System.out.println("Bonificacion:" + bonificacion.toString());
 				    	this.transacciones.add(transaccion);
 					
 					
 					} else {
+						System.out.println("Fichada Tren : NO Es menor a 2 horas");
 						if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
 								transaccion = new  TransaccionSUBE ( new BigDecimal (0),this, fichadaActual );
 								resultado =  new Resultado (true, "-" + getUltimaTransaccion().getImporte() , transaccion );
@@ -171,14 +182,16 @@ public class TarjetaSube {
 							}
 						} 	
 				} else {	
+					System.out.println("Fichada Tren : Anterior NO es de entrada");
 					if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
-								transaccion = procesarImporteMaximoTren (fichadaActual);
-								resultado = generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
-								//resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
-							}
+						transaccion = procesarImporteMaximoTren (fichadaActual);
+						resultado = generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
+						//resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
 					}
+				}
 			
 			} else {	
+				System.out.println("Fichada Tren : Anterior NO es de tren");
 				if(comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
 						transaccion = procesarImporteMaximoTren (fichadaActual);
 						resultado = generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
@@ -281,7 +294,7 @@ public class TarjetaSube {
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO); //Creamos uno nuevo
 		montoFinal = montoFinal.setScale(2, BigDecimal.ROUND_HALF_UP);
 		this.saldo = this.saldo.subtract(montoFinal);
-		return new TransaccionSUBE ( montoFinal,this, fichada );
+		return new TransaccionSUBE (montoFinal, this, fichada);
 	}
 
 	
@@ -297,10 +310,11 @@ public class TarjetaSube {
 	}
 
 	public TransaccionSUBE procesarImporteMaximoTren (FichadaTren fichadaTren) {
+		
 		TransaccionSUBE transaccion = null;
 		//System.out.println("Es de entrada");
-		BigDecimal monto =fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
-		monto=procesarDescuento (monto, fichadaTren);
+		BigDecimal monto = fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
+		monto = procesarDescuento (monto, fichadaTren);
 		
 		transaccion = procesarTransaccion (fichadaTren, monto);
 		this.transacciones.add(transaccion);
@@ -323,7 +337,7 @@ public class TarjetaSube {
 
 	private TransaccionSUBE getUltimaTransaccion() {// Obtiene la ultima transaccion dentro de lista de trasacciones----------
 		if (this.transacciones.size() > 0)
-			return IndexableSet.get(this.transacciones,this.transacciones.size()-1);		
+			return IndexableSet.get(this.transacciones, this.transacciones.size() - 1);		
 		else
 			return null;
 	}

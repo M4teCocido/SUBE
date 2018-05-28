@@ -179,21 +179,29 @@ public class Persona {
 	
 	public boolean asignarDescuentoBoletoEstudiantil(DescuentoBoletoEstudiantil descuento) {
 		this.descuentoBoletoEstudiantil = descuento;
+		descuento.setPersona(this);
 		return true;
 	}
 	
 	public boolean quitarDescuentoBoletoEstudiantil() {
-		this.descuentoBoletoEstudiantil = null;
+		if (this.descuentoBoletoEstudiantil != null) {
+			this.descuentoBoletoEstudiantil.setPersona(null);
+			this.descuentoBoletoEstudiantil = null;
+		}
 		return true;
 	}
 	
 	public boolean asignarDescuentoTarifaSocial(DescuentoTarifaSocial descuento) {
 		this.descuentoTarifaSocial = descuento;
+		descuento.setPersona(this);
 		return true;
 	}
 	
 	public boolean quitarDescuentoTarifaSocial() {
-		this.descuentoTarifaSocial = null;
+		if (this.descuentoTarifaSocial != null) {
+			this.descuentoTarifaSocial.setPersona(null);
+			this.descuentoTarifaSocial = null;
+		}
 		return true;
 	}
 	

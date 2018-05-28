@@ -8,6 +8,7 @@ import java.util.List;
 import modelo.TarjetaSube;
 import modelo.TarjetaSube.Resultado;
 import modelo.fichadas.FichadaRecarga;
+import modelo.fichadas.TransaccionSUBE;
 import modelo.fichadas.tren.EstacionTren;
 import modelo.fichadas.tren.FichadaTren;
 import modelo.fichadas.tren.LineaTren;
@@ -31,7 +32,7 @@ public class TestTarjetaSube {
 		LectoraExterna lectoraRecarga = new LectoraExterna(1, "Kiosco");
 		FichadaRecarga cargaSaldo = new FichadaRecarga(fechaRecarga, montoCarga, lectoraRecarga);
 		
-		tarjeta.procesarFichada(cargaSaldo);
+		System.out.println(tarjeta.procesarFichada(cargaSaldo));
 		
 		System.out.println("Su saldo es: " + tarjeta.getSaldo());
 		
@@ -77,12 +78,16 @@ public class TestTarjetaSube {
 		LectoraTren lectoraTrenEntrada = new LectoraTren(4, listaEstacionesTren.get(4), true);
 		FichadaTren fichadaTrenEntrada = new FichadaTren(fechaFichadaTrenEntrada, lectoraTrenEntrada.getEstacion(), eTipoFichadaTren.ENTRADA, lectoraTrenEntrada);
 		
-		GregorianCalendar fechaFichadaTrenSalida = new GregorianCalendar(2018, 5, 28, 13, 20, 0);
+		GregorianCalendar fechaFichadaTrenSalida = new GregorianCalendar(2018, 5, 28, 11, 20, 0);
 		LectoraTren lectoraTrenSalida = new LectoraTren(5, listaEstacionesTren.get(5), false);
 		FichadaTren fichadaTrenSalida = new FichadaTren(fechaFichadaTrenSalida, lectoraTrenSalida.getEstacion(), eTipoFichadaTren.SALIDA, lectoraTrenSalida);
 				
 		Resultado result1 = tarjeta.procesarFichada(fichadaTrenEntrada);
 		Resultado result2 = tarjeta.procesarFichada(fichadaTrenSalida);
+		
+		for (TransaccionSUBE t : tarjeta.getTransacciones()) {
+			System.out.println(t);
+		}
 		
 		System.out.println(result1);
 		System.out.println(result2);

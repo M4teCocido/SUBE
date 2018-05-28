@@ -15,6 +15,7 @@
 				<param name="enumClass">modelo.eTipoDocumento</param>
 	    	</type>
 	    </property>
+	    
 	    <one-to-one name = "Persona" class = "modelo.Persona" ></one-to-one >
 
 	</class>

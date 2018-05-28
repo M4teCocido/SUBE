@@ -19,7 +19,6 @@
 		<property column="email" name="email" type="string" />
 		<property column="celular" name="celular" type="string" />
 		<property column="telefono" name="telefono" type="string" />
-		
 		<one-to-one name="documento" class="modelo.Documento" cascade="all" />
 		<one-to-one name="descuentoBoletoEstudiantil" class="modelo.Descuentos.DescuentoBoletoEstudiantil" cascade="all" />
 		<one-to-one name="descuentoTarifaSocial" class="modelo.Descuentos.DescuentoTarifaSocial"></one-to-one>

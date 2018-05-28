@@ -55,7 +55,7 @@ public class EstacionSubte {
 	
 	@Override
 	public String toString() {
-		return "EstacionSubte [nombre=" + nombre + ", lineaSubte=" + lineaSubte + "]";
+		return nombre + ", linea " + lineaSubte;
 	}
 
 }

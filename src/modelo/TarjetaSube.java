@@ -3,7 +3,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -105,7 +104,7 @@ public class TarjetaSube {
 		this.activa = activa;
 		return this;
 	}
-	
+
 	public Resultado procesarFichada(FichadaColectivo fichadaColectivo) {
 		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecio(), fichadaColectivo);
 		
@@ -195,7 +194,7 @@ public class TarjetaSube {
 		
 		if (comprobarSaldoSuficiente(monto) == true ) {
 			transaccion = this.procesarTransaccion(fichadaSubte, monto); 
-			System.out.println(transaccion.getImporte().toString());
+			//System.out.println(transaccion.getImporte().toString());
 			this.transacciones.add(transaccion);
 			resultado = new Resultado (true, "-" + transaccion.getImporte().toString(),transaccion);
 		}else {resultado = new Resultado(false, "Saldo insuficiente", transaccion);}
@@ -267,7 +266,7 @@ public class TarjetaSube {
 		return montoFinal;
 	}
 
-	public TransaccionSUBE procesarTransaccion (Fichada fichada, BigDecimal monto) {
+	private TransaccionSUBE procesarTransaccion (Fichada fichada, BigDecimal monto) {
 		//Descuenta saldo y crea  transaccion
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO); //Creamos uno nuevo
 		montoFinal = montoFinal.setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -289,7 +288,7 @@ public class TarjetaSube {
 
 	public TransaccionSUBE procesarSaldoMaximo (FichadaTren fichadaTren) {
 		TransaccionSUBE transaccion = null;
-		System.out.println("Es de entrada");
+		//System.out.println("Es de entrada");
 		BigDecimal monto=fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
 		monto=procesarDescuento (monto, fichadaTren);
 		

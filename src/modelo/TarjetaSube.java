@@ -144,23 +144,30 @@ public class TarjetaSube {
 					System.out.println(fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY));
 					
 					if((fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY))<2){
+						
 						ViajeTren viajeAux = fichadaActual.getEstacion().getLinea().obtenerViaje(fichadaAnterior.getEstacion(), fichadaActual.getEstacion());
 					    BigDecimal bonificacion = new BigDecimal(0);
 					
 				     	bonificacion = getUltimaTransaccion().getImporte();
 			    		transaccion = procesarTransaccion (fichadaActual, bonificacion);
-					
+			    		resultado = new Resultado (true, "+"+getUltimaTransaccion().getImporte().subtract(bonificacion).toString(),transaccion);
 					    System.out.println("Bonificacion:" + bonificacion.toString());
 				    	this.transacciones.add(transaccion);
-					}		 
-				
-				} 	else{	if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
+					
+					
+					}else{	if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
+								transaccion = new  TransaccionSUBE ( new BigDecimal (0),this, fichadaActual );
+								resultado =  new Resultado (true, "-" + getUltimaTransaccion().getImporte() , transaccion );
+								
+							}
+						} 	
+				}else{	if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
 								transaccion = procesarSaldoMaximo (fichadaActual);
 								resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
 							}
 					}
 			
-			} 	else {	if(comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
+			}else {	if(comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
 							transaccion = procesarSaldoMaximo (fichadaActual);
 							resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
 			   			}

@@ -26,14 +26,25 @@ public class TestPersona {
 			GregorianCalendar cal = new GregorianCalendar(1993, 11, 16);
 			
 			Persona persona = new Persona("Gonzalo", "Montaña", eGenero.M, cal, "gonzamcomps@gmail.com", "1558912066", "42991823");
+			Documento doc = persona.getDocumento();
+	
 			int idPersona = daoPersona.agregarPersona(persona);
-			Documento doc = new Documento("37612478", eTipoDocumento.DNI, persona);
+			
+			System.out.println("Guardamos el documento...");
+			doc = new Documento("37612478", eTipoDocumento.DNI, persona);
 			int idDoc = daoDocumento.agregarDocumento(doc);
-			DescuentoBoletoEstudiantil dbe = new DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil.ESCOLAR, persona);
-			int idDescuentoEstudiantil = daoBoletoEstudiantil.agregarDescuento(dbe);
+			
+			persona = daoPersona.traerPersona(idPersona);
+			doc = persona.getDocumento();
+
+			System.out.println("IdPersona : " + idPersona + " - IdDoc : " + idDoc);
+			daoPersona.eliminarPersona(persona);
+			
+			//DescuentoBoletoEstudiantil dbe = new DescuentoBoletoEstudiantil(eTipoBoletoEstudiantil.ESCOLAR, persona);
+			//int idDescuentoEstudiantil = daoBoletoEstudiantil.agregarDescuento(dbe);
 			//Ahora levantamos y revisamos que funque.
 			//doc = daoDocumento.traerDocumento(idDoc);
-			persona = daoPersona.traerPersona(idPersona);
+			
 			//System.out.println(persona);
 
 			/*

@@ -9,12 +9,7 @@ public class ViajeTren {
 	private LineaTren linea;
 	
 	public ViajeTren() {}
-	
-	public ViajeTren(EstacionTren estacionOrigen) {
-		super();
-		this.estacionOrigen = estacionOrigen;
-	}
-		
+
 	public ViajeTren(EstacionTren estacionOrigen, EstacionTren estacionDestino, SeccionTren seccionTren, LineaTren linea) {
 		super();
 		this.estacionOrigen = estacionOrigen;

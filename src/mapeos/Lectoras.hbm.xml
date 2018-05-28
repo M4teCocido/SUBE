@@ -25,6 +25,7 @@
 	
 	<joined-subclass name="modelo.lectoras.LectoraTren" table="lectoratren" extends="modelo.lectoras.Lectora">
 		<key column="idLectora" />
+		<property column="esEntrada" name="esEntrada" type="boolean" /> 
 		<many-to-one name="estacion" class="modelo.fichadas.tren.EstacionTren" fetch="select" column="idEstacion" not-null="true" />
 	</joined-subclass>
 	

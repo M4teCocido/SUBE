@@ -12,11 +12,10 @@ public class InternoColectivo {
 	
 	public InternoColectivo() {}
 	
-	public InternoColectivo(LineaColectivo lineaColectivo, String nombre, LectoraColectivo lectora) {
+	public InternoColectivo(LineaColectivo lineaColectivo, String nombre) {
 		super();
 		this.lineaColectivo = lineaColectivo;
 		this.nombre = nombre;
-		this.setLectora(lectora);
 	}
 	
 	public int getIdInterno() {

@@ -75,12 +75,12 @@ public class TestCreacionMaestrosColectivo {
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + ", " + e.toString());
 			e.printStackTrace();
-		}
+		}	
 		
 	}
 
 	private static void agregarInternoColectivo(String nombre, LineaColectivo linea, List<InternoColectivo> internos, List<LectoraColectivo> lectoras) {
-		InternoColectivo interno = new InternoColectivo(linea, nombre, null);
+		InternoColectivo interno = new InternoColectivo(linea, nombre);
 		internos.add(interno);
 		lectoras.add(new LectoraColectivo(numeroSerieLectora++, interno));
 	}

@@ -8,6 +8,7 @@
 		</id>
 		<property column="fechaHora" name="fechaHora" type="calendar" />
 		<many-to-one name="lectora" class="modelo.lectoras.Lectora" fetch="select" column="idLectora" not-null="true" />
+		
 	</class>
 	
 	<joined-subclass name = "modelo.fichadas.subte.FichadaSubte" table="fichadasubte" extends="modelo.fichadas.Fichada">
@@ -18,13 +19,13 @@
 	
 	<joined-subclass name = "modelo.fichadas.colectivo.FichadaColectivo" table="fichadacolectivo" extends="modelo.fichadas.Fichada">
 		<key column="idFichada" />
-		<many-to-one name="tramo" class="modelo.fichadas.colectivo.TramoColectivo"></many-to-one>
+		<many-to-one name="tramo" class="modelo.fichadas.colectivo.TramoColectivo" column="idTramo"></many-to-one>
 	</joined-subclass>
 	
 	<joined-subclass name="modelo.fichadas.tren.FichadaTren" table="fichadaTren" extends="modelo.fichadas.Fichada">
 		<key column="idFichada" />
 		<property name="tipoFichada" column="idTipoFichada" type="int" />
-		<many-to-one name="estacion" class="modelo.fichadas.tren.EstacionTren"></many-to-one>
+		<many-to-one name="estacion" class="modelo.fichadas.tren.EstacionTren" column="idEstacion"></many-to-one>
 	</joined-subclass>
 	
 	<joined-subclass name="modelo.fichadas.FichadaRecarga" table="fichadaRecarga" extends="modelo.fichadas.Fichada">

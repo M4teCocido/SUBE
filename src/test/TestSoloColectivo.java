@@ -32,7 +32,8 @@ public class TestSoloColectivo {
 		LineaColectivo l165 = new LineaColectivo ("165");
 		LectoraColectivo lectoraColectivoA = new LectoraColectivo ();
 		
-		InternoColectivo internoA = new InternoColectivo (l165, "internoA", lectoraColectivoA);
+		InternoColectivo internoA = new InternoColectivo (l165, "internoA");
+		internoA.setLectora(lectoraColectivoA);
 		internoA.getLectora().setInterno(internoA);
 		TramoColectivo tramoColectivoA = new TramoColectivo("Tramo A",new BigDecimal (9), l165);
 		

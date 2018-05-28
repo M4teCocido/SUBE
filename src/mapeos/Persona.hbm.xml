@@ -21,8 +21,8 @@
 		<property column="telefono" name="telefono" type="string" />
 		<one-to-one name="documento" class="modelo.Documento" cascade="all" />
 		
-		<one-to-one name="descuentoBoletoEstudiantil" class="modelo.Descuentos.DescuentoBoletoEstudiantil" lazy="false" cascade="all" />
-		<one-to-one name="descuentoTarifaSocial" class="modelo.Descuentos.DescuentoTarifaSocial" lazy="false" cascade="all"></one-to-one>
+		<one-to-one name="descuentoBoletoEstudiantil" class="modelo.Descuentos.DescuentoBoletoEstudiantil" property-ref="persona" lazy="false" cascade="all" />
+		<one-to-one name="descuentoTarifaSocial" class="modelo.Descuentos.DescuentoTarifaSocial" lazy="false" property-ref="persona" cascade="all"></one-to-one>
 		
 		<set name="tarjetasAsociadas" table="tarjetasube" order-by="idTarjetaSube asc" inverse="true" lazy="false" fetch="select">
 			<key column="idPropietario" not-null="true" />

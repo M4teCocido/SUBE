@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 import modelo.Persona;
 import modelo.TarjetaSube;
+import modelo.TarjetaSube.Resultado;
 import modelo.Descuentos.DescuentoTarifaSocial;
 import modelo.fichadas.TransaccionSUBE;
 import modelo.fichadas.subte.EstacionSubte;
@@ -21,7 +22,7 @@ public class TestSoloSubte {
 		Persona persona = new Persona();
 		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", 55));
 		
-		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (-15));
+		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (200));
 		
 		tarjeta.setPropietario(persona);
 		
@@ -32,9 +33,9 @@ public class TestSoloSubte {
 		lineaC.getRecorridoSubte().add(constitucion);
 		lineaC.getRecorridoSubte().add(moreno);
 		FichadaSubte fichadaSubte = new FichadaSubte (new GregorianCalendar(2018, 3, 6, 13,10,00), lectora, constitucion);		
-		TransaccionSUBE transaccionPrueba = tarjeta.procesarFichada(fichadaSubte);
-		if ( transaccionPrueba != null) {
-			System.out.print(transaccionPrueba.toString());
-			}
+		Resultado resultado = tarjeta.procesarFichada(fichadaSubte);
+		System.out.println(resultado);
+		
+
 	}	
 }

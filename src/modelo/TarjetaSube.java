@@ -100,26 +100,37 @@ public class TarjetaSube {
 		
 	}
 	
-	public TransaccionSUBE procesarFichada(FichadaColectivo fichadaColectivo) {
+	public Resultado procesarFichada(FichadaColectivo fichadaColectivo) {
 		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecio(), fichadaColectivo);
 		
 		TransaccionSUBE transaccion = null; 
-		Resultado resultado = comprobarSaldoSuficiente(monto);
+		Resultado resultado = null;
 		
-		if (resultado.aprobado == true ) {
+		if (comprobarSaldoSuficiente(monto) == true ) {
 			transaccion = this.procesarTransaccion(fichadaColectivo, monto); 
+			transaccion.setImporte(new BigDecimal (transaccion.getImporte().ROUND_HALF_UP));
 			this.transacciones.add(transaccion);
-		}
+			resultado = new Resultado  (true,"-"+transaccion.getImporte().toString(), transaccion);
+		}else {resultado = new Resultado  (false, "Saldo insuficiente", transaccion);}
 		
-		return transaccion;
+		return resultado;
 	}
 	
-	public TransaccionSUBE procesarFichada(FichadaTren fichadaActual) { //Se procesa fichada tren. -----------
+	
+	
+	
+	public Resultado procesarFichada(FichadaTren fichadaActual) { //Se procesa fichada tren. -----------
 		
 		TransaccionSUBE transaccion = null;
-		System.out.println(fichadaActual.toString());
+		Resultado resultado = null;
+		
+		
+		
 		if (fichadaActual.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
-			transaccion = procesarSaldoMaximo (fichadaActual);
+			if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
+				transaccion = procesarSaldoMaximo (fichadaActual);
+				resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
+			}
 		} else {		
 			FichadaTren fichadaAnterior =  (FichadaTren) getUltimaFichada();
 			Fichada ultimaFichada = this.getUltimaFichada();
@@ -143,24 +154,44 @@ public class TarjetaSube {
 					    System.out.println("Bonificacion:" + bonificacion.toString());
 				    	this.transacciones.add(transaccion);
 					}		 
-				} else  transaccion = procesarSaldoMaximo (fichadaActual);
-			} else transaccion =  procesarSaldoMaximo (fichadaActual);
+				
+				} 	else{	if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
+								transaccion = procesarSaldoMaximo (fichadaActual);
+								resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
+							}
+					}
+			
+			} 	else {	if(comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
+							transaccion = procesarSaldoMaximo (fichadaActual);
+							resultado =  new Resultado (true, "-" + transaccion.getImporte().toString(), transaccion );
+			   			}
+				}
 
 		}
-		return transaccion;
+		return  resultado;
 	}
 	
-	public TransaccionSUBE procesarFichada (FichadaSubte fichadaSubte) { //procesa fichada subte------------
+	
+	
+	
+	
+	
+	
+	public Resultado procesarFichada (FichadaSubte fichadaSubte) { //procesa fichada subte------------
 		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio(), fichadaSubte);
-			
-		TransaccionSUBE transaccion = null; 
-		Resultado resultado = comprobarSaldoSuficiente(monto);
+		Resultado resultado = null;
+		TransaccionSUBE transaccion = null; 	
 		
-		if (resultado.aprobado == true ) {
+		
+		if (comprobarSaldoSuficiente(monto) == true ) {
 			transaccion = this.procesarTransaccion(fichadaSubte, monto); 
+			System.out.println(transaccion.getImporte().toString());
 			this.transacciones.add(transaccion);
-		}
-		return transaccion;
+			resultado = new Resultado (true, "-" + transaccion.getImporte().toString(),transaccion);
+		}else {resultado = new Resultado(false, "Saldo insuficiente", transaccion);}
+		
+		
+		return  resultado ;
 	}
 	
 	public TransaccionSUBE procesarFichada (FichadaRecarga fichadaCarga) {
@@ -217,7 +248,7 @@ public class TarjetaSube {
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO); //Creamos uno nuevo
 		montoFinal = montoFinal.setScale(2, BigDecimal.ROUND_HALF_UP);
 		this.saldo = this.saldo.subtract(montoFinal);
-		return new TransaccionSUBE (fichada, montoFinal, this);
+		return new TransaccionSUBE ( montoFinal,this, fichada );
 	}
 
 	@Override
@@ -232,23 +263,21 @@ public class TarjetaSube {
 		
 		transaccion = procesarTransaccion (fichadaTren, monto);
 		this.transacciones.add(transaccion);
-		System.out.println("Transaccion en fichada entrada "+transaccion.getImporte().toString());
-		
+	
 		return transaccion;	
 	}
 	
-	public Resultado comprobarSaldoSuficiente (BigDecimal monto ) {//Comprueba saldo suficiente 
+	public boolean comprobarSaldoSuficiente (BigDecimal monto ) {//Comprueba saldo suficiente ---------------------
 		
-		Resultado resultadoComprobacion =  new Resultado (true,"Transaccion aprobada");
+		boolean aprobado = true;
 		BigDecimal montoAux = new BigDecimal (0);
 		
 		montoAux = this.saldo.subtract(monto);
 		
 		if( montoAux.compareTo(new BigDecimal (saldoMinimo))==-1) {
-			resultadoComprobacion.setAprobado(false);
-			resultadoComprobacion.setMensaje("Saldo Insuficiente");
+			aprobado = false;
 		}
-		return resultadoComprobacion;
+		return aprobado;
 	}
 
 	private TransaccionSUBE getUltimaTransaccion() {// Obtiene la ultima transaccion dentro de lista de trasacciones----------
@@ -270,13 +299,15 @@ public class TarjetaSube {
 		
 	}
 
-	class Resultado{
+	public class Resultado{
 		 private boolean aprobado;
 		 private String mensaje;
-		public Resultado(boolean aprobado, String mensaje) {
+		 private TransaccionSUBE transaccion;
+		 public Resultado(boolean aprobado, String mensaje, TransaccionSUBE transaccion) {
 			super();
 			this.aprobado = aprobado;
 			this.mensaje = mensaje;
+			this.transaccion = transaccion;
 		}
 		public Resultado() {
 			super();
@@ -292,7 +323,20 @@ public class TarjetaSube {
 		}
 		public void setMensaje(String mensaje) {
 			this.mensaje = mensaje;
+		}
+		public TransaccionSUBE getTransaccion() {
+			return transaccion;
+		}
+		public void setTransaccion(TransaccionSUBE transaccion) {
+			this.transaccion = transaccion;
+		}
+		@Override
+		public String toString() {
+			return "Resultado [mensaje=" + mensaje + "]";
 		}	 
-	 }
+	 
+		
+	
+	}
 }
 

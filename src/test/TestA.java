@@ -39,26 +39,6 @@ public class TestA {
 	
 	
 		
-		//Instancia Objetos Fichada Tren-------------------------------------------------------
-		LineaTren roca = new LineaTren ("Roca");
-		
-		EstacionTren constitucionTren = new EstacionTren("Constitucion", roca); 
-		EstacionTren lanusTren = new EstacionTren("Lanus", roca);
-		EstacionTren aKornTren = new EstacionTren ("A. Korn", roca);
-		
-		
-		
-		SeccionTren primeraSeccion = new SeccionTren ("Primera Seccion", new BigDecimal(2),roca);
-		roca.getSecciones().add(primeraSeccion);
-		SeccionTren segundaSeccion = new SeccionTren ("Segunda Seccion", new BigDecimal(3),roca);
-		roca.getSecciones().add(segundaSeccion);
-		SeccionTren terceraSeccion = new SeccionTren ("Tercera Seccion", new BigDecimal(4),roca);
-		roca.getSecciones().add(terceraSeccion);
-		
-		ViajeTren viajeA = new ViajeTren (constitucionTren,lanusTren, primeraSeccion,roca);
-		roca.getViajes().add(viajeA);
-		ViajeTren viajeB = new ViajeTren (constitucionTren, aKornTren, terceraSeccion,roca);
-		roca.getViajes().add(viajeA);
 		
 		
 		
@@ -66,26 +46,7 @@ public class TestA {
 		
 		//Instancio Fichada tren-----------------------------------------------------------------------------------------
 		
-		System.out.println("Caso de uso a");
-		
-		FichadaTren fichadaPruebaA = new FichadaTren (new GregorianCalendar(2018, 3, 6, 13,10,00),constitucionTren, eTipoFichadaTren.ENTRADA);
-		TransaccionSUBE transaccion = tarjeta.procesarFichada(fichadaPruebaA);
 	
-		
-		FichadaTren fichadaPruebaB = new FichadaTren (new GregorianCalendar(2018, 3, 6, 17,10,00), lanusTren, eTipoFichadaTren.SALIDA);
-		transaccion = tarjeta.procesarFichada(fichadaPruebaB);
-	  
-	    FichadaTren fichadaPruebaC = new FichadaTren (new GregorianCalendar (2018, 3, 6, 18,10,00), aKornTren, eTipoFichadaTren.SALIDA);
-	    transaccion =  tarjeta.procesarFichada(fichadaPruebaC);
-	    
-	    System.out.println("Caso de uso b)");
-	    
-	    
-	    FichadaTren fichadaPruebaD = new FichadaTren (new GregorianCalendar(2018, 3, 6, 19,10,00), lanusTren, eTipoFichadaTren.ENTRADA);
-		transaccion = tarjeta.procesarFichada(fichadaPruebaD);
-	  
-		  FichadaTren fichadaPruebaE = new FichadaTren (new GregorianCalendar(2018, 3, 6, 23,10,00), lanusTren, eTipoFichadaTren.SALIDA);
-			transaccion = tarjeta.procesarFichada(fichadaPruebaE);
 		  
 	    
 	    for (TransaccionSUBE t : tarjeta.getTransacciones()) {

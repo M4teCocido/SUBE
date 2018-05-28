@@ -1,11 +1,13 @@
 package modelo.fichadas;
 import java.util.GregorianCalendar;
 
+import modelo.Descuentos.LapsoDescuentoRedSube;
 import modelo.lectoras.Lectora;
 
 public abstract class Fichada {
 	
 	private int idFichada;
+	private LapsoDescuentoRedSube lapso;
 	private Lectora lectora;
 	private GregorianCalendar fechaHora;
 	
@@ -41,6 +43,14 @@ public abstract class Fichada {
 		this.lectora = lectora;
 	}
 	
+	public LapsoDescuentoRedSube getLapso() {
+		return lapso;
+	}
+
+	public void setLapso(LapsoDescuentoRedSube lapso) {
+		this.lapso = lapso;
+	}
+
 	@Override
 	public String toString() {
 		return "Fichada [fechaHora=" + fechaHora;

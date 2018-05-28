@@ -148,7 +148,7 @@ public class Persona {
 	@Override
 	public String toString() {
 		
-		String tarjetasString;
+		String tarjetasString = "NINGUNA";
 		String descuentoSocialString;
 		String descuentoEstudiantilString;
 		String documentoString;
@@ -156,13 +156,21 @@ public class Persona {
 		documentoString = (this.documento != null ? this.documento.toString() : "Ninguno");
 		descuentoSocialString = (this.descuentoTarifaSocial != null ? this.descuentoTarifaSocial.toString() : "Ninguno"); 
 		descuentoEstudiantilString =(this.descuentoBoletoEstudiantil != null ? this.descuentoBoletoEstudiantil.toString() : "Ninguno");
-		tarjetasString = String.valueOf(this.tarjetasAsociadas.size());
+		if (this.tarjetasAsociadas.size() > 0) {
+			tarjetasString = "";
+			for (int i = 0; i < this.tarjetasAsociadas.size(); i++) {
+				if (i == 0)
+					tarjetasString += IndexableSet.get(this.tarjetasAsociadas, i).getCodigo();
+				else
+					tarjetasString += ", " + IndexableSet.get(this.tarjetasAsociadas, i).getCodigo();
+			}
+		}
 		
 		
 		String resultado = "Nombre: " + getNombre() + "\nApellido: " + getApellido() + "\nDocumento: " + documentoString 
 				+ "\nGenero: " + getGenero() + "\nFecha nacimiento: " + FuncionesGregorian.traerFechaCorta(getFechaNacimiento()) 
 				+ "\nEmail: " + getEmail() + "\nCelular: " + getCelular() + "\nTelefono: " + getTelefono()
-				+ "\nTarjetas Asociadas: " + getTarjetasAsociadas() + "\nDescuento tarifa social: " + descuentoSocialString
+				+ "\nTarjetas Asociadas: " + tarjetasString + "\nDescuento tarifa social: " + descuentoSocialString
 				+ "\nDescuento Boleto Estudiantil: " + descuentoEstudiantilString;
 		
 		return resultado;  

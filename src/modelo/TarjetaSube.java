@@ -32,12 +32,16 @@ public class TarjetaSube {
 	
 	public TarjetaSube() {}
 	
+	public TarjetaSube(String codigo, int saldo) {
+		this(codigo, new BigDecimal(saldo));
+	}
+	
 	public TarjetaSube(String codigo, BigDecimal saldo) {
 		super();
 		this.codigo = codigo;
 		this.saldo = saldo;
 		this.transacciones = new HashSet<TransaccionSUBE>();
-		this.descuentoRedSube = new DescuentoRedSube();
+		this.descuentoRedSube = new DescuentoRedSube(this);
 		this.activa = true;
 	}
 	
@@ -271,10 +275,18 @@ public class TarjetaSube {
 		return new TransaccionSUBE ( montoFinal,this, fichada );
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return this.saldo.toString();
+		String propietarioString = "NINGUNO";
+		if (this.propietario != null)
+			propietarioString = this.propietario.getNombre();
+		return "TarjetaSube [idTarjeta=" + idTarjeta + ", codigo=" + codigo + ", propietario=" + propietarioString
+				+ ", transacciones=" + transacciones + ", descuentoRedSube=" + descuentoRedSube + ", saldo=" + saldo
+				+ ", activa=" + activa + "]";
 	}
+
 	public TransaccionSUBE procesarSaldoMaximo (FichadaTren fichadaTren) {
 		TransaccionSUBE transaccion = null;
 		System.out.println("Es de entrada");

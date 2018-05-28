@@ -12,6 +12,7 @@ import util.IndexableSet;
 public class LapsoDescuentoRedSube {
 	
 	private int idLapso;
+	private DescuentoRedSube descuento;
 	private static BigDecimal descuento50 = new BigDecimal(0.5);
 	private static BigDecimal descuento75 = new BigDecimal(0.25);
 	private GregorianCalendar fechaHoraVencimiento;
@@ -19,10 +20,11 @@ public class LapsoDescuentoRedSube {
 
 	public LapsoDescuentoRedSube() {}
 	
-	public LapsoDescuentoRedSube(GregorianCalendar fechaHoraVencimiento) {
+	public LapsoDescuentoRedSube(GregorianCalendar fechaHoraVencimiento, DescuentoRedSube descuento) {
 		super();
 		this.fechaHoraVencimiento = fechaHoraVencimiento;
 		this.viajesRealizados = new HashSet<Fichada>();
+		this.descuento = descuento;
 	}
 
 	public int getIdLapso() {
@@ -57,6 +59,14 @@ public class LapsoDescuentoRedSube {
 		return this.viajesRealizados.size();
 	}
 	
+	public DescuentoRedSube getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(DescuentoRedSube descuento) {
+		this.descuento = descuento;
+	}
+
 	public BigDecimal aplicarDescuento(BigDecimal importe, Fichada fichada) {
 		BigDecimal importeFinal = new BigDecimal(importe.doubleValue());
 		this.viajesRealizados.add(fichada);

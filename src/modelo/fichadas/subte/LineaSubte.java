@@ -52,4 +52,11 @@ public class LineaSubte {
 		this.precioViaje = precioViaje;
 	}
 
+	@Override
+	public String toString() {
+		return getNombre();
+	}
+	
+	
+
 }

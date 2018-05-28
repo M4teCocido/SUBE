@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 import modelo.fichadas.Fichada;
 import modelo.lectoras.LectoraSubte;
+import util.FuncionesGregorian;
 
 public class FichadaSubte extends Fichada {
 	
@@ -31,7 +32,7 @@ public class FichadaSubte extends Fichada {
 	
 	@Override
 	public String toString() {
-		return "FichadaSubte [estacionSubte=" + estacionSubte + ", getFechaHora()=" + getFechaHora().getTime();
+		return "Estacion " + estacionSubte + ", a las: " + FuncionesGregorian.traerFechaCortaHora(getFechaHora()); 
 	} 
 	
 }

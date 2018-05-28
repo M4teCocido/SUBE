@@ -96,7 +96,7 @@ public class FuncionesGregorian {
 	}
 	
 	public static String traerFechaCortaHora(GregorianCalendar f){
-		return new SimpleDateFormat("dd/MM/yyyy, hh:mm:ss").format(f.getTime());
+		return new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(f.getTime());
 	}
 	
 	public static GregorianCalendar traerFechaProximo(GregorianCalendar f, int dias){

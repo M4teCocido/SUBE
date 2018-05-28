@@ -101,7 +101,10 @@ public class TarjetaSube {
 		this.activa = activa;
 	}
 	
-
+	public TarjetaSube SetActivaC(boolean activa) {
+		this.activa = activa;
+		return this;
+	}
 	
 	public Resultado procesarFichada(FichadaColectivo fichadaColectivo) {
 		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecio(), fichadaColectivo);
@@ -118,9 +121,6 @@ public class TarjetaSube {
 		
 		return resultado;
 	}
-	
-	
-	
 	
 	public Resultado procesarFichada(FichadaTren fichadaActual) { //Se procesa fichada tren. -----------
 		

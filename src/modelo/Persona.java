@@ -199,8 +199,9 @@ public class Persona {
 	
 	public boolean asociarTarjeta(TarjetaSube tarjeta) throws Exception {
 		boolean asociado = false;
-		if (getTarjetasAsociadas().isEmpty() == false) {
-			if (tarjetasAsociadas.contains(tarjeta)) throw new Exception("La tarjeta ya esta asociada a esta persona.");
+		if (!getTarjetasAsociadas().isEmpty()) {
+			if (tarjetasAsociadas.contains(tarjeta)) 
+				throw new Exception("La tarjeta ya esta asociada a esta persona.");
 			else {
 				tarjeta.setPropietario(this);
 				tarjetasAsociadas.add(tarjeta);

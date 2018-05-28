@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 import modelo.Persona;
 import modelo.Descuentos.eTipoBoletoEstudiantil;
+import modelo.fichadas.colectivo.FichadaColectivo;
 
 import modelo.fichadas.Fichada;
 
@@ -49,10 +50,12 @@ public class DescuentoBoletoEstudiantil extends DescuentoSube {
 	@Override
 	public BigDecimal aplicarDescuento (BigDecimal importe, Fichada fichada) {
 		BigDecimal importeFinal = new BigDecimal(importe.doubleValue());
-		if (this.viajesRestantes > 0) {
-			if (fichada.getFechaHora().get(Calendar.HOUR_OF_DAY) >= horaInicio && fichada.getFechaHora().get(Calendar.HOUR_OF_DAY) <= horaFin) {
-				this.consumirViaje();
-				importeFinal = importeFinal.multiply(this.porcentajeDescuento);
+		if (fichada instanceof FichadaColectivo ) { //Es de Colectivo
+			if (this.viajesRestantes > 0) {
+				if (fichada.getFechaHora().get(Calendar.HOUR_OF_DAY) >= horaInicio && fichada.getFechaHora().get(Calendar.HOUR_OF_DAY) <= horaFin) {
+					this.consumirViaje();
+					importeFinal = importeFinal.multiply(this.porcentajeDescuento);
+				}
 			}
 		}
 		return importeFinal;

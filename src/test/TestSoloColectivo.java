@@ -23,11 +23,11 @@ public class TestSoloColectivo {
 		
 		LectoraExterna lectoraExterna = new LectoraExterna (123123123, "Kiosco : El pelado Hernandez");
 		
-		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (0));
+		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (-10));
 		FichadaRecarga fichadaCarga = new FichadaRecarga (new GregorianCalendar(2018, 3, 6, 13,10,00), new BigDecimal (100), lectoraExterna); 
 		
 		tarjeta.setPropietario(persona);
-		
+		System.out.println( tarjeta.procesarFichada(fichadaCarga).toString());
 		
 		LineaColectivo l165 = new LineaColectivo ("165");
 		LectoraColectivo lectoraColectivoA = new LectoraColectivo ();
@@ -37,9 +37,9 @@ public class TestSoloColectivo {
 		TramoColectivo tramoColectivoA = new TramoColectivo("Tramo A",new BigDecimal (9), l165);
 		
 		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA, lectoraColectivoA);
-		System.out.println(tarjeta.getSaldo().toString());
+		System.out.println("Saldo tarjeta antes de viaje" + tarjeta.getSaldo().toString());
 		System.out.println(tarjeta.procesarFichada(fichadaAColectivo).toString());
-		
+		System.out.println("Saldo tarjeta despues viaje" + tarjeta.getSaldo().toString());
 
 	}
 

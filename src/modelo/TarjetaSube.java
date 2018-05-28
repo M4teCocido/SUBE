@@ -197,13 +197,14 @@ public class TarjetaSube {
 		
 		TransaccionSUBE transaccion = null;
 		Resultado resultado = null;
-		BigDecimal saldoDespuesCarga = fichadaCarga.getMonto().add(this.saldo);
+		BigDecimal saldoDespuesCarga = this.saldo.add(fichadaCarga.getMonto());
 		
 		if (saldoDespuesCarga.compareTo(new BigDecimal (saldoMinimo))==1) {
 			if (saldoDespuesCarga.compareTo(new BigDecimal (saldoMaximo))!=1) {
-				
-					transaccion = procesarTransaccion(fichadaCarga, fichadaCarga.getMonto().multiply(new BigDecimal(-1f)));
+					this.saldo = saldoDespuesCarga;
+					transaccion =  new TransaccionSUBE ( fichadaCarga.getMonto(),this, fichadaCarga );
 					this.transacciones.add(transaccion);
+					
 					resultado = new Resultado (true, "+" + transaccion.getImporte().toString(), transaccion );
 			} else {resultado = new Resultado (false, "Carga supera maximo", transaccion);}
 		}else { resultado =  new Resultado (false, "Carga no supera minimo", transaccion );}

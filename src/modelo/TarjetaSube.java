@@ -28,6 +28,7 @@ public class TarjetaSube {
 	private BigDecimal saldo;
 	private boolean activa;
 	private final int saldoMinimo = -19;
+	private final int saldoMaximo = 600;
 	
 	public TarjetaSube() {}
 	
@@ -96,9 +97,7 @@ public class TarjetaSube {
 		this.activa = activa;
 	}
 	
-	public void efectuarCarga (BigDecimal monto) {
-		
-	}
+
 	
 	public Resultado procesarFichada(FichadaColectivo fichadaColectivo) {
 		BigDecimal monto = procesarDescuento(fichadaColectivo.obtenerPrecio(), fichadaColectivo);
@@ -194,10 +193,23 @@ public class TarjetaSube {
 		return  resultado ;
 	}
 	
-	public TransaccionSUBE procesarFichada (FichadaRecarga fichadaCarga) {
-		TransaccionSUBE transaccion = procesarTransaccion(fichadaCarga, fichadaCarga.getMonto().multiply(new BigDecimal(-1f)));
-		this.transacciones	.add(transaccion);
-		return transaccion;
+	public Resultado procesarFichada (FichadaRecarga fichadaCarga) {
+		
+		TransaccionSUBE transaccion = null;
+		Resultado resultado = null;
+		BigDecimal saldoDespuesCarga = fichadaCarga.getMonto().add(this.saldo);
+		
+		if (saldoDespuesCarga.compareTo(new BigDecimal (saldoMinimo))==1) {
+			if (saldoDespuesCarga.compareTo(new BigDecimal (saldoMaximo))!=1) {
+				
+					transaccion = procesarTransaccion(fichadaCarga, fichadaCarga.getMonto().multiply(new BigDecimal(-1f)));
+					this.transacciones.add(transaccion);
+					resultado = new Resultado (true, "+" + transaccion.getImporte().toString(), transaccion );
+			} else {resultado = new Resultado (false, "Carga supera maximo", transaccion);}
+		}else { resultado =  new Resultado (false, "Carga no supera minimo", transaccion );}
+	
+		
+		return resultado;
 	}
 
 	public List<Fichada> obtenerViajesRealizados(GregorianCalendar fechaInicio , GregorianCalendar fechaFin ) {

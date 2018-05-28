@@ -6,11 +6,13 @@ import java.util.GregorianCalendar;
 import modelo.Persona;
 import modelo.TarjetaSube;
 import modelo.Descuentos.DescuentoTarifaSocial;
+import modelo.fichadas.FichadaRecarga;
 import modelo.fichadas.colectivo.FichadaColectivo;
 import modelo.fichadas.colectivo.InternoColectivo;
 import modelo.fichadas.colectivo.LineaColectivo;
 import modelo.fichadas.colectivo.TramoColectivo;
 import modelo.lectoras.LectoraColectivo;
+import modelo.lectoras.LectoraExterna;
 
 public class TestSoloColectivo {
 
@@ -19,9 +21,13 @@ public class TestSoloColectivo {
 		Persona persona = new Persona();
 		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", 55));
 		
-		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (200));
+		LectoraExterna lectoraExterna = new LectoraExterna (123123123, "Kiosco : El pelado Hernandez");
+		
+		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (0));
+		FichadaRecarga fichadaCarga = new FichadaRecarga (new GregorianCalendar(2018, 3, 6, 13,10,00), new BigDecimal (100), lectoraExterna); 
 		
 		tarjeta.setPropietario(persona);
+		
 		
 		LineaColectivo l165 = new LineaColectivo ("165");
 		LectoraColectivo lectoraColectivoA = new LectoraColectivo ();
@@ -33,6 +39,7 @@ public class TestSoloColectivo {
 		FichadaColectivo fichadaAColectivo = new FichadaColectivo (new GregorianCalendar(2018, 3, 6, 13,10,00),tramoColectivoA, lectoraColectivoA);
 		System.out.println(tarjeta.getSaldo().toString());
 		System.out.println(tarjeta.procesarFichada(fichadaAColectivo).toString());
+		
 
 	}
 

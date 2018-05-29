@@ -200,8 +200,11 @@ public class TarjetaSube {
 					System.out.println("Fichada Tren : Anterior NO es de tren");
 					resultado = procesarImporteMaximoTren (fichadaActual);
 				}
+			} else {
+				System.out.println("Fichada Tren : No hay fichada anterior");
+				resultado = procesarImporteMaximoTren (fichadaActual);
 			}
-	}
+		}
 		return  resultado;
 	}
 	

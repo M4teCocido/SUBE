@@ -23,7 +23,7 @@ public class TestSoloTren {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				Persona persona = new Persona();
-				persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", 55));
+				persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ());
 				
 				LectoraExterna lectoraExterna = new LectoraExterna (123123123, "Kiosco : El pelado Hernandez");
 				

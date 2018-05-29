@@ -35,6 +35,14 @@ public  class FichadaTren extends Fichada {
 		this.estacion = estacion;
 	}
 
+	public boolean esSalida() {
+		return (this.tipoFichada == eTipoFichadaTren.SALIDA);
+	}
+	
+	public boolean esEntrada() {
+		return !(this.esSalida());
+	}
+	
 	@Override
 	public String toString() {
 		return "FichadaTren [estacion=" + estacion + ", tipoFichada=" + tipoFichada + "]";

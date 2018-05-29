@@ -1,5 +1,6 @@
 package modelo;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -162,23 +163,23 @@ public class TarjetaSube {
 							ViajeTren viajeAux = fichadaActual.getEstacion().getLinea().obtenerViaje(fichadaAnterior.getEstacion(), fichadaActual.getEstacion());
 						    BigDecimal bonificacion = new BigDecimal(0);
 						    BigDecimal viajeDescontado;
-						    System.out.println("SAldo viaje aux"+viajeAux.getSeccionTren().getImporte().toString());
+						    System.out.println("Importe Viaje : " + viajeAux.getSeccionTren().getImporte().toString());
 						    
 						    
 						    if (viajeAux != null) {
-						    	viajeDescontado = procesarDescuento(viajeAux.getSeccionTren().getImporte(), fichadaActual);
-						    	System.out.println("viaje descontado" + viajeDescontado.toString());}
-						    else
+						    	viajeDescontado = procesarDescuento(viajeAux.getSeccionTren().getImporte(), fichadaActual).setScale(2, RoundingMode.HALF_UP);
+						    	System.out.println("viaje descontado : " + viajeDescontado.toString());
+						    } else
 						    	viajeDescontado = getUltimaTransaccion().getImporte().add(BigDecimal.ZERO);
 						    
-					     	bonificacion = getUltimaTransaccion().getImporte().subtract(viajeDescontado);
+					     	bonificacion = getUltimaTransaccion().getImporte().subtract(viajeDescontado).setScale(2, RoundingMode.HALF_UP);
 				
 				    		
 					     	transaccion = procesarTransaccion (fichadaActual, bonificacion.negate());
 	
 				    		resultado = generarResultadoTransaccionExitosa(" +" + bonificacion.toString(), transaccion );
 				    		
-						    System.out.println("Bonificacion:" + bonificacion.toString());
+						    System.out.println("Bonificacion : " + bonificacion.toString());
 					    	this.transacciones.add(transaccion);
 						
 						
@@ -271,7 +272,8 @@ public class TarjetaSube {
 
 
 	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {//Interface para todo proceso de descuento---------
-		BigDecimal montoFinal = monto.add(BigDecimal.ZERO);
+		BigDecimal montoFinal = monto.add(BigDecimal.ZERO).setScale(2, RoundingMode.HALF_UP);
+		System.out.println("Monto Inicial : " + montoFinal);
 		if (this.propietario != null) {
 			//Aplica descuentos
 			if (this.propietario.getDescuentoBoletoEstudiantil() != null && this.propietario.getDescuentoBoletoEstudiantil().leQuedanCargas()) { //Como es del 100%, si existe ignoramos los otros.

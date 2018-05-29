@@ -54,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `SUBEdb`.`TarjetaSUBE` (
   `idTarjetaSube` INT NOT NULL AUTO_INCREMENT,
   `codigo` VARCHAR(45) NOT NULL,
   `idPropietario` INT NULL,
-  `saldo` DECIMAL NOT NULL,
-  `activa` TINYINT NOT NULL DEFAULT b'0',
+  `saldo` DECIMAL(10,2) NOT NULL,
+  `activa` BIT(1) NOT NULL DEFAULT true,
   PRIMARY KEY (`idTarjetaSube`),
   INDEX `idPropietario_idx` (`idPropietario` ASC),
   CONSTRAINT `idPropietario`
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `SUBEdb`.`Fichada` (
   `fechaHora` DATE NOT NULL,
   `idLapsoDescuentoRedSUBE` INT NULL,
   `idLectora` INT NOT NULL,
-  PRIMARY KEY (`idFichada`, `idLectora`),
+  PRIMARY KEY (`idFichada`),
   INDEX `fk_Fichada_LapsoDescuentoRedSUBE1_idx` (`idLapsoDescuentoRedSUBE` ASC),
   INDEX `fk_Fichada_Lectora1_idx` (`idLectora` ASC),
   CONSTRAINT `fk_Fichada_LapsoDescuentoRedSUBE1`
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `SUBEdb`.`Fichada` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-ALTER TABLE Fichada ALTER idLectora SET DEFAULT 0;
+
 -- -----------------------------------------------------
 -- Table `SUBEdb`.`LineaTren`
 -- -----------------------------------------------------
@@ -166,7 +166,6 @@ DROP TABLE IF EXISTS `SUBEdb`.`EstacionTren` ;
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`EstacionTren` (
   `idEstacion` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `idRecorrido` INT NOT NULL,
   `idLinea` INT NOT NULL,
   PRIMARY KEY (`idEstacion`),
   INDEX `fk_EstacionTren_LineaTren1_idx` (`idLinea` ASC),
@@ -221,7 +220,7 @@ DROP TABLE IF EXISTS `SUBEdb`.`TramoColectivo` ;
 
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`TramoColectivo` (
   `idTramo` INT NOT NULL AUTO_INCREMENT,
-  `precio` DECIMAL NOT NULL,
+  `precio` DECIMAL(10,2) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `idLinea` INT NOT NULL,
   PRIMARY KEY (`idTramo`),
@@ -290,8 +289,8 @@ DROP TABLE IF EXISTS `SUBEdb`.`LineaSubte` ;
 
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`LineaSubte` (
   `idLinea` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(1) NOT NULL,
-  `precioViaje` DECIMAL NOT NULL,
+  `nombre` VARCHAR(50) NOT NULL,
+  `precioViaje` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`idLinea`))
 ENGINE = InnoDB;
 
@@ -345,7 +344,7 @@ DROP TABLE IF EXISTS `SUBEdb`.`FichadaRecarga` ;
 
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`FichadaRecarga` (
   `idFichada` INT NOT NULL,
-  `monto` DECIMAL NOT NULL,
+  `monto` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`idFichada`),
   CONSTRAINT `fk_FichadaRecarga_Fichada1`
     FOREIGN KEY (`idFichada`)
@@ -363,8 +362,7 @@ DROP TABLE IF EXISTS `SUBEdb`.`SeccionTren` ;
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`SeccionTren` (
   `idSeccion` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `importe` DECIMAL NOT NULL,
-  `idRecorrido` INT NOT NULL,
+  `importe` DECIMAL(10,2) NOT NULL,
   `idLinea` INT NOT NULL,
   PRIMARY KEY (`idSeccion`),
   INDEX `fk_SeccionTren_LineaTren1_idx` (`idLinea` ASC),
@@ -421,20 +419,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SUBEdb`.`TransaccionSUBE` ;
 
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`TransaccionSUBE` (
-  `idTransaccion` INT NOT NULL AUTO_INCREMENT,
-  `importe` DECIMAL NOT NULL,
+  `idTransaccion` INT NOT NULL,
+  `importe` DECIMAL(10,2) NOT NULL,
   `idTarjetaSube` INT NOT NULL,
-  `idFichada` INT NOT NULL,
-  PRIMARY KEY (`idTransaccion`),
   INDEX `fk_TransaccionSUBE_TarjetaSUBE1_idx` (`idTarjetaSube` ASC),
-  INDEX `fk_TransaccionSUBE_Fichada1_idx` (`idFichada` ASC),
+  PRIMARY KEY (`idTransaccion`),
   CONSTRAINT `fk_TransaccionSUBE_TarjetaSUBE1`
     FOREIGN KEY (`idTarjetaSube`)
     REFERENCES `SUBEdb`.`TarjetaSUBE` (`idTarjetaSube`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_TransaccionSUBE_Fichada1`
-    FOREIGN KEY (`idFichada`)
+    FOREIGN KEY (`idTransaccion`)
     REFERENCES `SUBEdb`.`Fichada` (`idFichada`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -448,8 +444,8 @@ DROP TABLE IF EXISTS `SUBEdb`.`DescuentoBoletoEstudiantil` ;
 
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`DescuentoBoletoEstudiantil` (
   `idDescuento` INT NOT NULL,
-  `descuento` DECIMAL NOT NULL,
-  `viajesRestantes` INT NULL,
+  `descuento` DECIMAL(10,2) NOT NULL,
+  `viajesRestantes` INT NOT NULL,
   `tipoBoleto` INT NOT NULL,
   `idPersona` INT NOT NULL,
   PRIMARY KEY (`idDescuento`),
@@ -474,7 +470,7 @@ DROP TABLE IF EXISTS `SUBEdb`.`DescuentoTarifaSocial` ;
 
 CREATE TABLE IF NOT EXISTS `SUBEdb`.`DescuentoTarifaSocial` (
   `idDescuento` INT NOT NULL,
-  `descuento` DECIMAL NOT NULL,
+  `descuento` DECIMAL(10,2) NOT NULL,
   `idPersona` INT NOT NULL,
   PRIMARY KEY (`idDescuento`),
   INDEX `fk_DescuentoTarifaSocial_Persona1_idx` (`idPersona` ASC),
@@ -591,14 +587,14 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SUBEdb`.`LectoraColectvo`
+-- Table `SUBEdb`.`LectoraColectivo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `SUBEdb`.`LectoraColectvo` ;
+DROP TABLE IF EXISTS `SUBEdb`.`LectoraColectivo` ;
 
-CREATE TABLE IF NOT EXISTS `SUBEdb`.`LectoraColectvo` (
+CREATE TABLE IF NOT EXISTS `SUBEdb`.`LectoraColectivo` (
   `idLectora` INT NOT NULL,
   `idInterno` INT NOT NULL,
-  PRIMARY KEY (`idLectora`, `idInterno`),
+  PRIMARY KEY (`idLectora`),
   INDEX `fk_LectoraColectvo_InternoColectivo1_idx` (`idInterno` ASC),
   CONSTRAINT `fk_LectoraColectvo_Lectora1`
     FOREIGN KEY (`idLectora`)
@@ -640,10 +636,3 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-SELECT * FROM PERMISO;
-SELECT * FROM PERSONA;
-SELECT * FROM DOCUMENTOPERSONA;
-SELECT * FROM USUARIO;
-SELECT * FROM TARJETASUBE;
-SELECT * FROM TRANSACCIONSUBE;
-SELECT * FROM LECTORASUBTE;

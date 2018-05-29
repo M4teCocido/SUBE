@@ -9,5 +9,4 @@ public class BateriaDatosPrueba {
 		TestCreacionMaestrosPersonas.main(null);
 		System.out.println("Datos Maestros de prueba generados!");
 	}
-	
 }

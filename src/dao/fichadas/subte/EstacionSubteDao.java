@@ -92,4 +92,19 @@ public class EstacionSubteDao {
 		}
 		return lista;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EstacionSubte> traerEstacionPorIdLinea (int idLinea) throws HibernateException {
+		List<EstacionSubte> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from EstacionSubte e where e.idLinea = " + idLinea + "order by e.idEstacion").list();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
 }

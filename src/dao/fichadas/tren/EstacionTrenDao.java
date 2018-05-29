@@ -92,4 +92,19 @@ public class EstacionTrenDao {
 		}
 		return lista;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EstacionTren> traerEstacionPorIdLinea(int idLinea){
+		List<EstacionTren> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from EstacionTren e where e.idLinea = " + idLinea + "order by e.idEstacion").list();
+		}catch(HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		}finally {
+			session.close();
+		}
+		return lista;
+	}
 }

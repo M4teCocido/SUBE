@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import modelo.Persona;
 import modelo.Descuentos.DescuentoSube;
 import modelo.fichadas.Fichada;
+import modelo.fichadas.subte.FichadaSubte;
 
 public class DescuentoTarifaSocial extends DescuentoSube{
 	
@@ -39,7 +40,10 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 		 //auxImporte = auxImporte.subtract(importe);
 		 return auxImporte;
 		 */
-		return importe.multiply(this.porcentajeDescuento);
+		if (!(fichada instanceof FichadaSubte))
+			return importe.multiply(this.porcentajeDescuento);
+		else
+			return importe;
 	}
 	
 	public Persona getPersona() {

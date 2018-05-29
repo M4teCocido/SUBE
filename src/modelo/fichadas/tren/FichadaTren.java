@@ -19,6 +19,14 @@ public  class FichadaTren extends Fichada {
 		this.tipoFichada = tipoFichada;
 	}
 
+	public boolean esDeSalida() {
+		return (this.tipoFichada == eTipoFichadaTren.SALIDA);
+	}
+	
+	public boolean esDeEntrada() {
+		return !this.esDeSalida();
+	}
+	
 	public eTipoFichadaTren getTipoFichada() {
 		return tipoFichada;
 	}

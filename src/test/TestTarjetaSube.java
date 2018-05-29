@@ -36,7 +36,7 @@ public class TestTarjetaSube {
 		
 		System.out.println("Su saldo es: " + tarjeta.getSaldo());
 		
-		//Cargamos la linea de tren, la lista de estaciones de tren y chequeamos que te guarden bien
+		//Cargamos la linea de tren, la lista de estaciones de tren y chequeamos que te guarden bien	
 		List<EstacionTren> listaEstacionesTren = new ArrayList<EstacionTren>();
 		
 		LineaTren lineaTren = new LineaTren("Roca");

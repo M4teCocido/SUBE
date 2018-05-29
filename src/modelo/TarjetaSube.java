@@ -135,9 +135,9 @@ public class TarjetaSube {
 			System.out.println("Fichada Tren : Actual es de ENTRADA");
 			if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
 				transaccion = procesarImporteMaximoTren (fichadaActual);
-				resultado =  generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
+				resultado =  generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion);
 			}
-		} else {		
+		} else {
 			//FichadaTren fichadaAnterior =  (FichadaTren) getUltimaFichada();
 			Fichada ultimaFichada = this.getUltimaFichada();
 			System.out.println(ultimaFichada);
@@ -150,10 +150,10 @@ public class TarjetaSube {
 				if (fichadaAnterior.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)){
 					System.out.println("Fichada Tren : Anterior es de ENTRADA");
 					
-					//System.out.println(fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY));
-					
 					if((fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY))<2){
+						
 						System.out.println("Fichada Tren : Es menor a 2 horas");
+						
 						ViajeTren viajeAux = fichadaActual.getEstacion().getLinea().obtenerViaje(fichadaAnterior.getEstacion(), fichadaActual.getEstacion());
 					    BigDecimal bonificacion = new BigDecimal(0);
 					    BigDecimal viajeDescontado;
@@ -177,10 +177,9 @@ public class TarjetaSube {
 						System.out.println("Fichada Tren : NO Es menor a 2 horas");
 						if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
 							transaccion = new  TransaccionSUBE ( new BigDecimal (0),this, fichadaActual );
-							resultado =  new Resultado (true, "-" + getUltimaTransaccion().getImporte() , transaccion );
-							
+							resultado = generarResultadoTransaccionExitosa("-" + transaccion.getImporte().toString(), transaccion );
 						}
-					} 	
+					}
 				} else {	
 					System.out.println("Fichada Tren : Anterior NO es de entrada");
 					if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )){
@@ -200,14 +199,8 @@ public class TarjetaSube {
 				}
 
 		}
-		return  resultado;
+		return resultado;
 	}
-	
-	
-	
-	
-	
-	
 	
 	public Resultado procesarFichada (FichadaSubte fichadaSubte) { //procesa fichada subte------------
 		BigDecimal monto = procesarDescuento (fichadaSubte.obtenerPrecio(), fichadaSubte);
@@ -220,9 +213,10 @@ public class TarjetaSube {
 			//System.out.println(transaccion.getImporte().toString());
 			this.transacciones.add(transaccion);
 			resultado = new Resultado (true, "Transaccion Exitosa! : 	-" + transaccion.getImporte().toString(),transaccion);
-		}else {resultado = new Resultado(false, "Saldo insuficiente", transaccion);}
-		
-		
+		}else {
+			resultado = new Resultado(false, "Saldo insuficiente", transaccion);
+		}
+
 		return  resultado ;
 	}
 	

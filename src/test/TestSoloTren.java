@@ -23,7 +23,7 @@ public class TestSoloTren {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				Persona persona = new Persona();
-				persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", 55));
+				persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial (persona));
 				
 				LectoraExterna lectoraExterna = new LectoraExterna (123123123, "Kiosco : El pelado Hernandez");
 				
@@ -77,17 +77,19 @@ public class TestSoloTren {
 				FichadaTren fichadaPruebaB = new FichadaTren (new GregorianCalendar(2018, 3, 6, 14,10,00), lanusTren, eTipoFichadaTren.SALIDA, lectoraTrenLanus);
 				System.out.println( tarjeta.procesarFichada(fichadaPruebaB).toString());
 			  
-			    FichadaTren fichadaPruebaC = new FichadaTren (new GregorianCalendar (2018, 3, 6, 18,10,00), aKornTren, eTipoFichadaTren.SALIDA, lectoraTrenAKorn);
-			    System.out.println(  tarjeta.procesarFichada(fichadaPruebaC).toString());
+			 //   FichadaTren fichadaPruebaC = new FichadaTren (new GregorianCalendar (2018, 3, 6, 18,10,00), aKornTren, eTipoFichadaTren.SALIDA, lectoraTrenAKorn);
+			  //  System.out.println(  tarjeta.procesarFichada(fichadaPruebaC).toString());
 			    
-			    System.out.println("Caso de uso b)");
+			 //   System.out.println("Caso de uso b)");
 			    
 			    
-			    FichadaTren fichadaPruebaD = new FichadaTren (new GregorianCalendar(2018, 3, 6, 19,10,00), lanusTren, eTipoFichadaTren.ENTRADA, lectoraTrenLanus);
-			    System.out.println(  tarjeta.procesarFichada(fichadaPruebaD));
+			//    FichadaTren fichadaPruebaD = new FichadaTren (new GregorianCalendar(2018, 3, 6, 19,10,00), lanusTren, eTipoFichadaTren.ENTRADA, lectoraTrenLanus);
+			//    System.out.println(  tarjeta.procesarFichada(fichadaPruebaD));
 			  
-				  FichadaTren fichadaPruebaE = new FichadaTren (new GregorianCalendar(2018, 3, 6, 23,10,00), lanusTren, eTipoFichadaTren.SALIDA, lectoraTrenLanus);
-				  System.out.println( tarjeta.procesarFichada(fichadaPruebaE));
+			//	  FichadaTren fichadaPruebaE = new FichadaTren (new GregorianCalendar(2018, 3, 6, 23,10,00), lanusTren, eTipoFichadaTren.SALIDA, lectoraTrenLanus);
+			//	  System.out.println( tarjeta.procesarFichada(fichadaPruebaE));
+				  
+				  System.out.println("SAldo tarjeta"+tarjeta.getSaldo().toString());
 	
 	}
 

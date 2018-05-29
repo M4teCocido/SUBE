@@ -5,18 +5,17 @@ import java.math.RoundingMode;
 import modelo.Persona;
 import modelo.Descuentos.DescuentoSube;
 import modelo.fichadas.Fichada;
-import modelo.fichadas.subte.FichadaSubte;
 
 public class DescuentoTarifaSocial extends DescuentoSube{
 	
-	private BigDecimal porcentajeDescuento = new BigDecimal(0.45).setScale(4, RoundingMode.HALF_UP);
+	private BigDecimal porcentajeDescuento;
 	private Persona persona;
 	
 	public DescuentoTarifaSocial() {}
 	
 	public DescuentoTarifaSocial(Persona persona) {
 		super("Tarifa Social");
-		//this.porcentajeDescuento = new BigDecimal(0.45).setScale(4, RoundingMode.HALF_UP);
+		this.porcentajeDescuento = new BigDecimal(0.45).setScale(4, RoundingMode.HALF_UP);
 		this.persona = persona;
 		//this.porcentajeDescuento = porcentajeDescuento;
 	}
@@ -40,10 +39,7 @@ public class DescuentoTarifaSocial extends DescuentoSube{
 		 //auxImporte = auxImporte.subtract(importe);
 		 return auxImporte;
 		 */
-		if (!(fichada instanceof FichadaSubte))
-			return importe.multiply(this.porcentajeDescuento);
-		else
-			return importe;
+		return importe.multiply(this.porcentajeDescuento);
 	}
 	
 	public Persona getPersona() {

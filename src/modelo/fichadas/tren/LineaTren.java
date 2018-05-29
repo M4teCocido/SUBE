@@ -84,7 +84,7 @@ public class LineaTren {
 	public BigDecimal obtenerMayorSeccion() {
 		BigDecimal montoMayor = new BigDecimal (0);
 		
-		for (int i = 0; i < this.secciones.size(); i++) {		
+		for (int i = 0; i < this.secciones.size()-1; i++) {		
 			if (montoMayor.compareTo(IndexableSet.get(this.secciones,i).getImporte())==-1){
 				montoMayor = IndexableSet.get(this.secciones,i).getImporte(); 			
 			}

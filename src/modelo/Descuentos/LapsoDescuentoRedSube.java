@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import modelo.fichadas.Fichada;
-import modelo.fichadas.tren.FichadaTren;
 import util.IndexableSet;
 
 public class LapsoDescuentoRedSube {
@@ -68,20 +67,9 @@ public class LapsoDescuentoRedSube {
 		this.descuento = descuento;
 	}
 
-	private boolean esFichadaDescontable(Fichada fichada) {
-		return !(fichada instanceof FichadaTren && ((FichadaTren) fichada).esDeSalida());
-	}
-	
 	public BigDecimal aplicarDescuento(BigDecimal importe, Fichada fichada) {
-				
-
-		
 		BigDecimal importeFinal = new BigDecimal(importe.doubleValue());
-		
-		if (esFichadaDescontable(fichada)) {
-			this.viajesRealizados.add(fichada);
-		}
-		
+		this.viajesRealizados.add(fichada);
 		int cantidadViajes = this.getCantidadViajes();
 		
 		if (cantidadViajes == 2) //Segundo Viaje

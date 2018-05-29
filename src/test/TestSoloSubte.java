@@ -20,7 +20,7 @@ public class TestSoloSubte {
 		//Instancia de objetos para fichada subte--------------------------------------------------
 		// TODO Auto-generated method stub
 		Persona persona = new Persona();
-		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ("Descuento Tarifa Social", 55));
+		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ());
 		
 		TarjetaSube tarjeta = new TarjetaSube("9999",new BigDecimal (200));
 		

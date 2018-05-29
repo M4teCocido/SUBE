@@ -9,14 +9,14 @@ import modelo.fichadas.subte.FichadaSubte;
 
 public class DescuentoTarifaSocial extends DescuentoSube{
 	
-	private BigDecimal porcentajeDescuento;
+	private BigDecimal porcentajeDescuento = new BigDecimal(0.45).setScale(4, RoundingMode.HALF_UP);
 	private Persona persona;
 	
 	public DescuentoTarifaSocial() {}
 	
 	public DescuentoTarifaSocial(Persona persona) {
 		super("Tarifa Social");
-		this.porcentajeDescuento = new BigDecimal(0.45).setScale(4, RoundingMode.HALF_UP);
+		//this.porcentajeDescuento = new BigDecimal(0.45).setScale(4, RoundingMode.HALF_UP);
 		this.persona = persona;
 		//this.porcentajeDescuento = porcentajeDescuento;
 	}

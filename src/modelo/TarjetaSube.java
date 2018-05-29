@@ -262,7 +262,6 @@ public class TarjetaSube {
 		return transacciones;
 	}
 
-
 	public BigDecimal procesarDescuento (BigDecimal monto, Fichada fichada) {//Interface para todo proceso de descuento---------
 		BigDecimal montoFinal = monto.add(BigDecimal.ZERO);
 		if (this.propietario != null) {

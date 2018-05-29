@@ -137,9 +137,9 @@ public class TarjetaSube {
 		
 		if (fichadaActual.getTipoFichada().equals(eTipoFichadaTren.ENTRADA)) {
 			System.out.println("Fichada Tren : Actual es de ENTRADA");
-			if (comprobarSaldoSuficiente (fichadaActual.getEstacion().getLinea().obtenerMayorSeccion() )== true){
+			
 				resultado = procesarImporteMaximoTren (fichadaActual );
-			}
+			
 		} else {		
 			
 			Fichada ultimaFichada = this.getUltimaFichada();
@@ -158,18 +158,23 @@ public class TarjetaSube {
 						
 						if((fichadaActual.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY)-fichadaAnterior.getFechaHora().get(GregorianCalendar.HOUR_OF_DAY))<2){
 							System.out.println("Fichada Tren : Es menor a 2 horas");
+							
 							ViajeTren viajeAux = fichadaActual.getEstacion().getLinea().obtenerViaje(fichadaAnterior.getEstacion(), fichadaActual.getEstacion());
 						    BigDecimal bonificacion = new BigDecimal(0);
 						    BigDecimal viajeDescontado;
-						    if (viajeAux != null)
+						    System.out.println("SAldo viaje aux"+viajeAux.getSeccionTren().getImporte().toString());
+						    
+						    
+						    if (viajeAux != null) {
 						    	viajeDescontado = procesarDescuento(viajeAux.getSeccionTren().getImporte(), fichadaActual);
+						    	System.out.println("viaje descontado" + viajeDescontado.toString());}
 						    else
 						    	viajeDescontado = getUltimaTransaccion().getImporte().add(BigDecimal.ZERO);
 						    
 					     	bonificacion = getUltimaTransaccion().getImporte().subtract(viajeDescontado);
-					     	System.out.println("Viaje Descontado : " + viajeDescontado);
-					     	System.out.println("Bonificacion : " + bonificacion);
-				    		transaccion = procesarTransaccion (fichadaActual, bonificacion.negate());
+				
+				    		
+					     	transaccion = procesarTransaccion (fichadaActual, bonificacion.negate());
 	
 				    		resultado = generarResultadoTransaccionExitosa(" +" + bonificacion.toString(), transaccion );
 				    		
@@ -308,6 +313,7 @@ public class TarjetaSube {
 	public Resultado procesarImporteMaximoTren (FichadaTren fichadaTren) {
 		TransaccionSUBE transaccion = null;
 		BigDecimal monto = fichadaTren.getEstacion().getLinea().obtenerMayorSeccion();
+		System.out.println("Monto maximo de sexion?"+ monto.toString());
 		Resultado resultado = null;
 		
 		if(comprobarSaldoSuficiente (fichadaTren.getEstacion().getLinea().obtenerMayorSeccion() )){

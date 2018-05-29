@@ -19,7 +19,7 @@ public class TestSoloColectivo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Persona persona = new Persona();
-		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial ());
+		persona.asignarDescuentoTarifaSocial(new DescuentoTarifaSocial (persona));
 		
 		LectoraExterna lectoraExterna = new LectoraExterna (123123123, "Kiosco : El pelado Hernandez");
 		

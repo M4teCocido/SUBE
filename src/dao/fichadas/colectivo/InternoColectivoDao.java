@@ -84,11 +84,26 @@ public class InternoColectivoDao {
 		List<InternoColectivo> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from InternoColectivo t order by t.idInterno asc").list();
+			lista = session.createQuery("from InternoColectivo i order by i.idInterno asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
 		} finally {
+			session.close();
+		}
+		return lista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<InternoColectivo> traerInternosPorIdLinea(int idLinea){
+		List<InternoColectivo> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from InternoColectivo i where i.idLinea = " + idLinea + "order by i.idInterno").list();
+		}catch(HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		}finally {
 			session.close();
 		}
 		return lista;

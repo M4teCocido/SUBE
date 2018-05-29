@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 
 import dao.HibernateUtil;
 import modelo.lectoras.LectoraSubte;
+import modelo.lectoras.LectoraTren;
 
 public class LectoraSubteDao {
 	private static Session session;
@@ -84,6 +85,21 @@ public class LectoraSubteDao {
 		try {
 			iniciaOperacion();
 			lista = session.createQuery("from LectoraSubte l order by l.idLectora asc").list();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LectoraSubte> traerLectorasPorIdEstacion(int idEstacion) throws HibernateException {
+		List<LectoraSubte> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from LectoraSubte l where l.idEstacion =" + idEstacion +  " order by l.idLectora asc").list();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
 			throw he;
